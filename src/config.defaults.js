@@ -4,10 +4,11 @@
  * Makes it easier to track the UI when the state is clear.
  */
 const CONFIG = {
-    el: '#',
+    el: '#social-music-player',
     
     loop: false,
     volume: 100,
+    fadeoutTime: 2, // seconds
     
     fullscreen: true,
     

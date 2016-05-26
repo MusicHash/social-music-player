@@ -1,4 +1,3 @@
-/* eslint-enable no-unused-vars */
 import Event from '../utils/event';
 import _Logger from '../utils/logger';
 import Initialize from './initialize';
@@ -14,7 +13,8 @@ class API extends BaseObject {
     /**
      * 
      */
-    constructor(modelSettings) {
+    constructor() {
+        super();
     }
 
 
@@ -27,6 +27,10 @@ class API extends BaseObject {
         return this;
     }
     
+    
+    isPlaying() {
+        
+    }
     
     title() {
         
