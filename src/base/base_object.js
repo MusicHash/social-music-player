@@ -5,29 +5,14 @@ import _ from '../utils/__';
  *
  */
 class BaseObject {
-
-    /**
-     */
-    static $instance = null;
-
-
+    
     static create(params) {
-        if (_.isNull(this.$instance)) {
-            this.$instance = new this(params);
-            return this.$instance;
-        }
-
-        if (!params) {
-            return this.$instance;
-        }
-
-        this.$instance._setLogLevel(params.logLevel);
-
-        return this.$instance;
+        return new this(params);
     }
 
 
     /**
+     *
      */
     constructor(params = {}) {
         this._setLogLevel(params.logLevel || 'INFO');

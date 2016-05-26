@@ -5,11 +5,11 @@ let extend = require('util')._extend,
 
 
 const babel = {
-    entry: path.resolve(PATH_BASE, 'src/bootstrap.js'),
+    entry: path.resolve(PATH_BASE, 'src/social_music_player.js'),
 
     output: {
         path: path.resolve(PATH_BASE, 'dist/js'),
-        filename: 'player.min.js',
+        filename: 'smp.min.js',
         libraryTarget: 'umd',
         pathinfo: false
     },

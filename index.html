@@ -2,11 +2,23 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>title</title>
-    <script src="dist/js/player.min.js"></script>
+    <title>Social Music Player</title>
   </head>
   <body>
   
-  
+  <script type="text/javascript">
+    window.SMPAsyncInit = function() {
+      window.SocialMusicPlayer.initialize();
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) return;
+       js = d.createElement(s); js.id = id;
+       js.src = 'dist/js/smp.min.js';
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'social-music-player-sdk'));
+  </script>
+
   </body>
 </html>
