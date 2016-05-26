@@ -1,3 +1,3 @@
-import Event from 'event-emitter-js';
+let Event = require('event-emitter-js');
 
 export default Event;

@@ -9,7 +9,7 @@ class Logger {
     /**
      * 
      */
-    static LOG_LEVEL(level) {
+    static LOG_LEVEL(level = 'DEBUG') {
         switch (level.toString().toUpperCase()) {
             case 'OFF':
                 return logger.OFF;
