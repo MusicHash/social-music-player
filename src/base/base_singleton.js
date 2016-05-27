@@ -1,5 +1,5 @@
 import BaseObject from './base_object';
-
+import _ from '../utils/__';
 
 /**
  *
@@ -15,7 +15,7 @@ class BaseSingleton extends BaseObject {
             this.$instance = new this();
         }
 
-        if (params && 'function' === typeof(this.$instance.init)) {
+        if ('function' === typeof(this.$instance.init)) {
             this.$instance.init(params);
         }
 

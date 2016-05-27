@@ -17,6 +17,7 @@ class Initialize extends BaseObject {
      * 
      */
     init(params) {
+        console.log('init called??');
         Config.create(params);
         
         this.start();
