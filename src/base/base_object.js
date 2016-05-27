@@ -8,15 +8,23 @@ import _ from '../utils/__';
 class BaseObject {
     
     static create(params) {
-        return new this(params);
+        let $instance = new this();
+        
+        if (params && 'function' === typeof($instance.init)) {
+            this.$instance.init(params);
+        }
+        
+        return $instance;
     }
 
 
     /**
-     *
+     * Constructor should not do anything, not arguments should be passed here.
+     * Arguments are passed via init method only.
      */
-    constructor(params = {}) {
-        this._setLogLevel(params.logLevel);
+    constructor() {
+        this._setLogLevel('DEBUG'); //move out?!
+        this.logger.debug(this.constructor.CLASS + 'constructor fired');
     }
 
 

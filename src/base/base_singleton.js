@@ -12,12 +12,11 @@ class BaseSingleton extends BaseObject {
 
     static create(params) {
         if (_.isNull(this.$instance)) {
-            this.$instance = new this(params);
-            return this.$instance;
+            this.$instance = new this();
         }
 
-        if (!params) {
-            return this.$instance;
+        if (params && 'function' === typeof(this.$instance.init)) {
+            this.$instance.init(params);
         }
 
         return this.$instance;

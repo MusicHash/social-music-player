@@ -13,8 +13,7 @@ class API extends BaseObject {
     /**
      * 
      */
-    constructor() {
-        super();
+    init() {
         this.logger.debug('API constructor fired');
     }
 

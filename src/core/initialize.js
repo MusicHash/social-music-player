@@ -3,6 +3,7 @@ import _Logger from '../utils/logger';
 import {SYSTEM_EVENTS} from '../events/events';
 import BaseObject from '../base/base_object';
 import Event from '../utils/event';
+import Config from './config';
 import LayoutController from '../components/layout/layout_controller';
 
 
@@ -15,18 +16,17 @@ class Initialize extends BaseObject {
     /**
      * 
      */
-    constructor(params) {
-        super(params);
-        
-        this.logger.debug('Initialize constructor fired');
+    init(params) {
+        Config.create(params);
         
         this.start();
     }
     
 
     start() {
+        this.logger.debug('Initialize start fired');
         let layout = LayoutController.create();
-        
+        Config.create();
     }
 
 }

@@ -8,10 +8,8 @@ class LayoutController extends BaseObject {
 
     /**
      */
-    constructor(params) {
-        super(params);
-        
-        this.logger.debug('LayoutController constructor fired');
+    init(params) {
+        this.logger.debug('LayoutController INIT fired');
     }
 
 
