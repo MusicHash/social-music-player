@@ -1,5 +1,4 @@
 import Event from '../utils/event';
-import _Logger from '../utils/logger';
 import Initialize from './initialize';
 import BaseObject from '../base/base_object';
 import {SYSTEM_EVENTS} from '../events/events';
@@ -9,12 +8,14 @@ import {SYSTEM_EVENTS} from '../events/events';
  *
  */
 class API extends BaseObject {
+    static CLASS = 'API';
 
     /**
      * 
      */
     constructor() {
         super();
+        this.logger.debug('API constructor fired');
     }
 
 
@@ -22,7 +23,7 @@ class API extends BaseObject {
      * 
      */
     initialize(params) {
-        new Initialize(params);
+        Initialize.create(params);
 
         return this;
     }

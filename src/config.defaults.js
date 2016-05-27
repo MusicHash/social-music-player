@@ -15,7 +15,7 @@ const CONFIG = {
     width: '640px',
     height: '480px',
     
-    logLevel: 'INFO'
+    logLevel: 'DEBUG'
 };
 
 export default CONFIG;

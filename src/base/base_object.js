@@ -1,6 +1,7 @@
 import Logger from '../utils/logger';
 import _ from '../utils/__';
 
+
 /**
  *
  */
@@ -15,19 +16,15 @@ class BaseObject {
      *
      */
     constructor(params = {}) {
-        this._setLogLevel(params.logLevel || 'INFO');
+        this._setLogLevel(params.logLevel);
     }
 
 
     /**
      */
     _setLogLevel(logLevel) {
-        if (!logLevel) {
-            return this;
-        }
-
         this.logger = new Logger(this.constructor.CLASS, logLevel);
-        
+
         return this;
     }
 }

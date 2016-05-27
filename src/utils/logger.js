@@ -5,6 +5,7 @@ logger.useDefaults();
  * Logger entry for clientside server log
  */
 class Logger {
+    _loggerInstance;
 
     /**
      * 
@@ -29,14 +30,14 @@ class Logger {
         }
     }
 
-    _logger;
+    
 
 
     /**
      */
     constructor(name, level) {
-        this._logger = logger.get(name);
-        this._logger.setLevel(Logger.LOG_LEVEL(level));
+        this._loggerInstance = logger.get(name);
+        this._loggerInstance.setLevel(Logger.LOG_LEVEL(level));
     }
 
 
@@ -90,7 +91,7 @@ class Logger {
             return;
         }
 
-        this._logger[severity](log);
+        this._loggerInstance[severity](log);
         // console[severity]([severity, log.join(', ')]); // eslint-disable-line no-console
     }
 
