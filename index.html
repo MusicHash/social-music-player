@@ -5,10 +5,13 @@
     <title>Social Music Player</title>
   </head>
   <body>
-  
+
   <script type="text/javascript">
     window.SMPAsyncInit = function() {
-      window.SocialMusicPlayer.initialize();
+      window.SocialMusicPlayer.initialize({
+        width: '100%',
+        height: '100%'
+      });
     };
 
     (function(d, s, id){
