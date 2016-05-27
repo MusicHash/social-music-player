@@ -17,10 +17,16 @@ class LayoutController extends BaseController {
     }
 
 
+    getTemplate() {
+        return PlayerMarkupHTML;
+    }
+
     /**
      *
      */
     render() {
+        DOM.append(this.getTemplate(), DOM.$$(Config.el));
+
         console.log(PlayerMarkupHTML);
     }
 

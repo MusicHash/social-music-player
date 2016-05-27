@@ -1,18 +1,18 @@
 import Logger from '../utils/logger';
-
+import _ from '../utils/__';
 
 /**
  *
  */
 class BaseObject {
-    
+
     static create(params) {
         let $instance = new this();
 
-        if ('function' === typeof($instance.init)) {
+        if (_.isFunction($instance.init)) {
             $instance.init(params);
         }
-        
+
         return $instance;
     }
 

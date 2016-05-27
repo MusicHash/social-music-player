@@ -15,7 +15,7 @@ class BaseSingleton extends BaseObject {
             this.$instance = new this();
         }
 
-        if ('function' === typeof(this.$instance.init)) {
+        if (_.isFunction(this.$instance.init)) {
             this.$instance.init(params);
         }
 

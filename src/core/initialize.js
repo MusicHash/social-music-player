@@ -14,20 +14,21 @@ class Initialize extends BaseObject {
     static CLASS = 'Initialize';
 
     /**
-     * 
+     *
      */
     init(params) {
         console.log('init called??');
         Config.create(params);
-        
+
         this.start();
     }
-    
+
 
     start() {
         this.logger.debug('Initialize start fired');
+
         let layout = LayoutController.create();
-        Config.create();
+        layout.render();
     }
 
 }
