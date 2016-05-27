@@ -2,7 +2,7 @@ class __ {
     /**
      * Determines if a reference is a `Number`.
      *
-     * @returns {boolean}
+     * @returns {Boolean}
      */
     isNumber(input) {
         return 'number' === typeof input;
@@ -12,7 +12,7 @@ class __ {
     /**
      * Determines if a reference is a `Function`.
      *
-     * @returns {boolean}
+     * @returns {Boolean}
      */
     isFunction(input) {
         return 'function' === typeof input;
@@ -24,7 +24,7 @@ class __ {
      * considered to be objects. Note that JavaScript arrays are objects.
      *
      * @see http://jsperf.com/isobject4
-     * @returns {boolean}
+     * @returns {Boolean}
      */
     isObject(input) {
         return input && 'object' === typeof input && !Array.isArray(input) && null !== input;
@@ -34,7 +34,7 @@ class __ {
     /**
      * Determines if a reference is defined.
      *
-     * @returns {boolean}
+     * @returns {Boolean}
      */
     isDefined(input) {
         return 'undefined' !== typeof input;
@@ -44,7 +44,7 @@ class __ {
     /**
      * Determines if a reference is undefined.
      *
-     * @returns {boolean}
+     * @returns {Boolean}
      */
     isDefined(input) {
         return 'undefined' !== typeof input;
@@ -54,7 +54,7 @@ class __ {
     /**
      * Determines if a value is a null object.
      *
-     * @returns {boolean}
+     * @returns {Boolean}
      */
     isNull(input) {
         return input === null;
@@ -64,7 +64,7 @@ class __ {
     /**
      * Determines if a value is a array.
      *
-     * @returns {boolean}
+     * @returns {Boolean}
      */
     isArray(expectedArray) {
         return Array.isArray(expectedArray);
@@ -74,7 +74,7 @@ class __ {
     /**
      * Determines if a value is a boolean.
      *
-     * @returns {boolean}
+     * @returns {Boolean}
      */
     isBoolean(input) {
         return 'boolean' === typeof input;
@@ -84,7 +84,7 @@ class __ {
     /**
      * Determines if a value is a string.
      *
-     * @returns {boolean}
+     * @returns {Boolean}
      */
     isString(input) {
         return 'string' === typeof input;
@@ -94,7 +94,7 @@ class __ {
     /**
      * Determines if a value is a element.
      *
-     * @returns {boolean}
+     * @returns {Boolean}
      */
     isElement(el) {
         try {
@@ -108,6 +108,13 @@ class __ {
     }
 
 
+    /**
+     * Deep merges unlimited numbers of Objects
+     *
+     * @param {Object} target
+     * @param {Object} source
+     * @returns {Object}
+     */
     merge(target, source) {
         // _mergeRecursive does the actual job with two arguments.
         let _mergeRecursive = (dst, src) => {
@@ -144,7 +151,9 @@ class __ {
 
 
     /**
-     * @returns {*}
+     * Determines if the user enter the browser in full screen mode.
+     *
+     * @returns {Boolean}
      */
     isFullScreen() {
         return document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
