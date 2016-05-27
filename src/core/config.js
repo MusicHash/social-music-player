@@ -2,7 +2,7 @@ import Event from '../utils/event';
 import Initialize from './initialize';
 import BaseSingleton from '../base/base_singleton';
 import {SYSTEM_EVENTS} from '../events/events';
-let merge = require('deepmerge');
+import _ from '../utils/__';
 
 /**
  *
@@ -30,10 +30,10 @@ class Config extends BaseSingleton {
      * 
      */
     init(settings) {
-        merge(this, this.CONFIG_DEFAULTS, settings);
+        _.merge(this, this.CONFIG_DEFAULTS, settings, {width: 1});
         this.logger.debug('Config create fired');
         
-        console.log(this);
+        window.og = this;
     }
 
     

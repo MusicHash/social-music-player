@@ -23,7 +23,7 @@ class BaseObject {
      */
     constructor() {
         this._setLogLevel('DEBUG'); //move out?!
-        this.logger.debug(this.constructor.CLASS + 'constructor fired');
+        this.logger.debug(this.constructor.CLASS + ' CONSTRUCTOR CALLED');
     }
 
 
