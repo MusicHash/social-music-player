@@ -1,5 +1,4 @@
 import BaseController from '../../base/base_controller';
-import Config from '../../core/config';
 import DOM from '../../utils/dom';
 import PlayerMarkupHTML from './view/player_markup.html';
 
@@ -25,9 +24,7 @@ class LayoutController extends BaseController {
      *
      */
     render() {
-        let config = Config.create();
-
-        DOM.append(this.getTemplate(), DOM.$$(config.el));
+        return this.getTemplate();
     }
 
 }

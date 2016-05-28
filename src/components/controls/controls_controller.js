@@ -8,8 +8,7 @@ import PlayerMarkupHTML from './view/controls_markup.html';
  */
 class ControlsController extends BaseController {
     static CLASS = 'ControlsController';
-
-    _parentClass = '.smp_controller';
+    static selectorClass = '.smp_controller';
 
     /**
      *
@@ -30,7 +29,7 @@ class ControlsController extends BaseController {
     render() {
         let config = Config.create();
 
-        DOM.append(this.getTemplate(), DOM.$$(this._parentClass));
+        return this.getTemplate();
     }
 
 }
