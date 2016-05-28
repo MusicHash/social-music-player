@@ -25,9 +25,9 @@ class LayoutController extends BaseController {
      *
      */
     render() {
-        DOM.append(this.getTemplate(), DOM.$$(Config.el));
+        let config = Config.create();
 
-        console.log(PlayerMarkupHTML);
+        DOM.append(this.getTemplate(), DOM.$$(config.el));
     }
 
 }

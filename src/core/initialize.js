@@ -27,8 +27,18 @@ class Initialize extends BaseObject {
     start() {
         this.logger.debug('Initialize start fired');
 
+        this.layoutRender();
+    }
+
+
+    /**
+     *
+     */
+    layoutRender() {
         let layout = LayoutController.create();
         layout.render();
+
+        return this;
     }
 
 }
