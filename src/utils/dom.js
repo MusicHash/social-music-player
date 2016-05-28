@@ -5,13 +5,15 @@ import _ from './__';
  * DOM
  */
 class DOM {
-    $$(selector) {
+    $$(selector, context) {
+        context = context || document;
+
         let el;
 
         if (this.isHTML(selector)) {
             el = this.htmlToHTMLElement(selector);
         } else {
-             el = document.querySelectorAll(selector);
+             el = context.querySelectorAll(selector);
              el = el.length === 1 ? el[0] : el;
         }
 
@@ -80,8 +82,6 @@ class DOM {
             console.log('Err, not a proper selector');
             return this;
         }
-
-
 
         dst.appendChild(el);
 
