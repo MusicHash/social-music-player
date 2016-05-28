@@ -63,6 +63,7 @@ class DOM {
         return 0 === input.search(/^#\w+$/);
     }
 
+
     /**
      * Appends an html element to another html element
      *
