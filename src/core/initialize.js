@@ -1,4 +1,3 @@
-/* eslint-enable no-unused-vars */
 import _Logger from '../utils/logger';
 import {SYSTEM_EVENTS} from '../events/events';
 import BaseObject from '../base/base_object';
@@ -26,6 +25,9 @@ class Initialize extends BaseObject {
     }
 
 
+    /**
+     *
+     */
     start() {
         this.logger.debug('Initialize start fired');
 
@@ -43,7 +45,6 @@ class Initialize extends BaseObject {
 
         DOM.append(layout.render(), DOM.$$(config.el));
         DOM.append(controls.render(), DOM.$$(ControlsController.selectorClass));
-
 
         return this;
     }
