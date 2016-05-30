@@ -9,11 +9,11 @@ import Config from './config';
 /**
  *
  */
-class Player extends BaseSingleton {
-    static CLASS = 'Player';
+class PlayerManager extends BaseSingleton {
+    static CLASS = 'PlayerManager';
 
-
+    
 
 }
 
-export default Player;
+export default PlayerManager;
