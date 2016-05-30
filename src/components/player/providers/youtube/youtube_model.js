@@ -1,4 +1,4 @@
-import SongModel from './song_model';
+import SongModel from '../../../../model/song_model';
 
 /**
  *
