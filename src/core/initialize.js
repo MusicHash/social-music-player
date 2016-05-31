@@ -1,5 +1,5 @@
 import _Logger from '../utils/logger';
-import {SYSTEM_EVENTS} from '../events/events';
+import {SYSTEM_EVENTS} from '../constants/events';
 import BaseObject from '../base/base_object';
 import Event from '../utils/event';
 import DOM from '../utils/dom';

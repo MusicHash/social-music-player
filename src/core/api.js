@@ -1,11 +1,10 @@
 import Event from '../utils/event';
 import Initialize from './initialize';
 import BaseObject from '../base/base_object';
-import {SYSTEM_EVENTS} from '../events/events';
+import {SYSTEM_EVENTS} from '../constants/events';
+import {PROVIDERS_LIST} from '../constants/providers';
 
-import YoutubeModel from '../components/player/providers/youtube/youtube_model';
-import VimeoModel from '../components/player/providers/vimeo/vimeo_model';
-import SoundCloudModel from '../components/player/providers/soundcloud/soundcloud_model';
+import PlayerManager from './player_manager';
 
 
 /**
@@ -15,9 +14,7 @@ class API extends BaseObject {
     static CLASS = 'API';
 
 
-    YoutubeModel = YoutubeModel;
-    VimeoModel = VimeoModel;
-    SoundCloudModel = SoundCloudModel;
+    PROVIDERS = PROVIDERS_LIST;
 
 
     /**
@@ -31,19 +28,26 @@ class API extends BaseObject {
     /**
      *
      */
-    initialize(params) {
-        Initialize.create(params);
+    initialize(settings) {
+        Initialize.create(settings);
 
         return this;
     }
 
 
+    /**
+     *
+     */
     isPlaying() {
-
+        return PlayerManager.create().isPlaying();
     }
 
-    title() {
 
+    /**
+     *
+     */
+    title() {
+        return PlayerManager.create().title();
     }
 
 
@@ -51,6 +55,7 @@ class API extends BaseObject {
      *
      */
     duration() {
+        return PlayerManager.create().duration();
     }
 
 
@@ -58,13 +63,15 @@ class API extends BaseObject {
      *
      */
     getVersion() {
+        return '1.0'; // fix it?
     }
 
 
     /**
      *
      */
-    play() {
+    play(song) {
+        return PlayerManager.create().play(song);
     }
 
 
@@ -73,16 +80,16 @@ class API extends BaseObject {
      *
      */
     pause() {
+        return PlayerManager.create().pause();
     }
 
 
     /**
      *
      */
-    seek(seconds) {
+    seek(second) {
+        return PlayerManager.create().seek(second);
     }
-
-
 
 }
 

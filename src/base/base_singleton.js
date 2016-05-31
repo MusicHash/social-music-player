@@ -19,6 +19,8 @@ class BaseSingleton extends BaseObject {
 
         if (_.isFunction(this.$instance.init))
             this.$instance.init(params);
+
+        return this.$instance;
     }
 
 

@@ -9,10 +9,11 @@
   <div>
     <script type="text/javascript">
       var playFaded = function() {
-        return SocialMusicPlayer.play(SocialMusicPlayer.YoutubeModel.create({
+        return window.SocialMusicPlayer.play({
+          provider: window.SocialMusicPlayer.PROVIDERS.YOUTUBE,
           id: '60ItHLz5WEA',
           title: 'Alan Walker - Faded'
-        }));
+        });
       };
     </script>
 

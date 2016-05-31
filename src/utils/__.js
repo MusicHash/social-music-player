@@ -21,7 +21,7 @@ class __ {
 
     /**
      * Determines if a reference is an `Object`. Unlike `typeof` in JavaScript, `null`s are not
-     * considered to be objects. Note that JavaScript arrays are objects.
+     * considered to be objects. Note: that JavaScript arrays are objects.
      *
      * @see http://jsperf.com/isobject4
      * @returns {Boolean}
