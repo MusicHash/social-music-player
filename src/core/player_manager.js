@@ -6,6 +6,7 @@ import BaseSingleton from '../base/base_singleton';
 import Event from '../utils/event';
 import DOM from '../utils/dom';
 
+import PlayerController from '../components/player/player_controller';
 import YoutubeModel from '../components/player/providers/youtube/youtube_model';
 import VimeoModel from '../components/player/providers/vimeo/vimeo_model';
 import SoundCloudModel from '../components/player/providers/soundcloud/soundcloud_model';
@@ -35,7 +36,9 @@ class PlayerManager extends BaseSingleton {
 
     play(song) {
         let songModel = this.songJSONToModel(song);
-        console.log(songModel);
+        this._playerComponent = PlayerController.create(songModel);
+
+        this._playerComponent.play();
     }
 
 

@@ -1,5 +1,5 @@
-import BaseProvider from '../base/base_provider';
-import _ from '../utils/__';
+import BaseProvider from '../base_provider';
+
 
 /**
  *

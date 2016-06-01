@@ -1,5 +1,5 @@
 import BaseObject from '../../../base/base_object';
-import _ from '../utils/__';
+import _ from '../../../utils/__';
 
 /**
  *
