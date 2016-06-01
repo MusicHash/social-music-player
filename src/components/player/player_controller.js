@@ -35,6 +35,9 @@ class PlayerController extends BaseController {
     play() {
         this.logger.info('PLAY CALLED');
 
+        let t = this.getProvider();
+        console.log(t);
+
         try {
             this.getProvider().play();
         } catch(err) {
@@ -73,9 +76,9 @@ class PlayerController extends BaseController {
             default:
                 throw new Error('Provider was not found');
                 break;
-
-            return this.Provider;
         }
+
+        return this.Provider;
     }
 }
 
