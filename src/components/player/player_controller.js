@@ -20,19 +20,29 @@ class PlayerController extends BaseController {
     static CLASS = 'PlayerController';
     static selectorClass = '.smp_player';
 
-    _Provider = null;
     songModel = null;
 
 
+    /**
+     *
+     */
     init(songModel) {
-        this._Provider = this.getProvider(songModel);
+        this.songModel = songModel;
         this.render();
     }
 
 
+    /**
+     *
+     */
     play() {
         this.logger.info('PLAY CALLED');
-        this._Provider.play();
+
+        try {
+            this.getProvider().play();
+        } catch(err) {
+            this.logger.error(err);
+        }
     }
 
 
@@ -44,27 +54,30 @@ class PlayerController extends BaseController {
     }
 
 
-    getProvider(songModel) {
-        let provider = null;
+    /**
+     *
+     */
+    getProvider() {
+        if (null !== this.Provider) return this.Provider;
 
-        switch (songModel.CLASS) {
+        switch (this.songModel.CLASS) {
             case YoutubeProvider.CLASS:
-                provider = YoutubeProvider.create(songModel);
+                this.Provider = YoutubeProvider.create(this.songModel);
                 break;
 
             case VimeoProvider.CLASS:
-                provider = VimeoProvider.create(songModel);
+                this.Provider = VimeoProvider.create(this.songModel);
                 break;
 
             case SoundCloudProvider.CLASS:
-                provider = SoundCloudProvider.create(songModel);
+                this.Provider = SoundCloudProvider.create(this.songModel);
                 break;
 
             default:
-                break;
-        }
+                throw new Error('Provider was not found');
 
-        return provider;
+            return null;
+        }
     }
 }
 
