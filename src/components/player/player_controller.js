@@ -35,9 +35,6 @@ class PlayerController extends BaseController {
     play() {
         this.logger.info('PLAY CALLED');
 
-        let t = this.getProvider();
-        console.log(t);
-
         try {
             this.getProvider().play();
         } catch(err) {
