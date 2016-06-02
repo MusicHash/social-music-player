@@ -74,13 +74,22 @@ class DOM {
      * @returns {DOM} Instance for chaning
      */
     append(el, dst) {
-        if (!el || this.isHTML(el)) {
-            el = this.$$(el);
-        }
-
         if (!dst || !_.isElement(dst)) {
             console.log('Err, not a proper selector');
             return this;
+        }
+
+        if (_.isArray(el)) {
+            console.log(el.length);
+            for (let i = 0, len = el.length; i < len; i++) {
+                this.append(el[i], dst);
+            }
+
+            return;
+        }
+
+        if (!el || this.isHTML(el)) {
+            el = this.$$(el);
         }
 
         dst.appendChild(el);

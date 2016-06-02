@@ -7,30 +7,45 @@ import BaseProvider from '../base_provider';
 class YoutubeProvider extends BaseProvider {
     static CLASS = 'YoutubeProvider';
 
-    done = true;
     el = null;
     player = null;
-    songModel = null;
 
-    init(songModel) {
-        this.songModel = songModel;
-        console.log('fgg');
 
+    init() {
         window.onYouTubeIframeAPIReady = () => {
             this._initPlayer(); // YT events init.
         };
+
+        this.scriptLoad();
+    }
+
+
+    getPlayerContainer() {
+        if (null !== this.el) return this.el;
+
+        this.el = document.createElement('div');
+        this.el.id = YoutubeProvider.CLASS;
+
+        return this.el;
+    }
+
+
+    render() {
+        return this.getPlayerContainer();
     }
 
 
     /**
      *
      */
-    render() {
-        var tag = document.createElement('script'),
+    scriptLoad() {
+        let tag = document.createElement('script'),
             firstScriptTag = document.getElementsByTagName('script')[0];
 
         tag.src = 'https://www.youtube.com/iframe_api';
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        return this;
     }
 
 
@@ -38,7 +53,7 @@ class YoutubeProvider extends BaseProvider {
      *
      */
     _initPlayer() {
-        this.player = new window.YT.Player(document.querySelector('.smp_player'), {
+        this.player = new window.YT.Player(this.getPlayerContainer(), {
             width: 145,
             height: 70,
 

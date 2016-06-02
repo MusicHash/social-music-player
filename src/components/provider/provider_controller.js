@@ -4,13 +4,13 @@ import DOM from '../../utils/dom';
 import {PROVIDERS_LIST} from '../../constants/providers';
 
 import YoutubeProvider from './providers/youtube/youtube_provider';
+import YoutubeModel from './providers/youtube/youtube_model';
+
 import VimeoProvider from './providers/vimeo/vimeo_provider';
+import VimeoModel from './providers/vimeo/vimeo_model';
+
 import SoundCloudProvider from './providers/soundcloud/soundcloud_provider';
-
-
-//import YoutubeModel from '../components/player/providers/youtube/youtube_model';
-//import VimeoModel from '../components/player/providers/vimeo/vimeo_model';
-//import SoundCloudModel from '../components/player/providers/soundcloud/soundcloud_model';
+import SoundCloudModel from './providers/soundcloud/soundcloud_model';
 
 
 /**
@@ -20,17 +20,38 @@ class ProvidersController extends BaseController {
     static CLASS = 'ProvidersController';
     static selectorClass = '.smp_providers';
 
-    songModel = null;
-    Provider = null;
+    Providers = {};
 
 
     /**
      *
      */
-    init(songModel) {
-        this.songModel = songModel;
-        this.render();
+    init() {}
+
+
+    /**
+     *
+     */
+    renderProviders() {
+        let out = [],
+            providers = [
+                YoutubeProvider,
+                VimeoProvider,
+                SoundCloudProvider
+            ];
+
+        for (let i = 0, len = providers.length; i < len; i++) {
+            let p = providers[i],
+                provider = p.create();
+
+            this.Providers[p.CLASS] = provider;
+            out.push(provider.render());
+        }
+
+        return out;
     }
+
+
 
 
     /**
@@ -51,16 +72,7 @@ class ProvidersController extends BaseController {
      *
      */
     render() {
-        return '<div>aaaaaaaaaaa</div>';
-        /**
-try {
-            let HTML = this.getProvider().getHTML();
-
-
-        } catch(err) {
-            this.logger.error(err);
-        }
-         */
+        return this.renderProviders();
     }
 
 

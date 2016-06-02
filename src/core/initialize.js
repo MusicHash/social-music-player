@@ -41,10 +41,10 @@ class Initialize extends BaseObject {
      *
      */
     layoutRender() {
-        let layout = LayoutController.create(),
+        let config = Config.create(),
+            layout = LayoutController.create(),
             controls = ControlsController.create(),
-            provider = ProviderController.create(),
-            config = Config.create();
+            provider = ProviderController.create();
 
         DOM.append(layout.render(), DOM.$$(config.el));
         DOM.append(controls.render(), DOM.$$(ControlsController.selectorClass));
