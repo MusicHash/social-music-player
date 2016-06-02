@@ -80,12 +80,11 @@ class DOM {
         }
 
         if (_.isArray(el)) {
-            console.log(el.length);
             for (let i = 0, len = el.length; i < len; i++) {
                 this.append(el[i], dst);
             }
 
-            return;
+            return this;
         }
 
         if (!el || this.isHTML(el)) {
