@@ -8,6 +8,10 @@ import VimeoProvider from './providers/vimeo/vimeo_provider';
 import SoundCloudProvider from './providers/soundcloud/soundcloud_provider';
 
 
+//import YoutubeModel from '../components/player/providers/youtube/youtube_model';
+//import VimeoModel from '../components/player/providers/vimeo/vimeo_model';
+//import SoundCloudModel from '../components/player/providers/soundcloud/soundcloud_model';
+
 
 /**
  *
@@ -47,7 +51,16 @@ class PlayerController extends BaseController {
      *
      */
     render() {
-        this.logger.info('RENDER CALLED');
+        return '<div>aaaaaaaaaaa</div>';
+        /**
+try {
+            let HTML = this.getProvider().getHTML();
+
+
+        } catch(err) {
+            this.logger.error(err);
+        }
+         */
     }
 
 
@@ -72,10 +85,36 @@ class PlayerController extends BaseController {
 
             default:
                 throw new Error('Provider was not found');
-                break;
         }
 
         return this.Provider;
+    }
+
+
+    /**
+     *
+     */
+    songJSONToModel(song) {
+        let model = null;
+
+        switch (song.provider) {
+            case PROVIDERS_LIST.YOUTUBE:
+                model = YoutubeModel.create(song);
+                break;
+
+            case PROVIDERS_LIST.VIMEO:
+                model = VimeoModel.create(song);
+                break;
+
+            case PROVIDERS_LIST.SOUNDCLOUD:
+                model = SoundCloudModel.create(song);
+                break;
+
+            default:
+                break;
+        }
+
+        return model;
     }
 }
 

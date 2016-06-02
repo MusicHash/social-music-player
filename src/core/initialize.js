@@ -6,6 +6,7 @@ import DOM from '../utils/dom';
 import Config from './config';
 import LayoutController from '../components/layout/layout_controller';
 import ControlsController from '../components/controls/controls_controller';
+import ProviderController from '../components/provider/providers_controller';
 
 
 /**
@@ -13,6 +14,7 @@ import ControlsController from '../components/controls/controls_controller';
  */
 class Initialize extends BaseObject {
     static CLASS = 'Initialize';
+
 
     /**
      *
@@ -41,10 +43,12 @@ class Initialize extends BaseObject {
     layoutRender() {
         let layout = LayoutController.create(),
             controls = ControlsController.create(),
+            provider = ProviderController.create(),
             config = Config.create();
 
         DOM.append(layout.render(), DOM.$$(config.el));
         DOM.append(controls.render(), DOM.$$(ControlsController.selectorClass));
+        DOM.append(provider.render(), DOM.$$(ProviderController.selectorClass));
 
         return this;
     }
