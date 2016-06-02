@@ -4,8 +4,6 @@ import BaseObject from '../base/base_object';
 import {SYSTEM_EVENTS} from '../constants/events';
 import {PROVIDERS_LIST} from '../constants/providers';
 
-import PlayerManager from './player_manager';
-
 
 /**
  *
@@ -39,7 +37,7 @@ class API extends BaseObject {
      *
      */
     isPlaying() {
-        return PlayerManager.create().isPlaying();
+        //return PlayerManager.create().isPlaying();
     }
 
 
@@ -47,7 +45,7 @@ class API extends BaseObject {
      *
      */
     title() {
-        return PlayerManager.create().title();
+        //return PlayerManager.create().title();
     }
 
 
@@ -55,7 +53,7 @@ class API extends BaseObject {
      *
      */
     duration() {
-        return PlayerManager.create().duration();
+        //return PlayerManager.create().duration();
     }
 
 
@@ -71,7 +69,7 @@ class API extends BaseObject {
      *
      */
     play(song) {
-        return PlayerManager.create().play(song);
+        //return PlayerManager.create().play(song);
     }
 
 
@@ -80,7 +78,7 @@ class API extends BaseObject {
      *
      */
     pause() {
-        return PlayerManager.create().pause();
+        //return PlayerManager.create().pause();
     }
 
 
@@ -88,7 +86,7 @@ class API extends BaseObject {
      *
      */
     seek(second) {
-        return PlayerManager.create().seek(second);
+        //return PlayerManager.create().seek(second);
     }
 
 }

@@ -6,7 +6,7 @@ import DOM from '../utils/dom';
 import Config from './config';
 import LayoutController from '../components/layout/layout_controller';
 import ControlsController from '../components/controls/controls_controller';
-import ProviderController from '../components/provider/providers_controller';
+import ProviderController from '../components/provider/provider_controller';
 
 
 /**
