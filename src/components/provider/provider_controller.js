@@ -16,9 +16,9 @@ import SoundCloudProvider from './providers/soundcloud/soundcloud_provider';
 /**
  *
  */
-class PlayerController extends BaseController {
-    static CLASS = 'PlayerController';
-    static selectorClass = '.smp_player';
+class ProvidersController extends BaseController {
+    static CLASS = 'ProvidersController';
+    static selectorClass = '.smp_providers';
 
     songModel = null;
     Provider = null;
@@ -118,4 +118,4 @@ try {
     }
 }
 
-export default PlayerController;
+export default ProvidersController;
