@@ -11,7 +11,8 @@ class SoundCloudProvider extends BaseProvider {
     el = null;
     widget = null;
     PROVIDER = PROVIDERS_LIST.SOUNDCLOUD;
-    SCPath = '//w.soundcloud.com/player/?url=http://api.soundcloud.com/tracks/';
+    SCPath = '//w.soundcloud.com/player/?url=';
+    SCTracks = 'http://api.soundcloud.com/tracks/';
 
 
     init() {
@@ -72,7 +73,20 @@ class SoundCloudProvider extends BaseProvider {
      *
      */
     play() {
-        console.log(this.widget);
+        this.widget.load(this.SCTracks + this.model.id, {
+            auto_play: true,
+            buying: false,
+            liking: false,
+            download: false,
+            sharing: false,
+            show_artwork: true,
+            show_comments: true,
+            show_playcount: true,
+            show_user: true,
+            hide_related: true,
+            visual: true,
+            start_track: 0
+        });
     }
 }
 
