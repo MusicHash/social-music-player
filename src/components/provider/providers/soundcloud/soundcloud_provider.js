@@ -7,10 +7,11 @@ import {PROVIDERS_LIST} from '../../../../constants/providers';
  */
 class SoundCloudProvider extends BaseProvider {
     static CLASS = 'SoundCloudProvider';
+    PROVIDER = PROVIDERS_LIST.SOUNDCLOUD;
+
 
     el = null;
     widget = null;
-    PROVIDER = PROVIDERS_LIST.SOUNDCLOUD;
     SCPath = '//w.soundcloud.com/player/?url=';
     SCTracks = 'http://api.soundcloud.com/tracks/';
 

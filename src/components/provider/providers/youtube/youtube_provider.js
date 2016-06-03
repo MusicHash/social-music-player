@@ -7,8 +7,9 @@ import {PROVIDERS_LIST} from '../../../../constants/providers';
  */
 class YoutubeProvider extends BaseProvider {
     static CLASS = 'YoutubeProvider';
-
     PROVIDER = PROVIDERS_LIST.YOUTUBE;
+
+
     el = null;
     player = null;
 

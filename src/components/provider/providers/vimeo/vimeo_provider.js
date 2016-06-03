@@ -8,12 +8,13 @@ import {PROVIDERS_LIST} from '../../../../constants/providers';
  */
 class VimeoProvider extends BaseProvider {
     static CLASS = 'VimeoProvider';
-
-    playerOrigin = '*';
-    player = null;
-    el = null;
     PROVIDER = PROVIDERS_LIST.VIMEO;
+
+
+    el = null;
+    player = null;
     vimeoPath = '//player.vimeo.com/video/{{VIDEO_ID}}?api=1&player_id=VimeoProvider';
+
 
     init() {
         this.scriptLoad();
@@ -35,6 +36,7 @@ class VimeoProvider extends BaseProvider {
         return this;
     }
 
+
     getPlayerContainer() {
         if (null !== this.el) return this.el;
 
@@ -49,69 +51,28 @@ class VimeoProvider extends BaseProvider {
 
 
     _initPlayer() {
-        if (window.addEventListener) {
-            window.addEventListener('message', this.onMessageReceived.bind(this), false);
-        }
-        else {
-            window.attachEvent('onmessage', this.onMessageReceived.bind(this), false);
-        }
-
-        this.player = $f(VimeoProvider.CLASS);
-    }
-
-
-    onMessageReceived(event) {
-        // Handle messages from the vimeo player only
-        if (!(/^https?:\/\/player.vimeo.com/).test(event.origin))
-            return false;
-
-        if (this.playerOrigin === '*')
-            this.playerOrigin = event.origin;
-
-        var data = JSON.parse(event.data);
-
-        switch (data.event) {
-            case 'ready':
-                this.onReady();
-                break;
-
-            case 'playProgress':
-                this.onPlayProgress(data.data);
-                break;
-
-            case 'pause':
-                this.onPause();
-                break;
-
-            case 'finish':
-                this.onFinish();
-                break;
-        }
-    }
-
-
-    // Helper function for sending a message to the player
-    post(action, value) {
-        var data = {
-          method: action
-        };
-
-        if (value) {
-            data.value = value;
-        }
-
-        var message = JSON.stringify(data);
-        this.getPlayerContainer().contentWindow.postMessage(message, this.playerOrigin);
+        this.player = window.$f(VimeoProvider.CLASS);
     }
 
 
     onReady() {
-        console.log('ready');
         this.player.api('play');
 
-        this.post('addEventListener', 'pause');
-        this.post('addEventListener', 'finish');
-        //this.post('addEventListener', 'playProgress');
+        this.player.addEvent('loadProgress', data => {
+            console.log('loadProgress event : ' + data.percent + ' : ' + data.bytesLoaded + ' : ' + data.bytesTotal + ' : ' + data.duration);
+        });
+
+        this.player.addEvent('playProgress', data => {
+            console.log('playProgress event : ' + data.seconds + ' : ' + data.percent + ' : ' + data.duration);
+        });
+
+        this.player.addEvent('pause', () => {
+            console.log('pause event');
+        });
+
+        this.player.addEvent('finish', () => {
+            console.log('finish event');
+        });
     }
 
 
@@ -141,10 +102,13 @@ class VimeoProvider extends BaseProvider {
         return this;
     }
 
+
     /**
      *
      */
     play() {
+        this.player.addEvent('ready', this.onReady.bind(this));
+
         this.el.src = this.vimeoPath.replace('{{VIDEO_ID}}', this.model.id);
     }
 }
