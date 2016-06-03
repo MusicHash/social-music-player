@@ -13,6 +13,7 @@ class API extends BaseObject {
 
 
     PROVIDERS = PROVIDERS_LIST;
+    INITIALIZE = null;
 
 
     /**
@@ -27,7 +28,7 @@ class API extends BaseObject {
      *
      */
     initialize(settings) {
-        Initialize.create(settings);
+        this.INITIALIZE = Initialize.create(settings);
 
         return this;
     }
@@ -38,14 +39,6 @@ class API extends BaseObject {
      */
     isPlaying() {
         //return PlayerManager.create().isPlaying();
-    }
-
-
-    /**
-     *
-     */
-    title() {
-        //return PlayerManager.create().title();
     }
 
 
@@ -69,7 +62,9 @@ class API extends BaseObject {
      *
      */
     play(song) {
-        //return PlayerManager.create().play(song);
+        this.INITIALIZE.PROVIDER.play(song);
+
+        return this;
     }
 
 

@@ -20,13 +20,8 @@ class ProvidersController extends BaseController {
     static CLASS = 'ProvidersController';
     static selectorClass = '.smp_providers';
 
-    Providers = {};
-
-
-    /**
-     *
-     */
-    init() {}
+    PROVIDERS = {};
+    _ProviderCurrent = null;
 
 
     /**
@@ -44,7 +39,7 @@ class ProvidersController extends BaseController {
             let p = providers[i],
                 provider = p.create();
 
-            this.Providers[p.CLASS] = provider;
+            this.PROVIDERS[p.CLASS] = provider;
             out.push(provider.render());
         }
 
@@ -52,19 +47,21 @@ class ProvidersController extends BaseController {
     }
 
 
-
-
     /**
      *
      */
-    play() {
+    play(song) {
         this.logger.info('PLAY CALLED');
-
         try {
-            this.getProvider().play();
-        } catch(err) {
-            this.logger.error(err);
+            let provider = this.setNewProvider(song);
+            console.log(provider);
+
+            provider.play();
+        } catch(e) {
+            this.logger.error('Failed to execute play. '+ e);
         }
+
+        return this;
     }
 
 
@@ -76,37 +73,40 @@ class ProvidersController extends BaseController {
     }
 
 
-    /**
-     *
-     */
     getProvider() {
-        if (null !== this.Provider) return this.Provider;
-
-        switch (this.songModel.provider) {
-            case PROVIDERS_LIST.YOUTUBE:
-                this.Provider = YoutubeProvider.create(this.songModel);
-                break;
-
-            case PROVIDERS_LIST.VIMEO:
-                this.Provider = VimeoProvider.create(this.songModel);
-                break;
-
-            case PROVIDERS_LIST.SOUNDCLOUD:
-                this.Provider = SoundCloudProvider.create(this.songModel);
-                break;
-
-            default:
-                throw new Error('Provider was not found');
-        }
-
-        return this.Provider;
+        return this._ProviderCurrent;
     }
 
 
     /**
      *
      */
-    songJSONToModel(song) {
+    setNewProvider(song) {
+        for (let i in this.PROVIDERS) {
+            let provider = this.PROVIDERS[i];
+            console.log(provider);
+            console.log(provider.PROVIDER);
+            console.log(song.provider);
+
+            if (provider.PROVIDER === song.provider) {
+                provider.setModel(song);
+                this._ProviderCurrent = provider;
+
+                return this.getProvider();
+            }
+
+            console.log('setNewProvider ENDED!');
+        }
+
+        this.logger.error('Provider not found');
+
+        return null;
+    }
+
+
+    /**
+     *
+    getModelProvider(song) {
         let model = null;
 
         switch (song.provider) {
@@ -128,6 +128,7 @@ class ProvidersController extends BaseController {
 
         return model;
     }
+    */
 }
 
 export default ProvidersController;

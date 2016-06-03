@@ -1,5 +1,6 @@
 import BaseProvider from '../base_provider';
-
+import YoutubeModel from './youtube_model';
+import {PROVIDERS_LIST} from '../../../../constants/providers';
 
 /**
  *
@@ -7,6 +8,7 @@ import BaseProvider from '../base_provider';
 class YoutubeProvider extends BaseProvider {
     static CLASS = 'YoutubeProvider';
 
+    PROVIDER = PROVIDERS_LIST.YOUTUBE;
     el = null;
     player = null;
 
@@ -35,6 +37,13 @@ class YoutubeProvider extends BaseProvider {
     }
 
 
+    setModel(song) {
+        this.model = YoutubeModel.create(song);
+
+        return this;
+    }
+
+
     /**
      *
      */
@@ -54,8 +63,8 @@ class YoutubeProvider extends BaseProvider {
      */
     _initPlayer() {
         this.player = new window.YT.Player(this.getPlayerContainer(), {
-            width: 145,
-            height: 70,
+            width: this.config.width,
+            height: this.config.height,
 
             events: {
                 onReady: this.onPlayerReady,
@@ -96,7 +105,7 @@ class YoutubeProvider extends BaseProvider {
     /**
      *
      */
-    stopVideo() {
+    stop() {
         this.player.stopVideo();
     }
 
@@ -106,7 +115,7 @@ class YoutubeProvider extends BaseProvider {
      */
     play() {
         this.player.loadVideoById({
-            videoId: this.songModel.id,
+            videoId: this.model.id,
             startSeconds: 0,
             suggestedQuality: 'large'
         });

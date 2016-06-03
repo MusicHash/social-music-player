@@ -16,6 +16,11 @@ class Initialize extends BaseObject {
     static CLASS = 'Initialize';
 
 
+    LAYOUT = LayoutController.create();
+    CONTROLS = ControlsController.create();
+    PROVIDER = ProviderController.create();
+
+
     /**
      *
      */
@@ -41,14 +46,11 @@ class Initialize extends BaseObject {
      *
      */
     layoutRender() {
-        let config = Config.create(),
-            layout = LayoutController.create(),
-            controls = ControlsController.create(),
-            provider = ProviderController.create();
+        let config = Config.create();
 
-        DOM.append(layout.render(), DOM.$$(config.el));
-        DOM.append(controls.render(), DOM.$$(ControlsController.selectorClass));
-        DOM.append(provider.render(), DOM.$$(ProviderController.selectorClass));
+        DOM.append(this.LAYOUT.render(), DOM.$$(config.el));
+        DOM.append(this.CONTROLS.render(), DOM.$$(ControlsController.selectorClass));
+        DOM.append(this.PROVIDER.render(), DOM.$$(ProviderController.selectorClass));
 
         return this;
     }
