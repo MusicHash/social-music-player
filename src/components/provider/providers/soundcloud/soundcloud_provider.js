@@ -3,7 +3,7 @@ import SoundCloudModel from './soundcloud_model';
 import {PROVIDERS_LIST} from '../../../../constants/providers';
 
 /**
- *
+ * @see: https://w.soundcloud.com/player/api_playground.html
  */
 class SoundCloudProvider extends BaseProvider {
     static CLASS = 'SoundCloudProvider';
