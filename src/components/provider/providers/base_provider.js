@@ -7,8 +7,21 @@ import Config from '../../../core/config';
  */
 class BaseProvider extends BaseObject {
     static CLASS = 'BaseProvider';
+    PROVIDER_MODEL = null;
 
+    el = null;
+    model = null;
     config = Config.create();
+
+
+    setModel(song) {
+        if (!_.isNull(this.model) && this.model.id === song.id)
+            return false;
+
+        this.model = this.PROVIDER_MODEL.create(song);
+
+        return true;
+    }
 
     hide() {
         this.el.style.display = 'none';

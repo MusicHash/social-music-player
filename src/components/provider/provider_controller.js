@@ -33,6 +33,7 @@ class ProvidersController extends BaseController {
             this.pauseAll();
 
             let provider = this._setNewProvider(song);
+
             this.hideInactiveOnly();
             provider.load(song);
         } catch(e) {

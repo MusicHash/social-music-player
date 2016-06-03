@@ -9,9 +9,9 @@ import {PROVIDERS_LIST} from '../../../../constants/providers';
 class VimeoProvider extends BaseProvider {
     static CLASS = 'VimeoProvider';
     PROVIDER = PROVIDERS_LIST.VIMEO;
+    PROVIDER_MODEL = VimeoModel;
 
 
-    el = null;
     player = null;
     vimeoPath = '//player.vimeo.com/video/{{VIDEO_ID}}?api=1&player_id=VimeoProvider';
 
@@ -57,7 +57,7 @@ class VimeoProvider extends BaseProvider {
 
 
     onReady() {
-        this.player.api('play');
+        this.play();
 
         this.player.addEvent('loadProgress', this.onLoadProgress.bind(this));
         this.player.addEvent('playProgress', this.onPlayProgress.bind(this));
@@ -91,13 +91,6 @@ class VimeoProvider extends BaseProvider {
     }
 
 
-    setModel(song) {
-        this.model = VimeoModel.create(song);
-
-        return this;
-    }
-
-
     /**
      *
      */
@@ -106,11 +99,20 @@ class VimeoProvider extends BaseProvider {
     }
 
 
+
+    play() {
+        this.player.api('play');
+
+        return this;
+    }
+
+
     /**
      *
      */
     load(song) {
-        this.setModel(song);
+        if (!this.setModel(song))
+            return this.play();
 
         this.player.addEvent('ready', this.onReady.bind(this));
 

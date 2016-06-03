@@ -9,9 +9,9 @@ import {PROVIDERS_LIST} from '../../../../constants/providers';
 class SoundCloudProvider extends BaseProvider {
     static CLASS = 'SoundCloudProvider';
     PROVIDER = PROVIDERS_LIST.SOUNDCLOUD;
+    PROVIDER_MODEL = SoundCloudModel;
 
 
-    el = null;
     widget = null;
     SCPath = '//w.soundcloud.com/player/?url=';
     SCTracks = 'http://api.soundcloud.com/tracks/';
@@ -92,13 +92,6 @@ class SoundCloudProvider extends BaseProvider {
     }
 
 
-
-    setModel(song) {
-        this.model = SoundCloudModel.create(song);
-
-        return this;
-    }
-
     onReady() {
         console.log('READY?');
     }
@@ -108,11 +101,19 @@ class SoundCloudProvider extends BaseProvider {
     }
 
 
+
+    play() {
+        this.widget.play();
+
+        return this;
+    }
+
     /**
      *
      */
     load(song) {
-        this.setModel(song);
+        if (!this.setModel(song))
+            return this.play();
 
         this.widget.load(this.SCTracks + this.model.id, {
             auto_play: true,

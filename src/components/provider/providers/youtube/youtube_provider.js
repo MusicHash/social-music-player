@@ -8,9 +8,9 @@ import {PROVIDERS_LIST} from '../../../../constants/providers';
 class YoutubeProvider extends BaseProvider {
     static CLASS = 'YoutubeProvider';
     PROVIDER = PROVIDERS_LIST.YOUTUBE;
+    PROVIDER_MODEL = YoutubeModel;
 
 
-    el = null;
     player = null;
 
 
@@ -36,13 +36,6 @@ class YoutubeProvider extends BaseProvider {
 
     render() {
         return this.getPlayerContainer();
-    }
-
-
-    setModel(song) {
-        this.model = YoutubeModel.create(song);
-
-        return this;
     }
 
 
@@ -124,11 +117,17 @@ class YoutubeProvider extends BaseProvider {
     }
 
 
+    play() {
+        this.player.playVideo();
+    }
+
+
     /**
      *
      */
     load(song) {
-        this.setModel(song);
+        if (!this.setModel(song))
+            return this.play();
 
         this.player.loadVideoById({
             videoId: this.model.id,
