@@ -28,6 +28,7 @@ class YoutubeProvider extends BaseProvider {
 
         this.el = document.createElement('div');
         this.el.id = YoutubeProvider.CLASS;
+        this.hide();
 
         return this.el;
     }

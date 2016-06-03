@@ -45,6 +45,7 @@ class VimeoProvider extends BaseProvider {
         this.el.src = this.vimeoPath;
         this.el.width = this.config.width;
         this.el.height = this.config.height;
+        this.hide();
 
         return this.el;
     }

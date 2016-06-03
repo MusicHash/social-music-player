@@ -30,6 +30,7 @@ class SoundCloudProvider extends BaseProvider {
         this.el.src = this.SCPath;
         this.el.width = this.config.width;
         this.el.height = this.config.height;
+        this.hide();
 
         return this.el;
     }
