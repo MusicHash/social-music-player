@@ -41,9 +41,8 @@ class SoundCloudProvider extends BaseProvider {
             firstScriptTag = document.getElementsByTagName('script')[0];
 
         tag.src = 'https://w.soundcloud.com/player/api.js';
-        tag.onload = setTimeout(() => {
-            this._initPlayer();
-        }, 500);
+        tag.onload = this._initPlayer.bind(this);
+
 
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
