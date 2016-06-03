@@ -84,9 +84,6 @@ class ProvidersController extends BaseController {
     setNewProvider(song) {
         for (let i in this.PROVIDERS) {
             let provider = this.PROVIDERS[i];
-            console.log(provider);
-            console.log(provider.PROVIDER);
-            console.log(song.provider);
 
             if (provider.PROVIDER === song.provider) {
                 provider.setModel(song);
@@ -94,8 +91,6 @@ class ProvidersController extends BaseController {
 
                 return this.getProvider();
             }
-
-            console.log('setNewProvider ENDED!');
         }
 
         this.logger.error('Provider not found');

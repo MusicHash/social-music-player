@@ -8,6 +8,15 @@
 
   <div>
     <script type="text/javascript">
+
+      var playTonightAdessi = function() {
+        return window.SocialMusicPlayer.play({
+          provider: window.SocialMusicPlayer.PROVIDERS.SOUNDCLOUD,
+          id: '260040115',
+          title: 'Scott Isbell - Tonight Feat Adessi'
+        });
+      };
+
       var playFaded = function() {
         return window.SocialMusicPlayer.play({
           provider: window.SocialMusicPlayer.PROVIDERS.YOUTUBE,
@@ -15,9 +24,20 @@
           title: 'Alan Walker - Faded'
         });
       };
+
+      var playCalvinHarris = function() {
+        return window.SocialMusicPlayer.play({
+          provider: window.SocialMusicPlayer.PROVIDERS.VIMEO,
+          id: '50081686',
+          title: 'Calvin Harris feat Florence Welch "Sweet Nothing"'
+        });
+      };
+
     </script>
 
     <a href="javascript:;" onclick="playFaded()">[PLAY YOUTUBE] Alan Walker - Faded</a>
+    <a href="javascript:;" onclick="playTonightAdessi()">[PLAY SOUNDCLOUD] Scott Isbell - Tonight Feat Adessi</a>
+    <a href="javascript:;" onclick="playCalvinHarris()">[PLAY VIMEO] Calvin Harris feat Florence Welch "Sweet Nothing"</a>
   </div>
 
   <div id="social-music-player"></div>
