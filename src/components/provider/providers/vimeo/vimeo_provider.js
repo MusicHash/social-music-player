@@ -109,7 +109,9 @@ class VimeoProvider extends BaseProvider {
     /**
      *
      */
-    play() {
+    load(song) {
+        this.setModel(song);
+
         this.player.addEvent('ready', this.onReady.bind(this));
 
         this.el.src = this.vimeoPath.replace('{{VIDEO_ID}}', this.model.id);

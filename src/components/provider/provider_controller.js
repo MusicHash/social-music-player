@@ -24,8 +24,6 @@ class ProvidersController extends BaseController {
     _ProviderCurrent = null;
 
 
-
-
     /**
      *
      */
@@ -35,8 +33,8 @@ class ProvidersController extends BaseController {
             this.pauseAll();
 
             let provider = this._setNewProvider(song);
-            this.hideAllandShowOne(provider);
-            provider.play();
+            this.hideInactiveOnly();
+            provider.load(song);
         } catch(e) {
             this.logger.error('Failed to execute play. '+ e);
         }
@@ -53,9 +51,11 @@ class ProvidersController extends BaseController {
     }
 
 
-    hideAllandShowOne(showProvider) {
+    hideInactiveOnly() {
+        let activeProvider = this.getProvider();
+
         this._executeAllProviders(provider => {
-            if ('undefined' !== showProvider && provider.PROVIDER === showProvider.PROVIDER)
+            if ('undefined' !== activeProvider && provider.PROVIDER === activeProvider.PROVIDER)
                 return provider.show();
 
             provider.hide();
@@ -83,7 +83,6 @@ class ProvidersController extends BaseController {
             let provider = this.PROVIDERS[i];
 
             if (provider.PROVIDER === song.provider) {
-                provider.setModel(song);
                 this._ProviderCurrent = provider;
 
                 return this.getProvider();
@@ -126,7 +125,7 @@ class ProvidersController extends BaseController {
                 callback(provider);
             }
         } catch(e) {
-            this.logger.error('Failed to execute');
+            this.logger.error('Failed to execute ' + e);
         }
     }
 
