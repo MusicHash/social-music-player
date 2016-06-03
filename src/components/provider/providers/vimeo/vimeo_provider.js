@@ -3,7 +3,7 @@ import VimeoModel from './vimeo_model';
 import {PROVIDERS_LIST} from '../../../../constants/providers';
 
 /**
- *
+ * @see: https://developer.vimeo.com/player/embedding
  */
 class VimeoProvider extends BaseProvider {
     static CLASS = 'VimeoProvider';

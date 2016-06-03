@@ -97,33 +97,6 @@ class ProvidersController extends BaseController {
 
         return null;
     }
-
-
-    /**
-     *
-    getModelProvider(song) {
-        let model = null;
-
-        switch (song.provider) {
-            case PROVIDERS_LIST.YOUTUBE:
-                model = YoutubeModel.create(song);
-                break;
-
-            case PROVIDERS_LIST.VIMEO:
-                model = VimeoModel.create(song);
-                break;
-
-            case PROVIDERS_LIST.SOUNDCLOUD:
-                model = SoundCloudModel.create(song);
-                break;
-
-            default:
-                break;
-        }
-
-        return model;
-    }
-    */
 }
 
 export default ProvidersController;
