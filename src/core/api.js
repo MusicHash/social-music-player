@@ -59,6 +59,27 @@ class API extends BaseObject {
 
 
     /**
+     * @INTERNAL METHOD, REMOVE AFTER TESTING
+     */
+    pauseAll() {
+        this.INITIALIZE.PROVIDER.pauseAll();
+
+        return this;
+    }
+
+
+    /**
+     * @INTERNAL METHOD, REMOVE AFTER TESTING
+     */
+    hideAll() {
+        this.INITIALIZE.PROVIDER.hideAll();
+
+        return this;
+    }
+
+
+
+    /**
      *
      */
     play(song) {

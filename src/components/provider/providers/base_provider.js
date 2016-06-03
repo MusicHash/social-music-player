@@ -10,6 +10,19 @@ class BaseProvider extends BaseObject {
 
     config = Config.create();
 
+    hide() {
+        this.el.style.display = 'none';
+
+        return this;
+    }
+
+
+    show() {
+        this.el.style.display = 'block';
+
+        return this;
+    }
+
     render() {
         let el = document.createElement('div');
         el.id = BaseProvider.CLASS;
@@ -17,6 +30,9 @@ class BaseProvider extends BaseObject {
 
         return el;
     }
+
+
+
 }
 
 export default BaseProvider;

@@ -24,10 +24,76 @@ class ProvidersController extends BaseController {
     _ProviderCurrent = null;
 
 
+
+
     /**
      *
      */
-    renderProviders() {
+    play(song) {
+        this.logger.info('PLAY CALLED');
+        try {
+            let provider = this._setNewProvider(song);
+            provider.play();
+        } catch(e) {
+            this.logger.error('Failed to execute play. '+ e);
+        }
+
+        return this;
+    }
+
+
+    /**
+     *
+     */
+    render() {
+        return this._renderProviders();
+    }
+
+
+    hideAll() {
+        this._executeAllProviders(provider => {
+            provider.hide();
+        });
+    }
+
+
+    pauseAll() {
+        this._executeAllProviders(provider => {
+            provider.pause();
+        });
+    }
+
+
+    getProvider() {
+        return this._ProviderCurrent;
+    }
+
+
+    /**
+     *
+     */
+    _setNewProvider(song) {
+        for (let i in this.PROVIDERS) {
+            let provider = this.PROVIDERS[i];
+
+            if (provider.PROVIDER === song.provider) {
+                provider.setModel(song);
+                this._ProviderCurrent = provider;
+
+                return this.getProvider();
+            }
+        }
+
+        this.logger.error('Provider not found');
+
+        return null;
+    }
+
+
+    /**
+     *
+     */
+    _renderProviders() {
         let out = [],
             providers = [
                 YoutubeProvider,
@@ -47,56 +113,17 @@ class ProvidersController extends BaseController {
     }
 
 
-    /**
-     *
-     */
-    play(song) {
-        this.logger.info('PLAY CALLED');
+    _executeAllProviders(callback) {
         try {
-            let provider = this.setNewProvider(song);
-            console.log(provider);
-
-            provider.play();
-        } catch(e) {
-            this.logger.error('Failed to execute play. '+ e);
-        }
-
-        return this;
-    }
-
-
-    /**
-     *
-     */
-    render() {
-        return this.renderProviders();
-    }
-
-
-    getProvider() {
-        return this._ProviderCurrent;
-    }
-
-
-    /**
-     *
-     */
-    setNewProvider(song) {
-        for (let i in this.PROVIDERS) {
-            let provider = this.PROVIDERS[i];
-
-            if (provider.PROVIDER === song.provider) {
-                provider.setModel(song);
-                this._ProviderCurrent = provider;
-
-                return this.getProvider();
+            for (let i in this.PROVIDERS) {
+                let provider = this.PROVIDERS[i];
+                callback(provider);
             }
+        } catch(e) {
+            this.logger.error('Failed to execute');
         }
-
-        this.logger.error('Provider not found');
-
-        return null;
     }
+
 }
 
 export default ProvidersController;

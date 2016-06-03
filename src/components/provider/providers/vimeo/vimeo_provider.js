@@ -58,36 +58,30 @@ class VimeoProvider extends BaseProvider {
     onReady() {
         this.player.api('play');
 
-        this.player.addEvent('loadProgress', data => {
-            console.log('loadProgress event : ' + data.percent + ' : ' + data.bytesLoaded + ' : ' + data.bytesTotal + ' : ' + data.duration);
-        });
-
-        this.player.addEvent('playProgress', data => {
-            console.log('playProgress event : ' + data.seconds + ' : ' + data.percent + ' : ' + data.duration);
-        });
-
-        this.player.addEvent('pause', () => {
-            console.log('pause event');
-        });
-
-        this.player.addEvent('finish', () => {
-            console.log('finish event');
-        });
+        this.player.addEvent('loadProgress', this.onLoadProgress.bind(this));
+        this.player.addEvent('playProgress', this.onPlayProgress.bind(this));
+        this.player.addEvent('pause', this.onPause.bind(this));
+        this.player.addEvent('finish', this.onFinish.bind(this));
     }
 
 
     onPause() {
-        console.log('paused');
+        console.log('paused event');
     }
 
 
     onFinish() {
-        console.log('finished');
+        console.log('finished event');
     }
 
 
     onPlayProgress(data) {
-        console.log(data.seconds + 's played');
+        console.log('playProgress event : ' + data.seconds + ' : ' + data.percent + ' : ' + data.duration);
+    }
+
+
+    onLoadProgress(data) {
+        console.log('loadProgress event : ' + data.percent + ' : ' + data.bytesLoaded + ' : ' + data.bytesTotal + ' : ' + data.duration);
     }
 
 
@@ -100,6 +94,14 @@ class VimeoProvider extends BaseProvider {
         this.model = VimeoModel.create(song);
 
         return this;
+    }
+
+
+    /**
+     *
+     */
+    pause() {
+        this.player.api('pause');
     }
 
 

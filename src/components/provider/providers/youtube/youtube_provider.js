@@ -86,7 +86,11 @@ class YoutubeProvider extends BaseProvider {
                 rel: 0
             }
         });
+
+        this.el = this.player.getIframe(); // YT loses the refrance by replacing the container
     }
+
+
 
 
     /**
@@ -101,6 +105,14 @@ class YoutubeProvider extends BaseProvider {
      *
      */
     onPlayerStateChange(event) {}
+
+
+    /**
+     *
+     */
+    pause() {
+        this.player.pauseVideo();
+    }
 
 
     /**

@@ -3,6 +3,7 @@ import SoundCloudModel from './soundcloud_model';
 import {PROVIDERS_LIST} from '../../../../constants/providers';
 
 /**
+ * @see: https://developers.soundcloud.com/docs/api/html5-widget
  * @see: https://w.soundcloud.com/player/api_playground.html
  */
 class SoundCloudProvider extends BaseProvider {
@@ -58,8 +59,37 @@ class SoundCloudProvider extends BaseProvider {
     _initPlayer() {
         this.widget = window.SC.Widget(this.getPlayerContainer());
 
+        this.widget.bind(window.SC.Widget.Events.READY, this.onReady.bind(this));
+        this.widget.bind(window.SC.Widget.Events.PAUSE, this.onPause.bind(this));
+        this.widget.bind(window.SC.Widget.Events.FINISH, this.onFinish.bind(this));
+        this.widget.bind(window.SC.Widget.Events.LOAD_PROGRESS, this.onLoadProgress.bind(this));
+        this.widget.bind(window.SC.Widget.Events.PLAY_PROGRESS, this.onPlayProgress.bind(this));
+
         return this;
     }
+
+
+    onPause() {
+        console.log('paused event');
+    }
+
+
+    onFinish() {
+        console.log('finished event');
+    }
+
+
+    onPlayProgress(data) {
+        console.log('playProgress event : ' + data.loadedProgress + ' : ' + data.currentPosition + ' : ' + data.relativePosition);
+    }
+
+
+    onLoadProgress(data) {
+        //console.log('loadProgress event : ' + data.percent + ' : ' + data.bytesLoaded + ' : ' + data.bytesTotal + ' : ' + data.duration);
+        console.log('playProgress event : ');
+        console.log(data);
+    }
+
 
 
     setModel(song) {
@@ -68,11 +98,20 @@ class SoundCloudProvider extends BaseProvider {
         return this;
     }
 
+    onReady() {
+        console.log('READY?');
+    }
+
+    pause() {
+        this.widget.pause();
+    }
+
 
     /**
      *
      */
     play() {
+
         this.widget.load(this.SCTracks + this.model.id, {
             auto_play: true,
             buying: false,
