@@ -59,15 +59,14 @@ class VimeoProvider extends BaseProvider {
         this.player = $f(VimeoProvider.CLASS);
     }
 
+
     onMessageReceived(event) {
         // Handle messages from the vimeo player only
-        if (!(/^https?:\/\/player.vimeo.com/).test(event.origin)) {
+        if (!(/^https?:\/\/player.vimeo.com/).test(event.origin))
             return false;
-        }
 
-        if (this.playerOrigin === '*') {
+        if (this.playerOrigin === '*')
             this.playerOrigin = event.origin;
-        }
 
         var data = JSON.parse(event.data);
 
@@ -90,6 +89,7 @@ class VimeoProvider extends BaseProvider {
         }
     }
 
+
     // Helper function for sending a message to the player
     post(action, value) {
         var data = {
@@ -104,28 +104,30 @@ class VimeoProvider extends BaseProvider {
         this.getPlayerContainer().contentWindow.postMessage(message, this.playerOrigin);
     }
 
+
     onReady() {
         console.log('ready');
         this.player.api('play');
 
         this.post('addEventListener', 'pause');
         this.post('addEventListener', 'finish');
-        this.post('addEventListener', 'playProgress');
+        //this.post('addEventListener', 'playProgress');
     }
+
 
     onPause() {
         console.log('paused');
     }
 
+
     onFinish() {
         console.log('finished');
     }
 
+
     onPlayProgress(data) {
         console.log(data.seconds + 's played');
     }
-
-
 
 
     render() {
