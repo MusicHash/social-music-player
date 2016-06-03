@@ -32,7 +32,10 @@ class ProvidersController extends BaseController {
     play(song) {
         this.logger.info('PLAY CALLED');
         try {
+            this.pauseAll();
+
             let provider = this._setNewProvider(song);
+            this.hideAllandShowOne(provider);
             provider.play();
         } catch(e) {
             this.logger.error('Failed to execute play. '+ e);
@@ -50,8 +53,11 @@ class ProvidersController extends BaseController {
     }
 
 
-    hideAll() {
+    hideAllandShowOne(showProvider) {
         this._executeAllProviders(provider => {
+            if ('undefined' !== showProvider && provider.PROVIDER === showProvider.PROVIDER)
+                return provider.show();
+
             provider.hide();
         });
     }
