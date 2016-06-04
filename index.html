@@ -6,59 +6,59 @@
   </head>
   <body>
 
-  <div>
+    <div>
+      <script type="text/javascript">
+        var playTonightAdessi = function() {
+          return window.SocialMusicPlayer.play({
+            provider: window.SocialMusicPlayer.PROVIDERS.SOUNDCLOUD,
+            id: '260040115',
+            title: 'Scott Isbell - Tonight Feat Adessi'
+          });
+        };
+
+        var playFaded = function() {
+          return window.SocialMusicPlayer.play({
+            provider: window.SocialMusicPlayer.PROVIDERS.YOUTUBE,
+            id: '60ItHLz5WEA',
+            title: 'Alan Walker - Faded'
+          });
+        };
+
+        var playCalvinHarris = function() {
+          return window.SocialMusicPlayer.play({
+            provider: window.SocialMusicPlayer.PROVIDERS.VIMEO,
+            id: '50081686',
+            title: 'Calvin Harris feat Florence Welch "Sweet Nothing"'
+          });
+        };
+      </script>
+
+      <a href="javascript:;" onclick="playFaded()">[PLAY YOUTUBE] Alan Walker - Faded</a><br/><br/>
+      <a href="javascript:;" onclick="playCalvinHarris()">[PLAY VIMEO] Calvin Harris feat Florence Welch "Sweet Nothing"</a><br/><br/>
+      <a href="javascript:;" onclick="playTonightAdessi()">[PLAY SOUNDCLOUD] Scott Isbell - Tonight Feat Adessi</a><br/><br/>
+      <a href="javascript:;" onclick="window.SocialMusicPlayer.pauseAll()">[PAUSE ALL]</a><br/><br/>
+    </div>
+
+    <div id="social-music-player"></div>
+
     <script type="text/javascript">
-
-      var playTonightAdessi = function() {
-        return window.SocialMusicPlayer.play({
-          provider: window.SocialMusicPlayer.PROVIDERS.SOUNDCLOUD,
-          id: '260040115',
-          title: 'Scott Isbell - Tonight Feat Adessi'
+      window.SMPAsyncInit = function() {
+        window.SocialMusicPlayer.initialize({
+          width: '100%',
+          height: '100%'
         });
       };
 
-      var playFaded = function() {
-        return window.SocialMusicPlayer.play({
-          provider: window.SocialMusicPlayer.PROVIDERS.YOUTUBE,
-          id: '60ItHLz5WEA',
-          title: 'Alan Walker - Faded'
-        });
-      };
-
-      var playCalvinHarris = function() {
-        return window.SocialMusicPlayer.play({
-          provider: window.SocialMusicPlayer.PROVIDERS.VIMEO,
-          id: '50081686',
-          title: 'Calvin Harris feat Florence Welch "Sweet Nothing"'
-        });
-      };
-
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) return;
+         js = d.createElement(s); js.id = id;
+         js.src = 'dist/js/smp.min.js';
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'social-music-player-sdk'));
     </script>
 
-    <a href="javascript:;" onclick="playFaded()">[PLAY YOUTUBE] Alan Walker - Faded</a><br/><br/>
-    <a href="javascript:;" onclick="playCalvinHarris()">[PLAY VIMEO] Calvin Harris feat Florence Welch "Sweet Nothing"</a><br/><br/>
-    <a href="javascript:;" onclick="playTonightAdessi()">[PLAY SOUNDCLOUD] Scott Isbell - Tonight Feat Adessi</a><br/><br/>
-    <a href="javascript:;" onclick="window.SocialMusicPlayer.pauseAll()">[PAUSE ALL]</a><br/><br/>
-  </div>
 
-  <div id="social-music-player"></div>
-
-  <script type="text/javascript">
-    window.SMPAsyncInit = function() {
-      window.SocialMusicPlayer.initialize({
-        width: '100%',
-        height: '100%'
-      });
-    };
-
-    (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) return;
-       js = d.createElement(s); js.id = id;
-       js.src = 'dist/js/smp.min.js';
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'social-music-player-sdk'));
-  </script>
-
+    <h4>EOF</h4>
   </body>
 </html>
