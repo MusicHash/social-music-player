@@ -16,6 +16,9 @@ class VimeoProvider extends BaseProvider {
     vimeoPath = '//player.vimeo.com/video/{{VIDEO_ID}}?api=1&player_id=VimeoProvider';
 
 
+    /**
+     *
+     */
     init() {
         this.scriptLoad();
     }
@@ -37,6 +40,9 @@ class VimeoProvider extends BaseProvider {
     }
 
 
+    /**
+     *
+     */
     getPlayerContainer() {
         if (null !== this.el) return this.el;
 
@@ -51,11 +57,17 @@ class VimeoProvider extends BaseProvider {
     }
 
 
+    /**
+     *
+     */
     _initPlayer() {
         this.player = window.$f(VimeoProvider.CLASS);
     }
 
 
+    /**
+     *
+     */
     onReady() {
         this.play();
 
@@ -66,26 +78,41 @@ class VimeoProvider extends BaseProvider {
     }
 
 
+    /**
+     *
+     */
     onPause() {
         console.log('paused event');
     }
 
 
+    /**
+     *
+     */
     onFinish() {
         console.log('finished event');
     }
 
 
+    /**
+     *
+     */
     onPlayProgress(data) {
         console.log('playProgress event : ' + data.seconds + ' : ' + data.percent + ' : ' + data.duration);
     }
 
 
+    /**
+     *
+     */
     onLoadProgress(data) {
         console.log('loadProgress event : ' + data.percent + ' : ' + data.bytesLoaded + ' : ' + data.bytesTotal + ' : ' + data.duration);
     }
 
 
+    /**
+     *
+     */
     render() {
         return this.getPlayerContainer();
     }
@@ -99,7 +126,9 @@ class VimeoProvider extends BaseProvider {
     }
 
 
-
+    /**
+     *
+     */
     play() {
         this.player.api('play');
 

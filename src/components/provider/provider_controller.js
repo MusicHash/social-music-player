@@ -1,17 +1,12 @@
 import BaseController from '../../base/base_controller';
-import Config from '../../core/config';
 import DOM from '../../utils/dom';
+import Event from 'event-emitter-js';
 import {PROVIDERS_LIST} from '../../constants/providers';
+import {SYSTEM_EVENTS} from '../../constants/events';
 
 import YoutubeProvider from './providers/youtube/youtube_provider';
-import YoutubeModel from './providers/youtube/youtube_model';
-
 import VimeoProvider from './providers/vimeo/vimeo_provider';
-import VimeoModel from './providers/vimeo/vimeo_model';
-
 import SoundCloudProvider from './providers/soundcloud/soundcloud_provider';
-import SoundCloudModel from './providers/soundcloud/soundcloud_model';
-
 
 /**
  *
@@ -24,17 +19,47 @@ class ProvidersController extends BaseController {
     _ProviderCurrent = null;
 
 
+    init() {
+        this.subscribe();
+    }
+
     /**
      *
      */
-    play(song) {
-        this.logger.info('PLAY CALLED');
+    subscribe() {
+        Event.on(SYSTEM_EVENTS.PLAY, this.play.bind(this));
+        Event.on(SYSTEM_EVENTS.PAUSE, this.pause.bind(this));
+    }
+
+
+    /**
+     *
+     */
+    pause() {
+        return this.getProvider().pause();
+    }
+
+
+    /**
+     *
+     */
+    play() {
+        return this.getProvider().play();
+    }
+
+
+    /**
+     *
+     */
+    load(song) {
+        this.logger.info('LOAD CALLED');
+
         try {
             this.pauseAll();
 
             let provider = this._setNewProvider(song);
 
-            this.hideInactiveOnly();
+            this._hideInactiveOnly();
             provider.load(song);
         } catch(e) {
             this.logger.error('Failed to execute play. '+ e);
@@ -52,18 +77,6 @@ class ProvidersController extends BaseController {
     }
 
 
-    hideInactiveOnly() {
-        let activeProvider = this.getProvider();
-
-        this._executeAllProviders(provider => {
-            if ('undefined' !== activeProvider && provider.PROVIDER === activeProvider.PROVIDER)
-                return provider.show();
-
-            provider.hide();
-        });
-    }
-
-
     pauseAll() {
         this._executeAllProviders(provider => {
             provider.pause();
@@ -73,6 +86,21 @@ class ProvidersController extends BaseController {
 
     getProvider() {
         return this._ProviderCurrent;
+    }
+
+
+    /**
+     *
+     */
+    _hideInactiveOnly() {
+        let activeProvider = this.getProvider();
+
+        this._executeAllProviders(provider => {
+            if ('undefined' !== activeProvider && provider.PROVIDER === activeProvider.PROVIDER)
+                return provider.show();
+
+            provider.hide();
+        });
     }
 
 

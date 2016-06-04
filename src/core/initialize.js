@@ -1,7 +1,7 @@
+import Event from 'event-emitter-js';
 import _Logger from '../utils/logger';
 import {SYSTEM_EVENTS} from '../constants/events';
 import BaseObject from '../base/base_object';
-import Event from '../utils/event';
 import DOM from '../utils/dom';
 import Config from './config';
 import LayoutController from '../components/layout/layout_controller';
@@ -39,6 +39,8 @@ class Initialize extends BaseObject {
         this.logger.debug('Initialize start fired');
 
         this.layoutRender();
+
+        Event.fire(SYSTEM_EVENTS.PLAYER_INITIALIZED);
     }
 
 

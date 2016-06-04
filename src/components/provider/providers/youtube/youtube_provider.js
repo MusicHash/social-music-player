@@ -14,6 +14,9 @@ class YoutubeProvider extends BaseProvider {
     player = null;
 
 
+    /**
+     *
+     */
     init() {
         window.onYouTubeIframeAPIReady = () => {
             this._initPlayer(); // YT events init.
@@ -23,6 +26,9 @@ class YoutubeProvider extends BaseProvider {
     }
 
 
+    /**
+     *
+     */
     getPlayerContainer() {
         if (null !== this.el) return this.el;
 
@@ -34,6 +40,9 @@ class YoutubeProvider extends BaseProvider {
     }
 
 
+    /**
+     *
+     */
     render() {
         return this.getPlayerContainer();
     }
@@ -117,6 +126,9 @@ class YoutubeProvider extends BaseProvider {
     }
 
 
+    /**
+     *
+     */
     play() {
         this.player.playVideo();
     }

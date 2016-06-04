@@ -1,16 +1,18 @@
 /**
  * System event consts, used to notify when interesting things happen in client.
- * 
+ *
  * @type {Object}
  */
 const SYSTEM_EVENTS = {
-    INITIALIZE_PLAYER: 'INITIALIZE_PLAYER'
+    PLAYER_INITIALIZED: 'PLAYER_INITIALIZED',
+    PLAY: 'PLAY',
+    PAUSE: 'PAUSE'
 };
 
 
 /**
  * DOM events mapping for actions.
- * 
+ *
  * @type {Object}
  */
 const DOM_EVENTS = {

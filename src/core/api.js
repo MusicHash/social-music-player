@@ -1,4 +1,4 @@
-import Event from '../utils/event';
+import Event from 'event-emitter-js';
 import Initialize from './initialize';
 import BaseObject from '../base/base_object';
 import {SYSTEM_EVENTS} from '../constants/events';
@@ -59,31 +59,10 @@ class API extends BaseObject {
 
 
     /**
-     * @INTERNAL METHOD, REMOVE AFTER TESTING
-     */
-    pauseAll() {
-        this.INITIALIZE.PROVIDER.pauseAll();
-
-        return this;
-    }
-
-
-    /**
-     * @INTERNAL METHOD, REMOVE AFTER TESTING
-     */
-    hideAll() {
-        this.INITIALIZE.PROVIDER.hideAll();
-
-        return this;
-    }
-
-
-
-    /**
      *
      */
     play(song) {
-        this.INITIALIZE.PROVIDER.play(song);
+        this.INITIALIZE.PROVIDER.load(song);
 
         return this;
     }

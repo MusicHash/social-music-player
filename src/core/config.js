@@ -1,7 +1,4 @@
-import Event from '../utils/event';
-import Initialize from './initialize';
 import BaseSingleton from '../base/base_singleton';
-import {SYSTEM_EVENTS} from '../constants/events';
 import _ from '../utils/__';
 
 let CONFIG_DEFAULTS = {

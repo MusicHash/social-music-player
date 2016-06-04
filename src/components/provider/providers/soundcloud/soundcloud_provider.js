@@ -17,11 +17,17 @@ class SoundCloudProvider extends BaseProvider {
     SCTracks = 'http://api.soundcloud.com/tracks/';
 
 
+    /**
+     *
+     */
     init() {
         this.scriptLoad();
     }
 
 
+    /**
+     *
+     */
     getPlayerContainer() {
         if (null !== this.el) return this.el;
 
@@ -52,11 +58,18 @@ class SoundCloudProvider extends BaseProvider {
         return this;
     }
 
+
+    /**
+     *
+     */
     render() {
         return this.getPlayerContainer();
     }
 
 
+    /**
+     *
+     */
     _initPlayer() {
         this.widget = window.SC.Widget(this.getPlayerContainer());
 
@@ -70,21 +83,33 @@ class SoundCloudProvider extends BaseProvider {
     }
 
 
+    /**
+     *
+     */
     onPause() {
         console.log('paused event');
     }
 
 
+    /**
+     *
+     */
     onFinish() {
         console.log('finished event');
     }
 
 
+    /**
+     *
+     */
     onPlayProgress(data) {
         console.log('playProgress event : ' + data.loadedProgress + ' : ' + data.currentPosition + ' : ' + data.relativePosition);
     }
 
 
+    /**
+     *
+     */
     onLoadProgress(data) {
         //console.log('loadProgress event : ' + data.percent + ' : ' + data.bytesLoaded + ' : ' + data.bytesTotal + ' : ' + data.duration);
         console.log('playProgress event : ');
@@ -92,21 +117,31 @@ class SoundCloudProvider extends BaseProvider {
     }
 
 
+    /**
+     *
+     */
     onReady() {
         console.log('READY?');
     }
 
+
+    /**
+     *
+     */
     pause() {
         this.widget.pause();
     }
 
 
-
+    /**
+     *
+     */
     play() {
         this.widget.play();
 
         return this;
     }
+
 
     /**
      *
