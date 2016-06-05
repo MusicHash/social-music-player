@@ -1,7 +1,5 @@
 .controls {
-    border: 3px dashed red;
-    padding: 0;
-    margin: 0;
+    border: 3px dashed red; //debug
 
     i {
         display: block;
@@ -15,6 +13,8 @@
 
 
     ul, ol {
+        margin: 0;
+        padding: 0;
         list-style-type: none;
 
         li {
