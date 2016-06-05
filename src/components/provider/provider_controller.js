@@ -3,17 +3,20 @@ import DOM from '../../utils/dom';
 import Event from 'event-emitter-js';
 import {PROVIDERS_LIST} from '../../constants/providers';
 import {SYSTEM_EVENTS} from '../../constants/events';
+import {PLAYER_STATE} from '../../constants/state';
 
 import YoutubeProvider from './providers/youtube/youtube_provider';
 import VimeoProvider from './providers/vimeo/vimeo_provider';
 import SoundCloudProvider from './providers/soundcloud/soundcloud_provider';
 
+
 /**
  *
  */
-class ProvidersController extends BaseController {
+class ProviderController extends BaseController {
     static CLASS = 'ProvidersController';
     static selectorClass = '.smp_providers';
+
 
     PROVIDERS = {};
     _ProviderCurrent = null;
@@ -22,6 +25,7 @@ class ProvidersController extends BaseController {
     init() {
         this.subscribe();
     }
+
 
     /**
      *
@@ -162,4 +166,4 @@ class ProvidersController extends BaseController {
 
 }
 
-export default ProvidersController;
+export default ProviderController;
