@@ -77,7 +77,7 @@ class YoutubeProvider extends BaseProvider {
 
             playerVars: {
                 enablejsapi: 1,
-                controls: 2,
+                controls: 0,
                 showinfo: 0,
                 disablekb: 1,
                 fs: 0,
