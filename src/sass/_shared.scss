@@ -1,0 +1,15 @@
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.clear_float {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    clear: both;
+}

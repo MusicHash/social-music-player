@@ -27,8 +27,8 @@ class ProvidersController extends BaseController {
      *
      */
     subscribe() {
-        Event.on(SYSTEM_EVENTS.PLAY, this.play.bind(this));
-        Event.on(SYSTEM_EVENTS.PAUSE, this.pause.bind(this));
+        //Event.on(SYSTEM_EVENTS.PLAY, this.play.bind(this));
+        //Event.on(SYSTEM_EVENTS.PAUSE, this.pause.bind(this));
     }
 
 
@@ -61,6 +61,8 @@ class ProvidersController extends BaseController {
 
             this._hideInactiveOnly();
             provider.load(song);
+
+            Event.fire(SYSTEM_EVENTS.PLAY);
         } catch(e) {
             this.logger.error('Failed to execute play. '+ e);
         }
