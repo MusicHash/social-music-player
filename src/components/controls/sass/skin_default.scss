@@ -30,9 +30,14 @@
     .play-pause {
         background-color: green;
 
-        > i {
+        > svg {
             width: 48px;
             height: 48px;
+            cursor: pointer;
+
+            &:hover {
+                fill: white;
+            }
         }
 
         .play {

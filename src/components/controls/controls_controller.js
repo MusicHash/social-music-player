@@ -19,14 +19,14 @@ class ControlsController extends BaseController {
     init(params) {
         this.logger.debug('ControlsController INIT fired');
         this.subscribe();
-        this.loadShapes();
+        this._loadShapes();
     }
 
 
     /**
      *
      */
-    loadShapes() {
+    _loadShapes() {
         DOM.append(PlayPauseShapes, DOM.getBody());
 
         return this;
