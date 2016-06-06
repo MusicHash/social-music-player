@@ -4,7 +4,7 @@ import Config from '../../core/config';
 import {SYSTEM_EVENTS} from '../../constants/events';
 import DOM from '../../utils/dom';
 import PlayerMarkupHTML from './view/controls_markup.html';
-
+import PlayPauseShapes from './svg/play_pause_shapes.svg';
 
 /**
  *
@@ -19,6 +19,17 @@ class ControlsController extends BaseController {
     init(params) {
         this.logger.debug('ControlsController INIT fired');
         this.subscribe();
+        this.loadShapes();
+    }
+
+
+    /**
+     *
+     */
+    loadShapes() {
+        DOM.append(PlayPauseShapes, DOM.getBody());
+
+        return this;
     }
 
 

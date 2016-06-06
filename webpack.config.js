@@ -35,6 +35,10 @@ const babel = {
             {
                 test: /\.html$/,
                 loader: 'html'
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-inline'
             }
         ]
     },
