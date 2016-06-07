@@ -31,9 +31,14 @@
         background-color: green;
 
         > svg {
-            width: 48px;
-            height: 48px;
+            width: 38px;
+            height: 38px;
+            padding: 3px;
             cursor: pointer;
+
+            use {
+                transform: scale(0.8);
+            }
 
             &:hover {
                 fill: white;
