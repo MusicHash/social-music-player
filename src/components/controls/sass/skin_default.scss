@@ -65,8 +65,17 @@
             .buttons-list {
                 float: right;
 
-                .provider {
+                .providers {
                     background: gray;
+
+                    svg {
+                        width: 50px;
+                        height: 20px;
+                    }
+
+                    .youtube use {}
+                    .vimeo use {}
+                    .soundcloud use {}
                 }
 
                 .volume {

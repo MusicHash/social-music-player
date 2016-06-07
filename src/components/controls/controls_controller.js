@@ -6,6 +6,10 @@ import DOM from '../../utils/dom';
 import PlayerMarkupHTML from './view/controls_markup.html';
 import PlayPauseShapes from './svg/play_pause_shapes.svg';
 
+import YoutubeLogo from '../../components/provider/providers/youtube/logo/youtube.logo.svg';
+import VimeoLogo from '../../components/provider/providers/vimeo/logo/vimeo.logo.svg';
+import SoundCloudLogo from '../../components/provider/providers/soundcloud/logo/soundcloud.logo.svg';
+
 /**
  *
  */
@@ -28,6 +32,9 @@ class ControlsController extends BaseController {
      */
     _loadShapes() {
         DOM.append(PlayPauseShapes, DOM.getBody());
+        DOM.append(YoutubeLogo, DOM.getBody());
+        DOM.append(VimeoLogo, DOM.getBody());
+        DOM.append(SoundCloudLogo, DOM.getBody());
 
         return this;
     }
