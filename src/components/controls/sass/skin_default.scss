@@ -1,14 +1,8 @@
 .controls {
     border: 3px dashed red; //debug
 
-    i {
-        display: block;
+    svg {
         cursor: pointer;
-        width: 24px;
-        height: 24px;
-        i {
-            //display: none;
-        }
     }
 
 
@@ -32,11 +26,6 @@
             width: 38px;
             height: 38px;
             padding: 3px;
-            cursor: pointer;
-
-            use {
-                transform: scale(0.8);
-            }
 
             &:hover {
                 fill: gray;
@@ -80,19 +69,12 @@
 
                 .volume {
                     ol {
-                        .mute i {
-                            background: red;
+                        li.mute svg, li.unmute svg {
+                            width: 24px;
+                            height: 24px;
 
                             &:hover {
-                                background-position: blue;
-                            }
-                        }
-
-                        .unmute i {
-                            background: yellow;
-
-                            &:hover {
-                                background-position: green;
+                                fill: yellow;
                             }
                         }
 
@@ -108,7 +90,7 @@
                             cursor: pointer;
 
                             .volume-progress-bg {
-                                margin-top: 6px;
+                                margin-top: 5px;
                                 height: 9px;
                                 width: 70px;
                                 border: 1px solid black;
