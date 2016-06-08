@@ -22,15 +22,22 @@
 
 
     .play-pause {
-        > svg {
+        padding: 3px;
+
+        > div {
             width: 38px;
             height: 38px;
-            padding: 3px;
 
-            &:hover {
-                fill: gray;
+            svg {
+                width: 38px;
+                height: 46px;
+
+                &:hover {
+                    fill: gray;
+                }
             }
         }
+
 
         .play {
             @extend .show;
@@ -44,7 +51,7 @@
 
 
     .controls-list {
-        margin-left: 5px;
+        margin: 2px 0 0 5px;
 
         .info {
             .title {
@@ -57,25 +64,36 @@
                 .providers {
                     background: gray;
 
-                    svg {
-                        width: 50px;
-                        height: 20px;
-                    }
+                    ol li {
+                        div {
+                            width: 50px;
+                            height: 20px;
 
-                    .youtube use {}
-                    .vimeo use {}
-                    .soundcloud use {}
+                            svg {
+                                width: 50px;
+                                height: 20px;
+                            }
+                        }
+                    }
                 }
 
                 .volume {
                     ol {
-                        li.mute svg, li.unmute svg {
-                            width: 24px;
-                            height: 24px;
+                        li.mute, li.unmute {
+                            div {
+                                width: 24px;
+                                height: 20px;
 
-                            &:hover {
-                                fill: yellow;
+                                svg {
+                                    width: 24px;
+                                    height: 24px;
+
+                                    &:hover {
+                                        fill: yellow;
+                                    }
+                                }
                             }
+
                         }
 
                         .volume-max i {
@@ -90,7 +108,7 @@
                             cursor: pointer;
 
                             .volume-progress-bg {
-                                margin-top: 5px;
+                                margin-top: 4px;
                                 height: 9px;
                                 width: 70px;
                                 border: 1px solid black;
@@ -127,6 +145,7 @@
 
         .scrabber {
             @extend .clear_float;
+            padding-top: 2px;
 
             span.current-time,
             span.duration {
