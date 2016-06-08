@@ -96,6 +96,16 @@ class DOM {
         return this;
     }
 
+
+    getWidth(selector) {
+        return Number(this.getStyle(selector).width.replace('px', ''));
+    }
+
+
+    getStyle(selector) {
+        return window.getComputedStyle(this.$$(selector));
+    }
+
 }
 
 export default new DOM();

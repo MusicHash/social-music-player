@@ -47,7 +47,37 @@ class ControlsController extends BaseController {
         Event.on(SYSTEM_EVENTS.PLAY, () => {
             console.log('CONTROLLER PLAY ARRIVED!!');
         });
+
+        Event.on(SYSTEM_EVENTS.PLAYER_INITIALIZED, this.onResize.bind(this));
+        window.addEventListener('resize', this.onResize.bind(this), true);
     }
+
+
+    /**
+     *
+     *
+     */
+    onResize() {
+        this.setPlayerWidth();
+
+        return this;
+    }
+
+
+    /**
+     *
+     *
+     */
+    setPlayerWidth() {
+        let playerEl = DOM.getWidth('#social-music-player'),
+            playPauseEl = DOM.getWidth('#social-music-player .play-pause'),
+            slack = 140;
+
+        DOM.$$('#social-music-player .progress-bar').style.width = playerEl - playPauseEl - slack + 'px';
+
+        return this;
+    }
+
 
 
     /**
