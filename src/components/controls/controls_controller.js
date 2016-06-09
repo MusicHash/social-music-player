@@ -1,7 +1,7 @@
 import Event from 'event-emitter-js';
 import BaseController from '../../base/base_controller';
 import Config from '../../core/config';
-import {SYSTEM_EVENTS} from '../../constants/events';
+import {SYSTEM_EVENTS, DOM_EVENTS} from '../../constants/events';
 import DOM from '../../utils/dom';
 import PlayerMarkupHTML from './view/controls_markup.html';
 import PlayerButtons from './svg/player_buttons.svg';
@@ -9,6 +9,7 @@ import PlayerButtons from './svg/player_buttons.svg';
 import YoutubeLogo from '../../components/provider/providers/youtube/logo/youtube.logo.svg';
 import VimeoLogo from '../../components/provider/providers/vimeo/logo/vimeo.logo.svg';
 import SoundCloudLogo from '../../components/provider/providers/soundcloud/logo/soundcloud.logo.svg';
+
 
 /**
  *
@@ -49,7 +50,7 @@ class ControlsController extends BaseController {
         });
 
         Event.on(SYSTEM_EVENTS.PLAYER_INITIALIZED, this.onResize.bind(this));
-        window.addEventListener('resize', this.onResize.bind(this), true);
+        window.addEventListener(DOM_EVENTS.ON_RESIZE, this.onResize.bind(this), true);
     }
 
 
