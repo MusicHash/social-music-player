@@ -225,8 +225,8 @@ class YoutubeProvider extends BaseProvider {
      *
      */
     load(song) {
-        if (!this.setModel(song))
-            return this.play();
+        //if (!this.setModel(song))
+        //    return this.play();
 
         this.player.loadVideoById({
             videoId: this.model.id,

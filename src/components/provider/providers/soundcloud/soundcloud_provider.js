@@ -166,8 +166,8 @@ class SoundCloudProvider extends BaseProvider {
      *
      */
     load(song) {
-        if (!this.setModel(song))
-            return this.play();
+        //if (!this.setModel(song))
+        //    return this.play();
 
         this.widget.load(this.SCTracks + this.model.id, {
             auto_play: true,
