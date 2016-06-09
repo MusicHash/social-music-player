@@ -125,9 +125,7 @@ class VimeoProvider extends BaseProvider {
     /**
      * @data: data.percent + ' : ' + data.bytesLoaded + ' : ' + data.bytesTotal + ' : ' + data.duration
      */
-    onLoadProgress(data) {
-
-    }
+    onLoadProgress(data) {}
 
 
     /**
