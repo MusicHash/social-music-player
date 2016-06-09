@@ -1,6 +1,8 @@
 import BaseProvider from '../base_provider';
 import SoundCloudModel from './soundcloud_model';
 import {PROVIDERS_LIST} from '../../../../constants/providers';
+import {PLAYER_STATE} from '../../../../constants/state';
+
 
 /**
  * @see: https://developers.soundcloud.com/docs/api/html5-widget
@@ -17,6 +19,7 @@ class SoundCloudProvider extends BaseProvider {
     SCTracks = 'http://api.soundcloud.com/tracks/';
 
     providerController = null;
+    lastPercentPropagated = 0;
 
 
     /**
@@ -78,6 +81,7 @@ class SoundCloudProvider extends BaseProvider {
         this.widget = window.SC.Widget(this.getPlayerContainer());
 
         this.widget.bind(window.SC.Widget.Events.READY, this.onReady.bind(this));
+        this.widget.bind(window.SC.Widget.Events.PLAY, this.onPlay.bind(this));
         this.widget.bind(window.SC.Widget.Events.PAUSE, this.onPause.bind(this));
         this.widget.bind(window.SC.Widget.Events.FINISH, this.onFinish.bind(this));
         this.widget.bind(window.SC.Widget.Events.LOAD_PROGRESS, this.onLoadProgress.bind(this));
@@ -90,8 +94,18 @@ class SoundCloudProvider extends BaseProvider {
     /**
      *
      */
+    onPlay() {
+        this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.PLAYING);
+        this.logger.debug('PLAYING');
+    }
+
+
+    /**
+     *
+     */
     onPause() {
-        console.log('paused event');
+        this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.PAUSED);
+        this.logger.debug('PAUSED');
     }
 
 
@@ -99,25 +113,28 @@ class SoundCloudProvider extends BaseProvider {
      *
      */
     onFinish() {
-        console.log('finished event');
+        this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.ENDED);
+        this.logger.debug('ENDED');
     }
 
 
     /**
-     *
+     * @data: data.loadedProgress + ' : ' + data.currentPosition + ' : ' + data.relativePosition
      */
     onPlayProgress(data) {
-        console.log('playProgress event : ' + data.loadedProgress + ' : ' + data.currentPosition + ' : ' + data.relativePosition);
+        let percent = Math.round(data.relativePosition * 100 * 100) / 100;
+        if (this.lastPercentPropagated === percent) return;
+
+        this.providerController.onPlayerProgressUpdate(this.PROVIDER, percent);
+        this.lastPercentPropagated = percent;
     }
 
 
     /**
-     *
+     * @data: data.percent + ' : ' + data.bytesLoaded + ' : ' + data.bytesTotal + ' : ' + data.duration
      */
     onLoadProgress(data) {
-        //console.log('loadProgress event : ' + data.percent + ' : ' + data.bytesLoaded + ' : ' + data.bytesTotal + ' : ' + data.duration);
-        console.log('playProgress event : ');
-        console.log(data);
+
     }
 
 
