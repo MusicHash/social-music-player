@@ -108,23 +108,23 @@ class YoutubeProvider extends BaseProvider {
     onPlayerStateChange(event) {
         switch(event.data) {
             case window.YT.PlayerState.BUFFERING:
-                this.logger.info('BUFFERING');
+                this.logger.debug('BUFFERING');
                 break;
 
             case window.YT.PlayerState.PLAYING:
-                this.logger.info('PLAYING');
+                this.logger.debug('PLAYING');
                 break;
 
             case window.YT.PlayerState.PAUSED:
-                this.logger.info('PAUSED');
+                this.logger.debug('PAUSED');
                 break;
 
             case window.YT.PlayerState.ENDED:
-                this.logger.info('ENDED');
+                this.logger.debug('ENDED');
                 break;
 
             default:
-                this.logger.info('Other reply: '+ event.data);
+                this.logger.error('Other state: '+ event.data);
                 break;
         }
     }
