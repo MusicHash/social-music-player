@@ -2,6 +2,7 @@ import Event from 'event-emitter-js';
 import BaseController from '../../base/base_controller';
 import Config from '../../core/config';
 import {SYSTEM_EVENTS, DOM_EVENTS} from '../../constants/events';
+import {PLAYER_STATE} from '../../constants/state';
 import DOM from '../../utils/dom';
 import PlayerMarkupHTML from './view/controls_markup.html';
 import PlayerButtons from './svg/player_buttons.svg';
@@ -50,7 +51,50 @@ class ControlsController extends BaseController {
         });
 
         Event.on(SYSTEM_EVENTS.PLAYER_INITIALIZED, this.onResize.bind(this));
+        Event.on(SYSTEM_EVENTS.STATE_CHANGED, this.onStateChange.bind(this));
         window.addEventListener(DOM_EVENTS.ON_RESIZE, this.onResize.bind(this), true);
+    }
+
+
+    onStateChange(playerState) {
+        switch(playerState) {
+            case PLAYER_STATE.BUFFERING:
+            case PLAYER_STATE.PLAYING:
+                this.showPauseButton();
+                break;
+
+            case PLAYER_STATE.PAUSED:
+            case PLAYER_STATE.ENDED:
+                this.showPlayButton();
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
+    /**
+     *
+     *
+     */
+    showPlayButton() {
+        DOM.$$('.play-pause .play').classList.remove('hide');
+        DOM.$$('.play-pause .pause').classList.add('hide');
+
+        console.log('SHOW PLAY');
+    }
+
+
+    /**
+     *
+     *
+     */
+    showPauseButton() {
+        DOM.$$('.play-pause .play').classList.add('hide');
+        DOM.$$('.play-pause .pause').classList.remove('hide');
+
+        console.log('SHOW PAUSE');
     }
 
 

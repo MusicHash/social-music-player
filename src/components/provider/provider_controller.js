@@ -87,7 +87,7 @@ class ProviderController extends BaseController {
 
         this.logger.debug('Provider reported a state change: '+ playerState);
 
-        Event.on(SYSTEM_EVENTS.STATE_CHANGED, playerState);
+        Event.fire(SYSTEM_EVENTS.STATE_CHANGED, playerState);
     }
 
 
