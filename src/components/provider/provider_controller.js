@@ -75,6 +75,9 @@ class ProviderController extends BaseController {
     }
 
 
+    /**
+     *
+     */
     onPlayerStateChange(provider, playerState) {
         if (this.getProvider().PROVIDER !== provider) {
             this.logger.info('Called from an inactive provider, ignoring...');
@@ -85,6 +88,14 @@ class ProviderController extends BaseController {
         this.logger.debug('Provider reported a state change: '+ playerState);
 
         Event.on(SYSTEM_EVENTS.STATE_CHANGED, playerState);
+    }
+
+
+    /**
+     *
+     */
+    onPlayerProgressUpdate(percent) {
+        console.log(percent);
     }
 
 

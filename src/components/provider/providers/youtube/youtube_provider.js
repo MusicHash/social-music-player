@@ -15,6 +15,8 @@ class YoutubeProvider extends BaseProvider {
 
     player = null;
     providerController = null;
+    progressUpdateTimer = null;
+    youtubeProgressInterval = 400;
 
 
     /**
@@ -99,14 +101,25 @@ class YoutubeProvider extends BaseProvider {
     }
 
 
+
+
+
     /**
      *
      */
-    getProgress() {
-        return (this.player.getCurrentTime() / this.player.getDuration()) * 100;
+    getProgressPercentage() {
+        let percent = (this.player.getCurrentTime() / this.player.getDuration()) * 100;
+
+        if (isNaN(percent))
+            percent = 0;
+
+        return Math.round(percent * 100) / 100;
     }
 
 
+    /**
+     *
+     */
     seekTo(percent) {
         let newTime = percent;
 
@@ -132,28 +145,59 @@ class YoutubeProvider extends BaseProvider {
             case window.YT.PlayerState.BUFFERING:
                 this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.BUFFERING);
                 this.logger.debug('BUFFERING');
+                this.progressTimeStart();
                 break;
 
             case window.YT.PlayerState.PLAYING:
                 this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.PLAYING);
                 this.logger.debug('PLAYING');
+                this.progressTimeStart();
                 break;
 
             case window.YT.PlayerState.PAUSED:
                 this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.PAUSED);
                 this.logger.debug('PAUSED');
+                this.progressTimeStop();
                 break;
 
             case window.YT.PlayerState.ENDED:
                 this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.ENDED);
                 this.logger.debug('ENDED');
+                this.progressTimeStop();
                 break;
 
             default:
                 this.logger.error('Other state: '+ event.data);
+                this.progressTimeStop();
                 break;
         }
     }
+
+
+    /**
+     *
+     */
+    progressTimeStart() {
+        if (null !== this.progressUpdateTimer) return;
+
+        this.progressUpdateTimer = setInterval(() => {
+            this.providerController.onPlayerProgressUpdate(this.getProgressPercentage());
+        }, this.youtubeProgressInterval);
+    }
+
+
+    /**
+     *
+     */
+    progressTimeStop() {
+        if (null === this.progressUpdateTimer) return;
+
+        clearInterval(this.progressUpdateTimer);
+        this.progressUpdateTimer = null;
+
+        return this;
+    }
+
 
 
     /**
