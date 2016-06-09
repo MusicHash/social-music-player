@@ -71,8 +71,8 @@ class YoutubeProvider extends BaseProvider {
             height: this.config.height,
 
             events: {
-                onReady: this.onPlayerReady,
-                onStateChange: this.onPlayerStateChange
+                onReady: this.onPlayerReady.bind(this),
+                onStateChange: this.onPlayerStateChange.bind(this)
             },
 
             playerVars: {
@@ -94,8 +94,6 @@ class YoutubeProvider extends BaseProvider {
     }
 
 
-
-
     /**
      *
      */
@@ -107,7 +105,29 @@ class YoutubeProvider extends BaseProvider {
     /**
      *
      */
-    onPlayerStateChange(event) {}
+    onPlayerStateChange(event) {
+        switch(event.data) {
+            case window.YT.PlayerState.BUFFERING:
+                this.logger.info('BUFFERING');
+                break;
+
+            case window.YT.PlayerState.PLAYING:
+                this.logger.info('PLAYING');
+                break;
+
+            case window.YT.PlayerState.PAUSED:
+                this.logger.info('PAUSED');
+                break;
+
+            case window.YT.PlayerState.ENDED:
+                this.logger.info('ENDED');
+                break;
+
+            default:
+                this.logger.info('Other reply: '+ event.data);
+                break;
+        }
+    }
 
 
     /**

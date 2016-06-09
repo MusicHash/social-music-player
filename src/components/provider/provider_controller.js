@@ -153,6 +153,9 @@ class ProviderController extends BaseController {
     }
 
 
+    /**
+     *
+     */
     _executeAllProviders(callback) {
         try {
             for (let i in this.PROVIDERS) {
