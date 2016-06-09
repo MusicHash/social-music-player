@@ -158,6 +158,21 @@ class __ {
     isFullScreen() {
         return document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
     }
+
+
+    /**
+     *
+     */
+    formatTime(sec) {
+        sec = Math.round(sec);
+
+        let minutes = Math.floor(sec / 60),
+            seconds = sec - (minutes * 60);
+
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        return minutes + ':' + seconds;
+    }
 }
 
 export default new __();
