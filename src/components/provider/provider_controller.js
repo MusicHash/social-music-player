@@ -94,7 +94,13 @@ class ProviderController extends BaseController {
     /**
      *
      */
-    onPlayerProgressUpdate(percent) {
+    onPlayerProgressUpdate(provider, percent) {
+        if (this.getProvider().PROVIDER !== provider) {
+            this.logger.info('Called from an inactive provider, ignoring...');
+
+            return;
+        }
+
         console.log(percent);
     }
 

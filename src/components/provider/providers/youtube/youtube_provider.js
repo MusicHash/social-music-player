@@ -178,7 +178,7 @@ class YoutubeProvider extends BaseProvider {
         if (null !== this.progressUpdateTimer) return;
 
         this.progressUpdateTimer = setInterval(() => {
-            this.providerController.onPlayerProgressUpdate(this.getProgressPercentage());
+            this.providerController.onPlayerProgressUpdate(this.PROVIDER, this.getProgressPercentage());
         }, this.youtubeProgressInterval);
     }
 
