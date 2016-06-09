@@ -57,6 +57,7 @@ class ProviderController extends BaseController {
      */
     load(song) {
         this.logger.info('LOAD CALLED');
+        Event.fire(SYSTEM_EVENTS.ON_PROGRESS, 0); // reset scrubber.
 
         try {
             let provider = this._setNewProvider(song);

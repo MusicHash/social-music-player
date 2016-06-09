@@ -52,7 +52,16 @@ class ControlsController extends BaseController {
 
         Event.on(SYSTEM_EVENTS.PLAYER_INITIALIZED, this.onResize.bind(this));
         Event.on(SYSTEM_EVENTS.STATE_CHANGED, this.onStateChange.bind(this));
+        Event.on(SYSTEM_EVENTS.ON_PROGRESS, this.onProgressUpdate.bind(this));
         window.addEventListener(DOM_EVENTS.ON_RESIZE, this.onResize.bind(this), true);
+    }
+
+
+    /**
+     *
+     */
+    onProgressUpdate(percent) {
+        DOM.$$('.progress-bar .play-bar').style.width = percent + '%';
     }
 
 
