@@ -139,6 +139,18 @@ class SoundCloudProvider extends BaseProvider {
     /**
      *
      */
+    seekTo(percent) {
+        let newTime = percent;
+
+        this.widget.seekTo(newTime);
+
+        return this;
+    }
+
+
+    /**
+     *
+     */
     onReady() {
         console.log('READY?');
     }
