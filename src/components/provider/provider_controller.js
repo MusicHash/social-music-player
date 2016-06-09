@@ -76,7 +76,7 @@ class ProviderController extends BaseController {
 
 
     onPlayerStateChange(provider, playerState) {
-        if (this.getProvider() === provider) {
+        if (this.getProvider().PROVIDER !== provider) {
             this.logger.info('Called from an inactive provider, ignoring...');
 
             return;
@@ -127,11 +127,14 @@ class ProviderController extends BaseController {
      *
      */
     _setNewProvider(song) {
+        this.logger.debug('Changing provider..');
+
         for (let i in this.PROVIDERS) {
             let provider = this.PROVIDERS[i];
 
             if (provider.PROVIDER === song.provider) {
                 this._ProviderCurrent = provider;
+                this.logger.debug('New provider set.');
 
                 return this.getProvider();
             }

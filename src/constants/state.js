@@ -4,11 +4,11 @@
  * Makes it easier to track the UI when the state is clear.
  */
 const PLAYER_STATE = {
-    PLAYING: Symbol(),
-    PAUSED: Symbol(),
-    BUFFERING: Symbol(),
-    ENDED: Symbol(),
-    ENDING: Symbol()
+    PLAYING: 'PLAYING',
+    PAUSED: 'PAUSED',
+    BUFFERING: 'BUFFERING',
+    ENDED: 'ENDED',
+    ENDING: 'ENDING'
 };
 
 export {PLAYER_STATE};
