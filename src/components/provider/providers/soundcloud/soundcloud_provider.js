@@ -16,11 +16,15 @@ class SoundCloudProvider extends BaseProvider {
     SCPath = '//w.soundcloud.com/player/?url=';
     SCTracks = 'http://api.soundcloud.com/tracks/';
 
+    providerController = null;
+
 
     /**
      *
      */
-    init() {
+    init(providerController) {
+        this.providerController = providerController;
+
         this.scriptLoad();
     }
 

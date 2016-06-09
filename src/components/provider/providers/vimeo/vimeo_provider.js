@@ -16,10 +16,15 @@ class VimeoProvider extends BaseProvider {
     vimeoPath = '//player.vimeo.com/video/{{VIDEO_ID}}?api=1&player_id=VimeoProvider';
 
 
+    providerController = null;
+
+
     /**
      *
      */
-    init() {
+    init(providerController) {
+        this.providerController = providerController;
+
         this.scriptLoad();
     }
 

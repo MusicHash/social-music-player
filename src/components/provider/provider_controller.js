@@ -143,7 +143,7 @@ class ProviderController extends BaseController {
 
         for (let i = 0, len = providers.length; i < len; i++) {
             let p = providers[i],
-                provider = p.create();
+                provider = p.create(this);
 
             this.PROVIDERS[p.CLASS] = provider;
             out.push(provider.render());

@@ -1,6 +1,10 @@
+import Event from 'event-emitter-js';
 import BaseProvider from '../base_provider';
 import YoutubeModel from './youtube_model';
 import {PROVIDERS_LIST} from '../../../../constants/providers';
+import {PLAYER_STATE} from '../../../../constants/state';
+import {SYSTEM_EVENTS} from '../../../../constants/events';
+
 
 /**
  *
@@ -12,12 +16,15 @@ class YoutubeProvider extends BaseProvider {
 
 
     player = null;
+    providerController = null;
 
 
     /**
      *
      */
-    init() {
+    init(providerController) {
+        this.providerController = providerController;
+
         window.onYouTubeIframeAPIReady = () => {
             this._initPlayer(); // YT events init.
         };
@@ -108,18 +115,22 @@ class YoutubeProvider extends BaseProvider {
     onPlayerStateChange(event) {
         switch(event.data) {
             case window.YT.PlayerState.BUFFERING:
+                this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.BUFFERING);
                 this.logger.debug('BUFFERING');
                 break;
 
             case window.YT.PlayerState.PLAYING:
+                this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.PLAYING);
                 this.logger.debug('PLAYING');
                 break;
 
             case window.YT.PlayerState.PAUSED:
+                this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.PAUSED);
                 this.logger.debug('PAUSED');
                 break;
 
             case window.YT.PlayerState.ENDED:
+                this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.ENDED);
                 this.logger.debug('ENDED');
                 break;
 
