@@ -1,6 +1,8 @@
 import BaseProvider from '../base_provider';
 import VimeoModel from './vimeo_model';
 import {PROVIDERS_LIST} from '../../../../constants/providers';
+import {PLAYER_STATE} from '../../../../constants/state';
+
 
 /**
  * @see: https://developer.vimeo.com/player/embedding
@@ -77,6 +79,7 @@ class VimeoProvider extends BaseProvider {
 
         this.player.addEvent('loadProgress', this.onLoadProgress.bind(this));
         this.player.addEvent('playProgress', this.onPlayProgress.bind(this));
+        this.player.addEvent('play', this.onPlay.bind(this));
         this.player.addEvent('pause', this.onPause.bind(this));
         this.player.addEvent('finish', this.onFinish.bind(this));
     }
@@ -85,8 +88,18 @@ class VimeoProvider extends BaseProvider {
     /**
      *
      */
+    onPlay() {
+        this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.PLAYING);
+        this.logger.debug('PLAYING');
+    }
+
+
+    /**
+     *
+     */
     onPause() {
-        console.log('paused event');
+        this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.PAUSED);
+        this.logger.debug('PAUSED');
     }
 
 
@@ -94,23 +107,24 @@ class VimeoProvider extends BaseProvider {
      *
      */
     onFinish() {
-        console.log('finished event');
+        this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.ENDED);
+        this.logger.debug('ENDED');
     }
 
 
     /**
-     *
+     * @data: data.seconds + ' : ' + data.percent + ' : ' + data.duration
      */
     onPlayProgress(data) {
-        console.log('playProgress event : ' + data.seconds + ' : ' + data.percent + ' : ' + data.duration);
+        this.providerController.onPlayerProgressUpdate(this.PROVIDER, data.percent);
     }
 
 
     /**
-     *
+     * @data: data.percent + ' : ' + data.bytesLoaded + ' : ' + data.bytesTotal + ' : ' + data.duration
      */
     onLoadProgress(data) {
-        console.log('loadProgress event : ' + data.percent + ' : ' + data.bytesLoaded + ' : ' + data.bytesTotal + ' : ' + data.duration);
+
     }
 
 
