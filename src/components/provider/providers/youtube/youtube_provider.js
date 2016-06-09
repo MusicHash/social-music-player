@@ -1,9 +1,7 @@
-import Event from 'event-emitter-js';
 import BaseProvider from '../base_provider';
 import YoutubeModel from './youtube_model';
 import {PROVIDERS_LIST} from '../../../../constants/providers';
 import {PLAYER_STATE} from '../../../../constants/state';
-import {SYSTEM_EVENTS} from '../../../../constants/events';
 
 
 /**
