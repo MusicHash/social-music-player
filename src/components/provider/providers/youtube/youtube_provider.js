@@ -102,6 +102,23 @@ class YoutubeProvider extends BaseProvider {
     /**
      *
      */
+    getProgress() {
+        return (this.player.getCurrentTime() / this.player.getDuration()) * 100;
+    }
+
+
+    seekTo(percent) {
+        let newTime = percent;
+
+        this.player.seekTo(newTime);
+
+        return this;
+    }
+
+
+    /**
+     *
+     */
     onPlayerReady(event) {
         event.target.playVideo();
     }
