@@ -116,7 +116,7 @@ class VimeoProvider extends BaseProvider {
      * @data: data.seconds + ' : ' + data.percent + ' : ' + data.duration
      */
     onPlayProgress(data) {
-        this.providerController.onPlayerProgressUpdate(this.PROVIDER, data.percent);
+        this.providerController.onPlayerProgressUpdate(this.PROVIDER, data.percent * 100);
     }
 
 
