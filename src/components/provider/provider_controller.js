@@ -59,9 +59,9 @@ class ProviderController extends BaseController {
         this.logger.info('LOAD CALLED');
 
         try {
-            this.pauseAll();
-
             let provider = this._setNewProvider(song);
+
+            this.pauseAll();
 
             this._hideInactiveOnly();
             provider.load(song);
@@ -72,6 +72,19 @@ class ProviderController extends BaseController {
         }
 
         return this;
+    }
+
+
+    onPlayerStateChange(provider, playerState) {
+        if (this.getProvider() === provider) {
+            this.logger.info('Called from an inactive provider, ignoring...');
+
+            return;
+        }
+
+        this.logger.debug('Provider reported a state change: '+ playerState);
+
+        Event.on(SYSTEM_EVENTS.STATE_CHANGED, playerState);
     }
 
 
