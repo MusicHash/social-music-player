@@ -144,6 +144,11 @@ class SoundCloudProvider extends BaseProvider {
 
         this.widget.seekTo(newTime);
 
+        this.widget.isPaused(() => {
+            this.play();
+        });
+
+
         return this;
     }
 
