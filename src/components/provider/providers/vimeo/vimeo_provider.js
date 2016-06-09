@@ -158,6 +158,7 @@ class VimeoProvider extends BaseProvider {
      *
      */
     load(song) {
+        this.setModel(song);
         //if (!this.setModel(song))
         //    return this.play();
 
