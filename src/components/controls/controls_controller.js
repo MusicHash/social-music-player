@@ -56,6 +56,9 @@ class ControlsController extends BaseController {
     }
 
 
+    /**
+     *
+     */
     onStateChange(playerState) {
         switch(playerState) {
             case PLAYER_STATE.BUFFERING:

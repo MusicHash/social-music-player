@@ -101,7 +101,7 @@ class ProviderController extends BaseController {
             return;
         }
 
-        console.log(percent);
+        Event.fire(SYSTEM_EVENTS.ON_PROGRESS, percent);
     }
 
 
