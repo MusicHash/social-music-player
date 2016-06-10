@@ -117,10 +117,8 @@ class YoutubeProvider extends BaseProvider {
     /**
      *
      */
-    seekTo(percent) {
-        let newTime = percent;
-
-        this.player.seekTo(newTime);
+    seekTo(second) {
+        this.player.seekTo(second);
         this.play();
 
         return this;

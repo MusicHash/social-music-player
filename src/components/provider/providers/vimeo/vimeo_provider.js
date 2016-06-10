@@ -131,10 +131,8 @@ class VimeoProvider extends BaseProvider {
     /**
      *
      */
-    seekTo(percent) {
-        let newTime = percent;
-
-        this.player.api('seekTo', newTime);
+    seekTo(second) {
+        this.player.api('seekTo', second);
         this.play();
 
         return this;
