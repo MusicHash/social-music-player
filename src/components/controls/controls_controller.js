@@ -68,6 +68,7 @@ class ControlsController extends BaseController {
             percent: 0,
             seconds: 0
         });
+
         DOM.$$('.controls-list .title').innerHTML = song.title;
         DOM.$$('.controls-list .duration').innerHTML = _.formatTime(song.duration);
 
