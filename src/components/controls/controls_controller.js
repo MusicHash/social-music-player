@@ -102,7 +102,7 @@ class ControlsController extends BaseController {
         this.onResize();
 
         DOM.$$('.progress-bar').addEventListener('click', event => {
-            this.mouseScrubbar(event);
+            this.mouseProgressScrubbar(event);
         });
 
         DOM.$$('.play-pause .play').addEventListener('click', event => {
@@ -118,7 +118,7 @@ class ControlsController extends BaseController {
     /**
      *
      */
-    mouseScrubbar(e) {
+    mouseProgressScrubbar(e) {
         let mouseX = e.pageX,
             scrubber = DOM.$$('.progress-bar'),
             scrubberWidth = DOM.getWidth('.progress-bar');
