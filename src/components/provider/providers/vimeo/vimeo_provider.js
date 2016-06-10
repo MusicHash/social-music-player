@@ -118,7 +118,7 @@ class VimeoProvider extends BaseProvider {
     onPlayProgress(data) {
         let percent = Math.round(data.percent * 100 * 100) / 100;
 
-        this.providerController.onPlayerProgressUpdate(this.PROVIDER, percent);
+        this.providerController.onPlayerProgressUpdate(this.PROVIDER, percent, data.seconds);
     }
 
 

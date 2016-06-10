@@ -32,8 +32,8 @@ class ProviderController extends BaseController {
      */
     subscribe() {
         Event.on(SYSTEM_EVENTS.SEEK_TO, this.seekTo.bind(this));
-        //Event.on(SYSTEM_EVENTS.PLAY, this.play.bind(this));
-        //Event.on(SYSTEM_EVENTS.PAUSE, this.pause.bind(this));
+        Event.on(SYSTEM_EVENTS.DO_PLAY, this.play.bind(this));
+        Event.on(SYSTEM_EVENTS.DO_PAUSE, this.pause.bind(this));
     }
 
 
@@ -87,8 +87,6 @@ class ProviderController extends BaseController {
 
             this._hideInactiveOnly();
             provider.load(song);
-
-            Event.fire(SYSTEM_EVENTS.PLAY);
         } catch(e) {
             this.logger.error('Failed to execute play. '+ e);
         }
@@ -116,14 +114,17 @@ class ProviderController extends BaseController {
     /**
      *
      */
-    onPlayerProgressUpdate(provider, percent) {
+    onPlayerProgressUpdate(provider, percent, seconds) {
         if (this.getProvider().PROVIDER !== provider) {
             this.logger.info('Called from an inactive provider, ignoring: ' + provider);
 
             return;
         }
 
-        Event.fire(SYSTEM_EVENTS.ON_PROGRESS, percent);
+        Event.fire(SYSTEM_EVENTS.ON_PROGRESS, {
+            percent: percent,
+            seconds: seconds
+        });
     }
 
 

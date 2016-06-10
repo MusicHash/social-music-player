@@ -4,6 +4,7 @@ import Config from '../../core/config';
 import {SYSTEM_EVENTS, DOM_EVENTS} from '../../constants/events';
 import {PLAYER_STATE} from '../../constants/state';
 import DOM from '../../utils/dom';
+import _ from '../../utils/__';
 import PlayerMarkupHTML from './view/controls_markup.html';
 import PlayerButtons from './svg/player_buttons.svg';
 
@@ -59,8 +60,16 @@ class ControlsController extends BaseController {
     onInitialize() {
         this.onResize();
 
-        DOM.$$('.progress-bar').addEventListener('click', (event) => {
+        DOM.$$('.progress-bar').addEventListener('click', event => {
             this.mouseScrubbar(event);
+        });
+
+        DOM.$$('.play-pause .play').addEventListener('click', event => {
+            Event.fire(SYSTEM_EVENTS.DO_PLAY);
+        });
+
+        DOM.$$('.play-pause .pause').addEventListener('click', event => {
+            Event.fire(SYSTEM_EVENTS.DO_PAUSE);
         });
     }
 
@@ -87,8 +96,9 @@ class ControlsController extends BaseController {
     /**
      *
      */
-    onProgressUpdate(percent) {
-        DOM.$$('.progress-bar .play-bar').style.width = percent + '%';
+    onProgressUpdate(progress) {
+        DOM.$$('.progress-bar .play-bar').style.width = progress.percent + '%';
+        DOM.$$('.controls-list .current-time').innerHTML = _.formatTime(progress.seconds);
     }
 
 
