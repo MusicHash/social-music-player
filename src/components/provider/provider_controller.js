@@ -90,7 +90,7 @@ class ProviderController extends BaseController {
     setVolume(volume) {
         this.volume = volume;
 
-        this.getProvider().setVolume(volume);
+        this.getProvider().setVolume(this.volume);
 
         return this;
     }
