@@ -155,7 +155,9 @@ class VimeoProvider extends BaseProvider {
      *
      */
     setVolume(volume) {
-        //
+        this.player.api('setVolume', volume);
+
+        return this;
     }
 
 

@@ -147,7 +147,7 @@ class ControlsController extends BaseController {
 
 
     onVolume(volume) {
-        this.logger.debug(volume);
+        DOM.$$('.volume-progress .volume-bar-value').style.width = volume * 100 + '%';
     }
 
 

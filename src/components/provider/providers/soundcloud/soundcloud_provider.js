@@ -164,7 +164,9 @@ class SoundCloudProvider extends BaseProvider {
      *
      */
     setVolume(volume) {
-        //
+        this.widget.setVolume(volume * 100);
+
+        return this;
     }
 
 
