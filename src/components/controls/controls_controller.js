@@ -52,10 +52,10 @@ class ControlsController extends BaseController {
             console.log('CONTROLLER PLAY ARRIVED!!');
         });
 
-        Event.on(SYSTEM_EVENTS.PLAYER_INITIALIZED, this.onInitialize.bind(this));
         Event.on(SYSTEM_EVENTS.STATE_CHANGED, this.onStateChange.bind(this));
         Event.on(SYSTEM_EVENTS.ON_PROGRESS, this.onProgressUpdate.bind(this));
         Event.on(SYSTEM_EVENTS.NEW_SONG_PLAYING, this.onSongChange.bind(this));
+        Event.on(SYSTEM_EVENTS.PLAYER_INITIALIZED, this.onInitialize.bind(this));
         window.addEventListener(DOM_EVENTS.ON_RESIZE, this.onResize.bind(this), true);
     }
 
