@@ -122,7 +122,7 @@ class SoundCloudProvider extends BaseProvider {
      * @data: data.loadedProgress + ' : ' + data.currentPosition + ' : ' + data.relativePosition
      */
     onPlayProgress(data) {
-        let percent = Math.round(data.relativePosition * 100 * 100) / 100;
+        let percent = data.relativePosition * 100;
         if (this.lastPercentPropagated === percent) return;
 
         this.providerController.onPlayerProgressUpdate(this.PROVIDER, percent, data.currentPosition / 1000);

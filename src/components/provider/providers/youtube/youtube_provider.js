@@ -16,7 +16,7 @@ class YoutubeProvider extends BaseProvider {
     player = null;
     providerController = null;
     progressUpdateTimer = null;
-    youtubeProgressInterval = 400;
+    youtubeProgressInterval = 200;
 
 
     /**
@@ -108,9 +108,9 @@ class YoutubeProvider extends BaseProvider {
         let percent = (this.player.getCurrentTime() / this.player.getDuration()) * 100;
 
         if (isNaN(percent))
-            return 0;
+            percent = 0;
 
-        return Math.round(percent * 100) / 100;
+        return percent;
     }
 
 
