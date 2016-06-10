@@ -163,6 +163,14 @@ class SoundCloudProvider extends BaseProvider {
     /**
      *
      */
+    setVolume(volume) {
+        //
+    }
+
+
+    /**
+     *
+     */
     onReady() {
         console.log('READY?');
     }

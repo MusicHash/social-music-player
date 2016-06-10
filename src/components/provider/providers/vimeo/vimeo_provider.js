@@ -154,6 +154,14 @@ class VimeoProvider extends BaseProvider {
     /**
      *
      */
+    setVolume(volume) {
+        //
+    }
+
+
+    /**
+     *
+     */
     render() {
         return this.getPlayerContainer();
     }

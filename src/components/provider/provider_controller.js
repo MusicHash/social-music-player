@@ -20,6 +20,7 @@ class ProviderController extends BaseController {
 
     PROVIDERS = {};
     _ProviderCurrent = null;
+    volume = 1;
 
 
     init() {
@@ -34,6 +35,7 @@ class ProviderController extends BaseController {
         Event.on(SYSTEM_EVENTS.SEEK_TO, this.seekTo.bind(this));
         Event.on(SYSTEM_EVENTS.PLAY, this.play.bind(this));
         Event.on(SYSTEM_EVENTS.PAUSE, this.pause.bind(this));
+        Event.on(SYSTEM_EVENTS.VOLUME, this.setVolume.bind(this));
     }
 
 
@@ -79,6 +81,18 @@ class ProviderController extends BaseController {
                     executeAsyncAPI(resolve);
             }, 250);
         });
+    }
+
+
+    /**
+     *
+     */
+    setVolume(volume) {
+        this.volume = volume;
+
+        this.getProvider().setVolume(volume);
+
+        return this;
     }
 
 

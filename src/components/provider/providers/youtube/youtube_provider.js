@@ -140,6 +140,14 @@ class YoutubeProvider extends BaseProvider {
     /**
      *
      */
+    setVolume(volume) {
+        //
+    }
+
+
+    /**
+     *
+     */
     onPlayerReady(event) {
         event.target.playVideo();
     }

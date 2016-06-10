@@ -56,6 +56,7 @@ class ControlsController extends BaseController {
         Event.on(SYSTEM_EVENTS.ON_PROGRESS, this.onProgressUpdate.bind(this));
         Event.on(SYSTEM_EVENTS.NEW_SONG_PLAYING, this.onSongChange.bind(this));
         Event.on(SYSTEM_EVENTS.PLAYER_INITIALIZED, this.onInitialize.bind(this));
+        Event.on(SYSTEM_EVENTS.VOLUME, this.onVolume.bind(this));
         window.addEventListener(DOM_EVENTS.ON_RESIZE, this.onResize.bind(this), true);
     }
 
@@ -105,6 +106,10 @@ class ControlsController extends BaseController {
             this.mouseProgressScrubbar(event);
         });
 
+        DOM.$$('.volume-progress').addEventListener('click', event => {
+            this.mouseVolumeControl(event);
+        });
+
         DOM.$$('.play-pause .play').addEventListener('click', event => {
             Event.fire(SYSTEM_EVENTS.PLAY);
         });
@@ -112,6 +117,37 @@ class ControlsController extends BaseController {
         DOM.$$('.play-pause .pause').addEventListener('click', event => {
             Event.fire(SYSTEM_EVENTS.PAUSE);
         });
+    }
+
+
+    /**
+     *
+     */
+    mouseVolumeControl(e) {
+        let mouseX = e.pageX,
+			volumeObj = DOM.$$('.volume-progress'),
+			volumeObjWidth = DOM.getWidth('.volume-progress'),
+			volume = 0;
+
+        switch(e.type) {
+            case 'click':
+                volume = (mouseX - volumeObj.offsetLeft) / volumeObjWidth;
+
+                if (0.9 < volume)
+                    volume = 1;
+                else
+                if (0.1 > volume)
+                    volume = 0;
+
+                break;
+        }
+
+        Event.fire(SYSTEM_EVENTS.VOLUME, volume);
+    }
+
+
+    onVolume(volume) {
+        this.logger.debug(volume);
     }
 
 
