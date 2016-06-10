@@ -32,8 +32,8 @@ class ProviderController extends BaseController {
      */
     subscribe() {
         Event.on(SYSTEM_EVENTS.SEEK_TO, this.seekTo.bind(this));
-        Event.on(SYSTEM_EVENTS.DO_PLAY, this.play.bind(this));
-        Event.on(SYSTEM_EVENTS.DO_PAUSE, this.pause.bind(this));
+        Event.on(SYSTEM_EVENTS.PLAY, this.play.bind(this));
+        Event.on(SYSTEM_EVENTS.PAUSE, this.pause.bind(this));
     }
 
 

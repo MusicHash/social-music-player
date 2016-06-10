@@ -106,11 +106,11 @@ class ControlsController extends BaseController {
         });
 
         DOM.$$('.play-pause .play').addEventListener('click', event => {
-            Event.fire(SYSTEM_EVENTS.DO_PLAY);
+            Event.fire(SYSTEM_EVENTS.PLAY);
         });
 
         DOM.$$('.play-pause .pause').addEventListener('click', event => {
-            Event.fire(SYSTEM_EVENTS.DO_PAUSE);
+            Event.fire(SYSTEM_EVENTS.PAUSE);
         });
     }
 
