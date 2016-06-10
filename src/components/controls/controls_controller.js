@@ -54,9 +54,28 @@ class ControlsController extends BaseController {
         Event.on(SYSTEM_EVENTS.PLAYER_INITIALIZED, this.onInitialize.bind(this));
         Event.on(SYSTEM_EVENTS.STATE_CHANGED, this.onStateChange.bind(this));
         Event.on(SYSTEM_EVENTS.ON_PROGRESS, this.onProgressUpdate.bind(this));
+        Event.on(SYSTEM_EVENTS.NEW_SONG_PLAYING, this.onSongChange.bind(this));
         window.addEventListener(DOM_EVENTS.ON_RESIZE, this.onResize.bind(this), true);
     }
 
+
+    /**
+     *
+     */
+    onSongChange(song) {
+        this.onProgressUpdate({
+            percent: 0,
+            seconds: 0
+        });
+        DOM.$$('.controls-list .title').innerHTML = song.title;
+        DOM.$$('.controls-list .duration').innerHTML = _.formatTime(song.duration);
+
+    }
+
+
+    /**
+     *
+     */
     onInitialize() {
         this.onResize();
 
@@ -74,6 +93,9 @@ class ControlsController extends BaseController {
     }
 
 
+    /**
+     *
+     */
     mouseScrubbar(e) {
         let mouseX = e.pageX,
             scrubber = DOM.$$('.progress-bar'),

@@ -108,7 +108,7 @@ class YoutubeProvider extends BaseProvider {
         let percent = (this.player.getCurrentTime() / this.player.getDuration()) * 100;
 
         if (isNaN(percent))
-            percent = 0;
+            return 0;
 
         return Math.round(percent * 100) / 100;
     }

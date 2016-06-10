@@ -157,7 +157,7 @@ class SoundCloudProvider extends BaseProvider {
     getDuration() {
         return new Promise((resolve, reject) => {
             this.widget.getDuration(duration => {
-                resolve(duration);
+                resolve(duration / 1000);
             });
         });
     }

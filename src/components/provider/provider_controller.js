@@ -103,7 +103,6 @@ class ProviderController extends BaseController {
      */
     load(song) {
         this.logger.info('LOAD CALLED');
-        Event.fire(SYSTEM_EVENTS.ON_PROGRESS, 0); // reset scrubber.
 
         try {
             let provider = this._setNewProvider(song);
@@ -123,11 +122,14 @@ class ProviderController extends BaseController {
 
 
     broadcastProviderSong() {
-        this.getDuration().then(duration => {
-            let songModel = this.getProvider().getModel();
+        let songModel = this.getProvider().getModel();
 
-            console.log(songModel);
-            console.log(duration);
+        this.getDuration().then(duration => {
+            Event.fire(SYSTEM_EVENTS.NEW_SONG_PLAYING, {
+                provider: songModel.provider,
+                title: songModel.title,
+                duration: duration
+            });
         });
     }
 
