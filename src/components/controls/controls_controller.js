@@ -64,6 +64,8 @@ class ControlsController extends BaseController {
      *
      */
     onSongChange(song) {
+        this.onResize();
+
         this.onProgressUpdate({
             percent: 0,
             seconds: 0
@@ -207,9 +209,13 @@ class ControlsController extends BaseController {
     setPlayerWidth() {
         let playerEl = DOM.getWidth('#social-music-player'),
             playPauseEl = DOM.getWidth('#social-music-player .play-pause'),
-            slack = 140;
+            currentTimeEl = DOM.getWidth('#social-music-player .current-time'),
+            durationEl = DOM.getWidth('#social-music-player .duration'),
+            slack = 44;
 
-        DOM.$$('#social-music-player .progress-bar').style.width = playerEl - playPauseEl - slack + 'px';
+        DOM.$$('#social-music-player .controls-list').style.width = playerEl - playPauseEl - 20 + 'px';
+
+        DOM.$$('#social-music-player .scrabber .progress-bar').style.width = playerEl - playPauseEl - currentTimeEl - durationEl - slack + 'px';
 
         return this;
     }
