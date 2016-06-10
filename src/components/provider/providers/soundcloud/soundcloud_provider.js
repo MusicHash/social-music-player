@@ -19,7 +19,6 @@ class SoundCloudProvider extends BaseProvider {
     SCTracks = 'http://api.soundcloud.com/tracks/';
 
     providerController = null;
-    lastPercentPropagated = 0;
 
 
     /**
@@ -123,10 +122,8 @@ class SoundCloudProvider extends BaseProvider {
      */
     onPlayProgress(data) {
         let percent = data.relativePosition * 100;
-        if (this.lastPercentPropagated === percent) return;
 
         this.providerController.onPlayerProgressUpdate(this.PROVIDER, percent, data.currentPosition / 1000);
-        this.lastPercentPropagated = percent;
     }
 
 
