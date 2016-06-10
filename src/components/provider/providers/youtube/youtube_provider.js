@@ -141,7 +141,7 @@ class YoutubeProvider extends BaseProvider {
      *
      */
     setVolume(volume) {
-        this.player.setVolume(volume);
+        this.player.setVolume(volume * 100);
 
         return this;
     }
