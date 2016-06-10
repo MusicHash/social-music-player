@@ -57,6 +57,8 @@ class ControlsController extends BaseController {
         Event.on(SYSTEM_EVENTS.NEW_SONG_PLAYING, this.onSongChange.bind(this));
         Event.on(SYSTEM_EVENTS.PLAYER_INITIALIZED, this.onInitialize.bind(this));
         Event.on(SYSTEM_EVENTS.VOLUME, this.onVolume.bind(this));
+        Event.on(SYSTEM_EVENTS.MUTE, this.onMute.bind(this));
+        Event.on(SYSTEM_EVENTS.UNMUTE, this.onUnmute.bind(this));
         window.addEventListener(DOM_EVENTS.ON_RESIZE, this.onResize.bind(this), true);
     }
 
@@ -106,7 +108,7 @@ class ControlsController extends BaseController {
             this.mouseProgressScrubbar(event);
         });
 
-        DOM.$$('.volume-progress').addEventListener('click', event => {
+        DOM.$$('.volume .volume-progress').addEventListener('click', event => {
             this.mouseVolumeControl(event);
         });
 
@@ -116,6 +118,14 @@ class ControlsController extends BaseController {
 
         DOM.$$('.play-pause .pause').addEventListener('click', event => {
             Event.fire(SYSTEM_EVENTS.PAUSE);
+        });
+
+        DOM.$$('.volume .mute').addEventListener('click', event => {
+            Event.fire(SYSTEM_EVENTS.UNMUTE);
+        });
+
+        DOM.$$('.volume .unmute').addEventListener('click', event => {
+            Event.fire(SYSTEM_EVENTS.MUTE);
         });
     }
 
@@ -133,19 +143,51 @@ class ControlsController extends BaseController {
             case 'click':
                 volume = (mouseX - volumeObj.offsetLeft) / volumeObjWidth;
 
-                if (0.9 < volume)
+                if (0.9 < volume) {
                     volume = 1;
-                else
-                if (0.1 > volume)
+
+                    return this.onUnmute();
+                } else
+                if (0.1 > volume) {
                     volume = 0;
+
+                    return this.onMute();
+                }
 
                 break;
         }
 
+        this.onUnmute(true);
         Event.fire(SYSTEM_EVENTS.VOLUME, volume);
     }
 
 
+    /**
+     *
+     */
+    onMute() {
+        DOM.$$('.volume .mute').classList.remove('hide');
+        DOM.$$('.volume .unmute').classList.add('hide');
+
+        Event.fire(SYSTEM_EVENTS.VOLUME, 0);
+    }
+
+
+    /**
+     *
+     */
+    onUnmute(silentUpdate = false) {
+        DOM.$$('.volume .mute').classList.add('hide');
+        DOM.$$('.volume .unmute').classList.remove('hide');
+
+        if (true !== silentUpdate)
+            Event.fire(SYSTEM_EVENTS.VOLUME, 1);
+    }
+
+
+    /**
+     *
+     */
     onVolume(volume) {
         DOM.$$('.volume-progress .volume-bar-value').style.width = volume * 100 + '%';
     }
