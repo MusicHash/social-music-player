@@ -81,7 +81,7 @@ class ControlsController extends BaseController {
      */
      showActiveProvider(provider) {
          let activeProviderClass = this.getProviderClassName(provider),
-            providersClassNames = ['youtube', 'vimeo', 'soundcloud'];
+             providersClassNames = ['youtube', 'vimeo', 'soundcloud'];
 
         providersClassNames.forEach(className => {
             if (className === activeProviderClass)
