@@ -144,6 +144,18 @@ class VimeoProvider extends BaseProvider {
     /**
      *
      */
+    getDuration() {
+        return new Promise((resolve, reject) => {
+            this.player.api('getDuration', (duration) => {
+                resolve(duration);
+            });
+        });
+    }
+
+
+    /**
+     *
+     */
     render() {
         return this.getPlayerContainer();
     }

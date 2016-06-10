@@ -4,10 +4,9 @@
  * PROVIDERS LIST
  */
 const PROVIDERS_LIST = {
-    YOUTUBE: Symbol(),
-    VIMEO: Symbol(),
-    SOUNDCLOUD: Symbol(),
-    ERROR: Symbol()
+    YOUTUBE: 'YOUTUBE',
+    VIMEO: 'VIMEO',
+    SOUNDCLOUD: 'SOUNDCLOUD'
 };
 
 export {PROVIDERS_LIST};

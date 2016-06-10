@@ -130,6 +130,18 @@ class YoutubeProvider extends BaseProvider {
     /**
      *
      */
+    getDuration() {
+        let duration = this.player.getDuration();
+
+        return new Promise((resolve, reject) => {
+            resolve(duration);
+        });
+    }
+
+
+    /**
+     *
+     */
     onPlayerReady(event) {
         event.target.playVideo();
     }

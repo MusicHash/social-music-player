@@ -31,8 +31,29 @@ class ProviderController extends BaseController {
      *
      */
     subscribe() {
+        Event.on(SYSTEM_EVENTS.SEEK_TO, this.seekTo.bind(this));
         //Event.on(SYSTEM_EVENTS.PLAY, this.play.bind(this));
         //Event.on(SYSTEM_EVENTS.PAUSE, this.pause.bind(this));
+    }
+
+
+    /**
+     *
+     */
+    seekTo(percent) {
+        this.getDuration().then(duration => {
+            let seconds = percent * duration;
+
+            return this.getProvider().seekTo(seconds);
+        });
+    }
+
+
+    /**
+     *
+     */
+    getDuration() {
+        return this.getProvider().getDuration();
     }
 
 
@@ -81,7 +102,7 @@ class ProviderController extends BaseController {
      */
     onPlayerStateChange(provider, playerState) {
         if (this.getProvider().PROVIDER !== provider) {
-            this.logger.info('Called from an inactive provider, ignoring...');
+            this.logger.info('Called from an inactive provider, ignoring: ' + provider);
 
             return;
         }
@@ -97,7 +118,7 @@ class ProviderController extends BaseController {
      */
     onPlayerProgressUpdate(provider, percent) {
         if (this.getProvider().PROVIDER !== provider) {
-            this.logger.info('Called from an inactive provider, ignoring...');
+            this.logger.info('Called from an inactive provider, ignoring: ' + provider);
 
             return;
         }

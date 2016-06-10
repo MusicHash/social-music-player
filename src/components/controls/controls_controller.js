@@ -50,10 +50,37 @@ class ControlsController extends BaseController {
             console.log('CONTROLLER PLAY ARRIVED!!');
         });
 
-        Event.on(SYSTEM_EVENTS.PLAYER_INITIALIZED, this.onResize.bind(this));
+        Event.on(SYSTEM_EVENTS.PLAYER_INITIALIZED, this.onInitialize.bind(this));
         Event.on(SYSTEM_EVENTS.STATE_CHANGED, this.onStateChange.bind(this));
         Event.on(SYSTEM_EVENTS.ON_PROGRESS, this.onProgressUpdate.bind(this));
         window.addEventListener(DOM_EVENTS.ON_RESIZE, this.onResize.bind(this), true);
+    }
+
+    onInitialize() {
+        this.onResize();
+
+        DOM.$$('.progress-bar').addEventListener('click', (event) => {
+            this.mouseScrubbar(event);
+        });
+    }
+
+
+    mouseScrubbar(e) {
+        let mouseX = e.pageX,
+            scrubber = DOM.$$('.progress-bar'),
+            scrubberWidth = DOM.getWidth('.progress-bar');
+
+        switch(e.type) {
+           	case 'click':
+                let position = (mouseX - scrubber.offsetLeft) / scrubberWidth;
+                position = Math.round(position * 100) / 100;
+
+                Event.fire(SYSTEM_EVENTS.SEEK_TO, position);
+                break;
+
+            default:
+                break;
+        }
     }
 
 
