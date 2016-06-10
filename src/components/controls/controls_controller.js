@@ -64,8 +64,6 @@ class ControlsController extends BaseController {
      *
      */
     onSongChange(song) {
-        this.onResize();
-
         this.onProgressUpdate({
             percent: 0,
             seconds: 0
