@@ -3,6 +3,7 @@ import BaseController from '../../base/base_controller';
 import Config from '../../core/config';
 import {SYSTEM_EVENTS, DOM_EVENTS} from '../../constants/events';
 import {PLAYER_STATE} from '../../constants/state';
+import {PROVIDERS_LIST} from '../../constants/providers';
 import DOM from '../../utils/dom';
 import _ from '../../utils/__';
 import PlayerMarkupHTML from './view/controls_markup.html';
@@ -70,8 +71,25 @@ class ControlsController extends BaseController {
         DOM.$$('.controls-list .title').innerHTML = song.title;
         DOM.$$('.controls-list .duration').innerHTML = _.formatTime(song.duration);
 
+        this.showActiveProvider(song.provider);
     }
 
+
+    /**
+     *
+     */
+     showActiveProvider(provider) {
+         let activeProviderClass = this.getProviderClassName(provider),
+            providersClassNames = ['youtube', 'vimeo', 'soundcloud'];
+
+        providersClassNames.forEach(className => {
+            if (className === activeProviderClass)
+                return DOM.$$('.controls-list .providers .'+className).classList.remove('hide');
+
+            DOM.$$('.controls-list .providers .'+className).classList.add('hide');
+        });
+
+     }
 
     /**
      *
@@ -211,6 +229,25 @@ class ControlsController extends BaseController {
         let config = Config.create();
 
         return this.getTemplate();
+    }
+
+
+    /**
+     *
+     */
+    getProviderClassName(provider) {
+        switch(provider) {
+            case PROVIDERS_LIST.YOUTUBE:
+                return 'youtube';
+
+            case PROVIDERS_LIST.VIMEO:
+                return 'vimeo';
+
+            case PROVIDERS_LIST.SOUNDCLOUD:
+                return 'soundcloud';
+        }
+
+        return 'no_provider';
     }
 
 }
