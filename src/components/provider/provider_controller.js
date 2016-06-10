@@ -50,10 +50,35 @@ class ProviderController extends BaseController {
 
 
     /**
-     *
+     * @todo: move the nagging response definition elsewhere.
      */
     getDuration() {
-        return this.getProvider().getDuration();
+        let waitingForResponse = false,
+            verifyResponseTimeout,
+            executeAsyncAPI = callback => {
+                this.getProvider().getDuration().then(duration => {
+                    if ('undefined' === typeof duration || null === duration || 0 >= duration)
+                        return;
+
+                    clearInterval(verifyResponseTimeout);
+
+                    waitingForResponse = false;
+
+                    callback(duration);
+                });
+            };
+
+        return new Promise((resolve, reject) => {
+            waitingForResponse = true;
+
+            // Seems like a bug. Some sort of racing condition. Promise is lost, no return and no error
+            executeAsyncAPI(resolve);
+
+            verifyResponseTimeout = setInterval(() => {
+                if (true === waitingForResponse)
+                    executeAsyncAPI(resolve);
+            }, 250);
+        });
     }
 
 
@@ -87,11 +112,23 @@ class ProviderController extends BaseController {
 
             this._hideInactiveOnly();
             provider.load(song);
+
+            this.broadcastProviderSong();
         } catch(e) {
             this.logger.error('Failed to execute play. '+ e);
         }
 
         return this;
+    }
+
+
+    broadcastProviderSong() {
+        this.getDuration().then(duration => {
+            let songModel = this.getProvider().getModel();
+
+            console.log(songModel);
+            console.log(duration);
+        });
     }
 
 

@@ -14,6 +14,17 @@ class BaseProvider extends BaseObject {
     config = Config.create();
 
 
+    /**
+     *
+     */
+    getModel() {
+        return this.model;
+    }
+
+
+    /**
+     *
+     */
     setModel(song) {
         if (!_.isNull(this.model) && this.model.id === song.id)
             return false;
@@ -23,6 +34,10 @@ class BaseProvider extends BaseObject {
         return true;
     }
 
+
+    /**
+     *
+     */
     hide() {
         this.el.style.display = 'none';
 
@@ -30,12 +45,20 @@ class BaseProvider extends BaseObject {
     }
 
 
+
+    /**
+     *
+     */
     show() {
         this.el.style.display = 'block';
 
         return this;
     }
 
+
+    /**
+     *
+     */
     render() {
         let el = document.createElement('div');
         el.id = BaseProvider.CLASS;
@@ -43,9 +66,6 @@ class BaseProvider extends BaseObject {
 
         return el;
     }
-
-
-
 }
 
 export default BaseProvider;
