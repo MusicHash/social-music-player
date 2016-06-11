@@ -125,6 +125,7 @@ class ProviderController extends BaseController {
 
             this._hideInactiveOnly();
             provider.load(song);
+            this.setVolume(this.volume);
 
             this.broadcastProviderSong();
         } catch(e) {
