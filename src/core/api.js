@@ -2,7 +2,6 @@ import Event from 'event-emitter-js';
 import Initialize from './initialize';
 import BaseObject from '../base/base_object';
 import {SYSTEM_EVENTS} from '../constants/events';
-import {PROVIDERS_LIST} from '../constants/providers';
 
 
 /**
@@ -11,8 +10,6 @@ import {PROVIDERS_LIST} from '../constants/providers';
 class API extends BaseObject {
     static CLASS = 'API';
 
-
-    PROVIDERS = PROVIDERS_LIST;
     INITIALIZE = null;
 
 
