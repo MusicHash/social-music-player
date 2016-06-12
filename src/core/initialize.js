@@ -49,7 +49,7 @@ class Initialize extends BaseObject {
      */
     layoutRender() {
         let config = Config.create();
-
+console.log(config.el);
         DOM.append(this.LAYOUT.render(), DOM.$$(config.el));
         DOM.append(this.CONTROLS.render(), DOM.$$(ControlsController.selectorClass));
         DOM.append(this.PROVIDER.render(), DOM.$$(ProviderController.selectorClass));
