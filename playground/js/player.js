@@ -46,6 +46,7 @@ Player.prototype = {
 
         if ('undefined' === typeof(window.songsList[songID])) {
           console.log(['SongID was not found.', songID]);
+
           return;
         }
 
