@@ -24,7 +24,8 @@ Playground.prototype = {
      */
     addPlayer: function() {
       var player = new Player({
-        playerIndex: this.idx
+        playerIndex: this.idx,
+        songsList: window.songsList
       });
 
       $(this.appendTo).append(player.render());
@@ -47,5 +48,5 @@ Playground.prototype = {
         this.idx++;
 
         return this;
-    },
+    }
 };

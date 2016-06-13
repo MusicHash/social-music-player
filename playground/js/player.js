@@ -13,13 +13,15 @@ Player.prototype = {
     player: null,
     playerIndex: null,
     playerSelector: '#social-music-player',
+    songsList: [],
 
 
     /**
      *
      */
     init: function(settings) {
-      this.playerIndex = settings.playerIndex;
+      this.playerIndex = settings.playerIndex || null;
+      this.songsList = settings.songsList || [];
     },
 
 
@@ -29,31 +31,48 @@ Player.prototype = {
     render: function() {
         var playerEl = _.template($(this._getPlayerTemplate()).html());
 
-        return this._bindEvents(playerEl({
-          playerIndex: this.playerIndex,
-          elID: this.getPlayerID().substr(1)
-        }));
+        var el = $(playerEl({
+            playerIndex: this.playerIndex,
+            elID: this.getPlayerID().substr(1)
+          }));
+
+        el = this._appendSongs(el);
+        //el = this._bindEvents(el);
+
+        return el;
     },
 
 
-    _bindEvents: function(el) {
-      var html = $(el),
+    _appendSongs: function(el) {
+      var songBitTpl = _.template('<li><a href="javascript:;" data-song="<%- songID %>"><%- title %></a></li>'),
+          player = this.getPlayer(),
           self = this;
 
-      // play songs list
-      html.find('ul li a').on('click', function() {
-        var songID = $(this).data('song');
+      for (var songIdx in this.songsList) {
+        var songHTML = $(songBitTpl({
+          songID: this.songsList[songIdx].id,
+          title: this.songsList[songIdx].title
+        }));
 
-        if ('undefined' === typeof(window.songsList[songID])) {
-          console.log(['SongID was not found.', songID]);
+        songHTML.find('a').on('click', function(songModel) {
+          return function() {
+            var songID = $(this).data('song');
+            player.play(songModel);
+          }
+        }(this.songsList[songIdx]));
 
-          return;
-        }
+        el.find('ul.songs-list').append(songHTML);
+      }
 
-        self.getPlayer().play(window.songsList[songID]);
-      });
+      return el;
+    },
 
-      return html;
+
+
+    _bindEvents: function(el) {
+      var self = this;
+
+      return el;
     },
 
 
@@ -88,11 +107,7 @@ Player.prototype = {
                         <span>(Those can be played one by one from each supported provider)</span>
                       </dt>
                       <dd>
-                        <ul>
-                          <li><a href="javascript:;" data-song="alan_walker_faded">[PLAY YOUTUBE] Alan Walker - Faded</a></li>
-                          <li><a href="javascript:;" data-song="calvin_harris_sweet_nothing">[PLAY VIMEO] Calvin Harris feat Florence Welch "Sweet Nothing"</a></li>
-                          <li><a href="javascript:;" data-song="scott_isbell_tonight">[PLAY SOUNDCLOUD] Scott Isbell - Tonight Feat Adessi</a></li>
-                        </ul>
+                        <ul class="songs-list"></ul>
                       </dd>
                     </dl>
 
