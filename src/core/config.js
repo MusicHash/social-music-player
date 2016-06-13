@@ -2,7 +2,7 @@ import BaseSingleton from '../base/base_singleton';
 import _ from '../utils/__';
 
 let CONFIG_DEFAULTS = {
-    el: '#social-music-player',
+    elID: '#social-music-player',
 
     loop: false,
     volume: 100,

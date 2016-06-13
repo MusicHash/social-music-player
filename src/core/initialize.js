@@ -25,22 +25,7 @@ class Initialize extends BaseObject {
      *
      */
     init(params) {
-        console.log('init called??');
         Config.create(params);
-
-        this.start();
-    }
-
-
-    /**
-     *
-     */
-    start() {
-        this.logger.debug('Initialize start fired');
-
-        this.layoutRender();
-
-        Event.fire(SYSTEM_EVENTS.PLAYER_INITIALIZED);
     }
 
 
@@ -49,10 +34,12 @@ class Initialize extends BaseObject {
      */
     layoutRender() {
         let config = Config.create();
-console.log(config.el);
-        DOM.append(this.LAYOUT.render(), DOM.$$(config.el));
+
+        DOM.append(this.LAYOUT.render(), DOM.$$(config.elID));
         DOM.append(this.CONTROLS.render(), DOM.$$(ControlsController.selectorClass));
         DOM.append(this.PROVIDER.render(), DOM.$$(ProviderController.selectorClass));
+
+        Event.fire(SYSTEM_EVENTS.PLAYER_INITIALIZED);
 
         return this;
     }

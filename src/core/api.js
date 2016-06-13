@@ -81,6 +81,15 @@ class API extends BaseObject {
         //return PlayerManager.create().seek(second);
     }
 
+
+    /**
+     *
+     */
+    render() {
+        this.INITIALIZE.layoutRender();
+
+        return this;
+    }
 }
 
 export default API;

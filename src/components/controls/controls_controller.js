@@ -21,6 +21,7 @@ class ControlsController extends BaseController {
     static CLASS = 'ControlsController';
     static selectorClass = '.smp_controller';
 
+
     /**
      *
      */
@@ -285,15 +286,17 @@ class ControlsController extends BaseController {
      *
      */
     setPlayerWidth() {
-        let playerEl = DOM.getWidth('#social-music-player'),
-            playPauseEl = DOM.getWidth('#social-music-player .play-pause'),
-            currentTimeEl = DOM.getWidth('#social-music-player .current-time'),
-            durationEl = DOM.getWidth('#social-music-player .duration'),
+        let config = Config.create();
+
+        let playerEl = DOM.getWidth(config.elID),
+            playPauseEl = DOM.getWidth(config.elID+' .play-pause'),
+            currentTimeEl = DOM.getWidth(config.elID+' .current-time'),
+            durationEl = DOM.getWidth(config.elID+' .duration'),
             slack = 44;
 
-        DOM.$$('#social-music-player .controls-list').style.width = playerEl - playPauseEl - 20 + 'px';
+        DOM.$$(config.elID+' .controls-list').style.width = playerEl - playPauseEl - 20 + 'px';
 
-        DOM.$$('#social-music-player .scrabber .progress-bar').style.width = playerEl - playPauseEl - currentTimeEl - durationEl - slack + 'px';
+        DOM.$$(config.elID+' .scrabber .progress-bar').style.width = playerEl - playPauseEl - currentTimeEl - durationEl - slack + 'px';
 
         return this;
     }

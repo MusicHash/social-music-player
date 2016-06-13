@@ -103,6 +103,10 @@ class DOM {
 
 
     getStyle(selector) {
+        if (0 === this.$$(selector).length) {
+            console.log(['ERROR: selector was not found.', selector]);
+            return;
+        }
         return window.getComputedStyle(this.$$(selector));
     }
 
