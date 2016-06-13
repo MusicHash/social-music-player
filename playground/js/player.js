@@ -36,17 +36,16 @@ Player.prototype = {
             elID: this.getPlayerID().substr(1)
           }));
 
-        el = this._appendSongs(el);
+        el = this._appendSongsList(el);
         //el = this._bindEvents(el);
 
         return el;
     },
 
 
-    _appendSongs: function(el) {
+    _appendSongsList: function(el) {
       var songBitTpl = _.template('<li><a href="javascript:;" data-song="<%- songID %>"><%- title %></a></li>'),
-          player = this.getPlayer(),
-          self = this;
+          player = this.getPlayer();
 
       for (var songIdx in this.songsList) {
         var songHTML = $(songBitTpl({
