@@ -38,6 +38,14 @@
                   player.play(window.songsList[songID]);
               });
 
+              $('.simple-buttons .play').on('click', function() {
+                player.play();
+              });
+
+              $('.simple-buttons .pause').on('click', function() {
+                player.pause();
+              });
+
           };
 
           (function(d, s, id){
@@ -75,6 +83,18 @@
                   <li><a href="javascript:;" data-song="calvin_harris_sweet_nothing">[PLAY VIMEO] Calvin Harris feat Florence Welch "Sweet Nothing"</a></li>
                   <li><a href="javascript:;" data-song="scott_isbell_tonight">[PLAY SOUNDCLOUD] Scott Isbell - Tonight Feat Adessi</a></li>
                 </ul>
+              </dd>
+            </dl>
+
+            <dl class="simple-buttons">
+              <dt>
+                Simple Controls
+                <span>(Buttons will call API functions on SMP)</span>
+              </dt>
+
+              <dd>
+                <button class="play">Play</button>
+                <button class="pause">Pause</button>
               </dd>
             </dl>
           </div>

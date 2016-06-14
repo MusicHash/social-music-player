@@ -59,6 +59,12 @@ class API extends BaseObject {
      *
      */
     play(song) {
+        if ('undefined' === typeof(song)) {
+            Event.fire(SYSTEM_EVENTS.PLAY);
+
+            return this;
+        }
+
         this.INITIALIZE.PROVIDER.load(song);
 
         return this;
@@ -70,7 +76,9 @@ class API extends BaseObject {
      *
      */
     pause() {
-        //return PlayerManager.create().pause();
+        Event.fire(SYSTEM_EVENTS.PAUSE);
+
+        return this;
     }
 
 
@@ -78,7 +86,9 @@ class API extends BaseObject {
      *
      */
     seek(second) {
-        //return PlayerManager.create().seek(second);
+        Event.fire(SYSTEM_EVENTS.SEEK_TO, second);
+
+        return this;
     }
 
 

@@ -1,7 +1,8 @@
 body { color: #2e2e2e; background: #f7f7f7; }
 body, html, dl, dd { margin: 0; padding: 0; }
 .wrapper { width: 768px; margin: 0 auto; margin-bottom: 30px; }
-.wrapper button { background: #d1d1d1; cursor: pointer; border: 1px solid #ddd; padding: 2px 13px; border-radius: 3px; margin: 0; cursor: pointer; line-height: 20px; }
+.wrapper button { background: #e9e9e9; cursor: pointer; border: 1px solid #ddd; padding: 2px 13px; border-radius: 3px; margin: 0; cursor: pointer; line-height: 20px; }
+.wrapper button input[type="text"] { font-size: 12px; border: 1px solid #ddd; text-align: center; border-radius: 3px; margin: 0 -11px 0 5px; padding: 2px; }
 .wrapper a { color: #5b5b5b; font-size: 18px; }
 .wrapper a:hover { color: #2e2e2e; }
 .wrapper hgroup h1 { text-align: center; }
@@ -11,7 +12,7 @@ body, html, dl, dd { margin: 0; padding: 0; }
 .wrapper div dl dd,
 .wrapper div dl dt { margin-bottom: 5px; }
 
-.wrapper div dl dd { display: inline-block; font-size: 12px;  }
+.wrapper div dl dd { display: inline-block; font-size: 12px; margin-bottom: 5px; }
 .wrapper div dl dt span { color: #5b5b5b; font-size: 0.8em; }
 .wrapper div .output { display: block; width: 100%; height: 100px; border: 1px solid #ddd; overflow-y: auto; font-size: 13px; padding: 5px; box-sizing: border-box; line-height: 1.4em; resize: vertical; font-family: Inconsolata, Monaco, monospace; }
 
