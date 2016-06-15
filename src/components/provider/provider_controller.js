@@ -41,6 +41,7 @@ class ProviderController extends BaseController {
 
     /**
      *
+     *
      */
     seekTo(percent) {
         this.getDuration().then(duration => {
