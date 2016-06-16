@@ -147,6 +147,15 @@ class ProviderController extends BaseController {
     }
 
 
+    /**
+     *
+     */
+    loadByURL(url) {
+        this.logger.info('LOAD BY URL CALLED: '+ url);
+
+    }
+
+
     broadcastProviderSong() {
         let songModel = this.getProvider().getModel();
 

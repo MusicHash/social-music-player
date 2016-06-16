@@ -76,7 +76,7 @@ Player.prototype = {
 
         el.find('.modifier-buttons .url').on('click', function() {
           var url = this.querySelector('input').value;
-          player.load(url);
+          player.play(url);
         });
 
         return el;

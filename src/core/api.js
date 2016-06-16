@@ -2,6 +2,7 @@ import Event from 'event-emitter-js';
 import Initialize from './initialize';
 import BaseObject from '../base/base_object';
 import {SYSTEM_EVENTS} from '../constants/events';
+import _ from '../utils/__';
 
 
 /**
@@ -64,9 +65,12 @@ class API extends BaseObject {
             Event.fire(SYSTEM_EVENTS.PLAY);
 
             return this;
+        } else
+        if (_.isURL(song)) {
+            this.INITIALIZE.PROVIDER.loadByURL(song);
+        } else {
+            this.INITIALIZE.PROVIDER.load(song);
         }
-
-        this.INITIALIZE.PROVIDER.load(song);
 
         return this;
     }
