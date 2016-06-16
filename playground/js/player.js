@@ -39,6 +39,7 @@ Player.prototype = {
         el = this._appendSongsList(el);
         el = this._simpleButtonsBind(el);
         el = this._modifierButtonsBind(el);
+        el = this._getterButtonsBind(el);
 
         return el;
     },
@@ -67,16 +68,53 @@ Player.prototype = {
           player.seek(seconds);
         });
 
-
         el.find('.modifier-buttons .volume').on('click', function() {
           var volume = this.querySelector('input').value;
           player.setVolume(volume);
         });
 
-
         el.find('.modifier-buttons .url').on('click', function() {
           var url = this.querySelector('input').value;
           player.play(url);
+        });
+
+        return el;
+    },
+
+
+    _getterButtonsBind: function(el) {
+        var player = this.getPlayer();
+
+        el.find('.getter-buttons .current-second').on('click', function() {
+          console.log('Current Second');
+        });
+
+        el.find('.getter-buttons .duration').on('click', function() {
+          console.log('Duration');
+        });
+
+        el.find('.getter-buttons .volume').on('click', function() {
+          console.log('Volume');
+        });
+
+        el.find('.getter-buttons .is-playing').on('click', function() {
+          console.log('isPlaying');
+        });
+
+        el.find('.getter-buttons .is-paused').on('click', function() {
+          console.log('isPaused');
+        });
+
+        el.find('.getter-buttons .url').on('click', function() {
+          console.log('URL');
+        });
+
+        el.find('.getter-buttons .video-width').on('click', function() {
+          console.log('Video Width');
+        });
+
+        el.find('.getter-buttons .video-height').on('click', function() {
+          console.log('Video Height');
         });
 
         return el;
