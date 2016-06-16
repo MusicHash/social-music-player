@@ -204,10 +204,10 @@ class ControlsController extends BaseController {
 
         switch(e.type) {
            	case 'click':
-                let position = (mouseX - scrubber.offsetLeft) / scrubberWidth;
-                position = Math.round(position * 100) / 100;
+                let percent = (mouseX - scrubber.offsetLeft) / scrubberWidth;
+                percent = Math.round(percent * 100) / 100;
 
-                Event.fire(SYSTEM_EVENTS.SEEK_TO, position);
+                Event.fire(SYSTEM_EVENTS.SEEK_TO_PERCENT, percent);
                 break;
 
             default:

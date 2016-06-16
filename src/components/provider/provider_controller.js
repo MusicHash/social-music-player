@@ -32,7 +32,8 @@ class ProviderController extends BaseController {
      *
      */
     subscribe() {
-        Event.on(SYSTEM_EVENTS.SEEK_TO, this.seekTo.bind(this));
+        Event.on(SYSTEM_EVENTS.SEEK_TO_SECOND, this.seekToSecond.bind(this));
+        Event.on(SYSTEM_EVENTS.SEEK_TO_PERCENT, this.seekToPercent.bind(this));
         Event.on(SYSTEM_EVENTS.PLAY, this.play.bind(this));
         Event.on(SYSTEM_EVENTS.PAUSE, this.pause.bind(this));
         Event.on(SYSTEM_EVENTS.VOLUME, this.setVolume.bind(this));
@@ -43,12 +44,21 @@ class ProviderController extends BaseController {
      *
      *
      */
-    seekTo(percent) {
+    seekToPercent(percent) {
         this.getDuration().then(duration => {
-            let seconds = percent * duration;
+            let second = percent * duration;
 
-            return this.getProvider().seekTo(seconds);
+            return this.seekToSecond(second);
         });
+    }
+
+
+    /**
+     *
+     *
+     */
+    seekToSecond(second) {
+        return this.getProvider().seekTo(second);
     }
 
 

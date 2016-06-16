@@ -62,7 +62,7 @@ Player.prototype = {
     _modifierButtonsBind: function(el) {
         var player = this.getPlayer();
 
-        el.find('.simple-buttons .seek').on('click', function() {
+        el.find('.modifier-buttons .seek').on('click', function() {
           var seconds = this.querySelector('input').value;
           player.seek(seconds);
         });

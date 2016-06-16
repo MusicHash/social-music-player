@@ -86,7 +86,7 @@ class API extends BaseObject {
      *
      */
     seek(second) {
-        Event.fire(SYSTEM_EVENTS.SEEK_TO, second);
+        Event.fire(SYSTEM_EVENTS.SEEK_TO_SECOND, second);
 
         return this;
     }
