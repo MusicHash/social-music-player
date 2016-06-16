@@ -20,7 +20,7 @@ Player.prototype = {
      *
      */
     init: function(settings) {
-      this.playerIndex = settings.playerIndex || null;
+      this.playerIndex = settings.playerIndex || 0;
       this.songsList = settings.songsList || [];
     },
 
@@ -38,6 +38,7 @@ Player.prototype = {
 
         el = this._appendSongsList(el);
         el = this._simpleButtonsBind(el);
+        el = this._modifierButtonsBind(el);
 
         return el;
     },
@@ -52,6 +53,18 @@ Player.prototype = {
 
         el.find('.simple-buttons .pause').on('click', function() {
           player.pause();
+        });
+
+        return el;
+    },
+
+
+    _modifierButtonsBind: function(el) {
+        var player = this.getPlayer();
+
+        el.find('.simple-buttons .seek').on('click', function() {
+          var seconds = this.querySelector('input').value;
+          player.seek(seconds);
         });
 
         return el;
