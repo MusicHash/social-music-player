@@ -73,6 +73,12 @@ Player.prototype = {
           player.setVolume(volume);
         });
 
+
+        el.find('.modifier-buttons .url').on('click', function() {
+          var url = this.querySelector('input').value;
+          player.load(url);
+        });
+
         return el;
     },
 
