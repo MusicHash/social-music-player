@@ -67,6 +67,12 @@ Player.prototype = {
           player.seek(seconds);
         });
 
+
+        el.find('.modifier-buttons .volume').on('click', function() {
+          var volume = this.querySelector('input').value;
+          player.setVolume(volume);
+        });
+
         return el;
     },
 

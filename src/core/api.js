@@ -59,6 +59,7 @@ class API extends BaseObject {
      *
      */
     play(song) {
+        // no new song set.. just play the current one.
         if ('undefined' === typeof(song)) {
             Event.fire(SYSTEM_EVENTS.PLAY);
 
@@ -87,6 +88,16 @@ class API extends BaseObject {
      */
     seek(second) {
         Event.fire(SYSTEM_EVENTS.SEEK_TO_SECOND, second);
+
+        return this;
+    }
+
+
+    /**
+     *
+     */
+    setVolume(volume) {
+        Event.fire(SYSTEM_EVENTS.VOLUME, volume);
 
         return this;
     }

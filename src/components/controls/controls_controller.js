@@ -146,19 +146,14 @@ class ControlsController extends BaseController {
 
                 if (0.9 < volume) {
                     volume = 1;
-
-                    return this.onUnmute();
                 } else
                 if (0.1 > volume) {
                     volume = 0;
-
-                    return this.onMute();
                 }
 
                 break;
         }
 
-        this.onUnmute(true);
         Event.fire(SYSTEM_EVENTS.VOLUME, volume);
     }
 
@@ -166,11 +161,12 @@ class ControlsController extends BaseController {
     /**
      *
      */
-    onMute() {
+    onMute(silentUpdate = false) {
         DOM.$$('.volume .mute').classList.remove('hide');
         DOM.$$('.volume .unmute').classList.add('hide');
 
-        Event.fire(SYSTEM_EVENTS.VOLUME, 0);
+        if (true !== silentUpdate)
+            Event.fire(SYSTEM_EVENTS.VOLUME, 0);
     }
 
 
@@ -190,6 +186,15 @@ class ControlsController extends BaseController {
      *
      */
     onVolume(volume) {
+        if (0.9 < volume) {
+            this.onUnmute(true);
+        } else
+        if (0.1 > volume) {
+            this.onMute(true);
+        } else {
+            this.onUnmute(true);
+        }
+
         DOM.$$('.volume-progress .volume-bar-value').style.width = volume * 100 + '%';
     }
 
