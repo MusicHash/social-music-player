@@ -59,6 +59,27 @@ class BaseProvider extends BaseObject {
     /**
      *
      */
+    getIDFromURL(url) {
+        return _.matchPattern(this.PROVIDER_URL_PATTERN, url);
+    }
+
+
+    /**
+     *
+     */
+    getModelByURL(url) {
+        console.log(this.getIDFromURL(url));
+        return this.PROVIDER_MODEL.create({
+            id: this.getIDFromURL(url),
+            title: '',
+            provider: this.PROVIDER
+        });
+    }
+
+
+    /**
+     *
+     */
     render() {
         let el = document.createElement('div');
         el.id = BaseProvider.CLASS;

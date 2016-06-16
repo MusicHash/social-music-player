@@ -1,4 +1,5 @@
 import BaseController from '../../base/base_controller';
+import _ from '../../utils/__';
 import DOM from '../../utils/dom';
 import Event from 'event-emitter-js';
 import {PROVIDERS_LIST} from '../../constants/providers';
@@ -129,6 +130,11 @@ class ProviderController extends BaseController {
     load(song) {
         this.logger.info('LOAD CALLED');
 
+        // handle URL loading
+        if (_.isURL(song)) {
+            return this.loadByURL(song);
+        }
+
         try {
             let provider = this._setNewProvider(song);
 
@@ -153,9 +159,22 @@ class ProviderController extends BaseController {
     loadByURL(url) {
         this.logger.info('LOAD BY URL CALLED: '+ url);
 
+        for (let i in this.PROVIDERS) {
+            let ID = this.PROVIDERS[i].getIDFromURL(url);
+
+            if (false !== ID)
+                return this.load(this.PROVIDERS[i].getModelByURL(url));
+        }
+
+        this.logger.error('Failed to translate URL to provider. URL submitted: '+ url);
+
+        return this;
     }
 
 
+    /**
+     *
+     */
     broadcastProviderSong() {
         let songModel = this.getProvider().getModel();
 
@@ -210,6 +229,9 @@ class ProviderController extends BaseController {
     }
 
 
+    /**
+     *
+     */
     pauseAll() {
         this._executeAllProviders(provider => {
             provider.pause();
@@ -217,6 +239,9 @@ class ProviderController extends BaseController {
     }
 
 
+    /**
+     *
+     */
     getProvider() {
         return this._ProviderCurrent;
     }

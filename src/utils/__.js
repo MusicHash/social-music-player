@@ -191,6 +191,14 @@ class __ {
 
         return minutes + ':' + seconds;
     }
+
+
+    /**
+     *
+     */
+    matchPattern(pattern, string) {
+        return string.match(pattern) ? RegExp.$1 : false;
+    }
 }
 
 export default new __();

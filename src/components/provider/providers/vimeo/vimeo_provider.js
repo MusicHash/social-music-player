@@ -13,6 +13,7 @@ class VimeoProvider extends BaseProvider {
     PROVIDER = PROVIDERS_LIST.VIMEO;
     PROVIDER_MODEL = VimeoModel;
 
+    PROVIDER_URL_PATTERN = /vimeo.*\/(\d+)/;
 
     player = null;
     vimeoPath = '//player.vimeo.com/video/{{VIDEO_ID}}?api=1&player_id=VimeoProvider';

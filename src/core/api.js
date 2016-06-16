@@ -65,12 +65,9 @@ class API extends BaseObject {
             Event.fire(SYSTEM_EVENTS.PLAY);
 
             return this;
-        } else
-        if (_.isURL(song)) {
-            this.INITIALIZE.PROVIDER.loadByURL(song);
-        } else {
-            this.INITIALIZE.PROVIDER.load(song);
         }
+
+        this.INITIALIZE.PROVIDER.load(song);
 
         return this;
     }

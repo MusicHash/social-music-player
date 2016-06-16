@@ -13,6 +13,7 @@ class SoundCloudProvider extends BaseProvider {
     PROVIDER = PROVIDERS_LIST.SOUNDCLOUD;
     PROVIDER_MODEL = SoundCloudModel;
 
+    PROVIDER_URL_PATTERN = '^(http|https)://api.soundcloud.com/tracks/(.*)$';
 
     widget = null;
     SCPath = '//w.soundcloud.com/player/?url=';

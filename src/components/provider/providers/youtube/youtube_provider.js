@@ -12,6 +12,8 @@ class YoutubeProvider extends BaseProvider {
     PROVIDER = PROVIDERS_LIST.YOUTUBE;
     PROVIDER_MODEL = YoutubeModel;
 
+    // @see http://stackoverflow.com/a/10315969/624466
+    PROVIDER_URL_PATTERN = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
 
     player = null;
     providerController = null;

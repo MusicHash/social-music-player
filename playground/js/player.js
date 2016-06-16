@@ -159,11 +159,10 @@ Player.prototype = {
                         <span>(buttons to interact with the player during runtime)</span>
                       </dt>
 
-                      <dd>
-                        <button class="seek">Seek <input type="text" size="3" maxlength="3" value="60" /></button>
-                        <button class="volume">Volume <input type="text" size="3" maxlength="3" value="0.8" /></button>
-                        <button class="url">Load URL <input type="text" size="50" maxlength="150" value="https://www.youtube.com/watch?v=w319Ew1quF0" /></button>
-                      </dd>
+                      <dd><button class="seek">Seek <input type="text" size="3" maxlength="3" value="60" /></button></dd>
+                      <dd><button class="volume">Volume <input type="text" size="3" maxlength="3" value="0.8" /></button></dd>
+                      <dd><button class="url">Youtube <input type="text" size="50" maxlength="80" value="https://www.youtube.com/watch?v=w319Ew1quF0" /></button></dd>
+                      <dd><button class="url">Vimeo <input type="text" size="30" maxlength="80" value="https://vimeo.com/126864213" /></button></dd>
                     </dl>
 
                     <dl class="getter-buttons">
