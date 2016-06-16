@@ -14,6 +14,8 @@ Player.prototype = {
     playerIndex: null,
     playerSelector: '#social-music-player',
     songsList: [],
+    el: null,
+
 
 
     /**
@@ -29,99 +31,111 @@ Player.prototype = {
      *
      */
     render: function() {
-        var playerEl = _.template($(this._getPlayerTemplate()).html());
+        let playerEl = _.template($(this._getPlayerTemplate()).html());
 
-        var el = $(playerEl({
+        this.el = $(playerEl({
             playerIndex: this.playerIndex,
             elID: this.getPlayerID().substr(1)
           }));
 
-        el = this._appendSongsList(el);
-        el = this._simpleButtonsBind(el);
-        el = this._modifierButtonsBind(el);
-        el = this._getterButtonsBind(el);
+        this._appendSongsList();
+        this._simpleButtonsBind();
+        this._modifierButtonsBind();
+        this._getterButtonsBind();
 
-        return el;
+        this.log('Loaded PlayerID: '+ this.playerIndex);
+
+        return this.el;
     },
 
 
-    _simpleButtonsBind: function(el) {
+    log: function(message) {
+      let output = this.el.find('.console .output');
+
+      output.html(message + '\n' + output.html());
+    },
+
+
+    /**
+     *
+     */
+    _simpleButtonsBind: function() {
         var player = this.getPlayer();
 
-        el.find('.simple-buttons .play').on('click', function() {
+        this.el.find('.simple-buttons .play').on('click', function() {
           player.play();
         });
 
-        el.find('.simple-buttons .pause').on('click', function() {
+        this.el.find('.simple-buttons .pause').on('click', function() {
           player.pause();
         });
 
-        return el;
+        return this;
     },
 
 
-    _modifierButtonsBind: function(el) {
+    _modifierButtonsBind: function() {
         var player = this.getPlayer();
 
-        el.find('.modifier-buttons .seek').on('click', function() {
+        this.el.find('.modifier-buttons .seek').on('click', function() {
           var seconds = this.querySelector('input').value;
           player.seek(seconds);
         });
 
-        el.find('.modifier-buttons .volume').on('click', function() {
+        this.el.find('.modifier-buttons .volume').on('click', function() {
           var volume = this.querySelector('input').value;
           player.setVolume(volume);
         });
 
-        el.find('.modifier-buttons .url').on('click', function() {
+        this.el.find('.modifier-buttons .url').on('click', function() {
           var url = this.querySelector('input').value;
           player.play(url);
         });
 
-        return el;
+        return this;
     },
 
 
-    _getterButtonsBind: function(el) {
+    _getterButtonsBind: function() {
         var player = this.getPlayer();
 
-        el.find('.getter-buttons .current-second').on('click', function() {
+        this.el.find('.getter-buttons .current-second').on('click', function() {
           console.log('Current Second');
         });
 
-        el.find('.getter-buttons .duration').on('click', function() {
+        this.el.find('.getter-buttons .duration').on('click', function() {
           console.log('Duration');
         });
 
-        el.find('.getter-buttons .volume').on('click', function() {
+        this.el.find('.getter-buttons .volume').on('click', function() {
           console.log('Volume');
         });
 
-        el.find('.getter-buttons .is-playing').on('click', function() {
+        this.el.find('.getter-buttons .is-playing').on('click', function() {
           console.log('isPlaying');
         });
 
-        el.find('.getter-buttons .is-paused').on('click', function() {
+        this.el.find('.getter-buttons .is-paused').on('click', function() {
           console.log('isPaused');
         });
 
-        el.find('.getter-buttons .url').on('click', function() {
+        this.el.find('.getter-buttons .url').on('click', function() {
           console.log('URL');
         });
 
-        el.find('.getter-buttons .video-width').on('click', function() {
+        this.el.find('.getter-buttons .video-width').on('click', function() {
           console.log('Video Width');
         });
 
-        el.find('.getter-buttons .video-height').on('click', function() {
+        this.el.find('.getter-buttons .video-height').on('click', function() {
           console.log('Video Height');
         });
 
-        return el;
+        return this;
     },
 
 
-    _appendSongsList: function(el) {
+    _appendSongsList: function() {
       var songBitTpl = _.template('<li><a href="javascript:;"><%- title %></a></li>'),
           player = this.getPlayer();
 
@@ -136,10 +150,10 @@ Player.prototype = {
           }
         }(this.songsList[songIdx]));
 
-        el.find('ul.songs-list').append(songHTML);
+        this.el.find('ul.songs-list').append(songHTML);
       }
 
-      return el;
+      return this;
     },
 
 
