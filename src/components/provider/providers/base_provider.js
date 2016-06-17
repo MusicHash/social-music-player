@@ -68,7 +68,6 @@ class BaseProvider extends BaseObject {
      *
      */
     getModelByURL(url) {
-        console.log(this.getIDFromURL(url));
         return this.PROVIDER_MODEL.create({
             id: this.getIDFromURL(url),
             title: '',
