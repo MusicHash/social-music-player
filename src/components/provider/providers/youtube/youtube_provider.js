@@ -5,7 +5,7 @@ import {PLAYER_STATE} from '../../../../constants/state';
 
 
 /**
- *
+ * @see https://developers.google.com/youtube/js_api_reference
  */
 class YoutubeProvider extends BaseProvider {
     static CLASS = 'YoutubeProvider';
