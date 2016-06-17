@@ -216,31 +216,52 @@ Player.prototype = {
         var player = this.getPlayer();
 
         this.el.find('.getter-buttons .current-second').on('click', function() {
-          console.log('Current Second');
+          player.getCurrentSecond().then(function() {
+            console.log('Current Second');
+            console.log(arguments);
+          });
         });
 
         this.el.find('.getter-buttons .duration').on('click', function() {
-          console.log('Duration');
+          player.getDuration().then(function() {
+            console.log('Duration');
+            console.log(arguments);
+          });
         });
 
         this.el.find('.getter-buttons .volume').on('click', function() {
-          console.log('Volume');
+          player.getVolume().then(function() {
+            console.log('Volume');
+            console.log(arguments);
+          });
         });
 
         this.el.find('.getter-buttons .is-playing').on('click', function() {
-          console.log('isPlaying');
+          player.isPlaying().then(function() {
+            console.log('isPlaying');
+            console.log(arguments);
+          });
         });
 
         this.el.find('.getter-buttons .url').on('click', function() {
-          console.log('URL');
+          player.getURL().then(function() {
+            console.log('URL');
+            console.log(arguments);
+          });
         });
 
         this.el.find('.getter-buttons .video-width').on('click', function() {
-          console.log('Video Width');
+          player.getVideoWidth().then(function() {
+            console.log('Video Width');
+            console.log(arguments);
+          });
         });
 
         this.el.find('.getter-buttons .video-height').on('click', function() {
-          console.log('Video Height');
+          player.getVideoHeight().then(function() {
+            console.log('Video Height');
+            console.log(arguments);
+          });
         });
 
         return this;
