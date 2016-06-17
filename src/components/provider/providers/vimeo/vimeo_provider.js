@@ -5,8 +5,9 @@ import {PLAYER_STATE} from '../../../../constants/state';
 
 
 /**
- * @see: https://developer.vimeo.com/player/embedding
- * @see: https://player.vimeo.com/playground
+ * @see https://developer.vimeo.com/player/js-api
+ * @see https://developer.vimeo.com/player/embedding
+ * @see https://player.vimeo.com/playground
  */
 class VimeoProvider extends BaseProvider {
     static CLASS = 'VimeoProvider';

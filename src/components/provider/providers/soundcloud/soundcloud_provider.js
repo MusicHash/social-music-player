@@ -5,8 +5,8 @@ import {PLAYER_STATE} from '../../../../constants/state';
 
 
 /**
- * @see: https://developers.soundcloud.com/docs/api/html5-widget
- * @see: https://w.soundcloud.com/player/api_playground.html
+ * @see https://developers.soundcloud.com/docs/api/html5-widget
+ * @see https://w.soundcloud.com/player/api_playground.html
  */
 class SoundCloudProvider extends BaseProvider {
     static CLASS = 'SoundCloudProvider';

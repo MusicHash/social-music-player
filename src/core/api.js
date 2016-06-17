@@ -33,19 +33,62 @@ class API extends BaseObject {
     }
 
 
+    /********************** GETTERS **********************/
+
+
     /**
      *
      */
     isPlaying() {
-        //return PlayerManager.create().isPlaying();
+        return this.INITIALIZE.PROVIDER.isPlaying();
     }
 
 
     /**
      *
      */
-    duration() {
-        //return PlayerManager.create().duration();
+    isPaused() {
+        return !this.isPlaying();
+    }
+
+
+    /**
+     *
+     */
+    getCurrentSecond() {
+        return this.INITIALIZE.PROVIDER.getCurrentSecond();
+    }
+
+
+    /**
+     *
+     */
+    getDuration() {
+        return this.INITIALIZE.PROVIDER.getDuration();
+    }
+
+
+    /**
+     *
+     */
+    getURL() {
+        return this.INITIALIZE.PROVIDER.getURL();
+    }
+
+
+    /**
+     *
+     */
+    getVideoWidth() {
+        return this.INITIALIZE.PROVIDER.getVideoWidth();
+    }
+
+
+    /**
+     *
+     */
+    getVideoHeight() {
+        return this.INITIALIZE.PROVIDER.getVideoHeight();
     }
 
 
@@ -55,6 +98,9 @@ class API extends BaseObject {
     getVersion() {
         return '1.0'; // fix it?
     }
+
+
+    /********************** MODIFIERS **********************/
 
 
     /**

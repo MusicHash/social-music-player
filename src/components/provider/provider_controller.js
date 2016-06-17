@@ -67,31 +67,8 @@ class ProviderController extends BaseController {
      * @todo: move the nagging response definition elsewhere.
      */
     getDuration() {
-        let waitingForResponse = false,
-            verifyResponseTimeout,
-            executeAsyncAPI = callback => {
-                this.getProvider().getDuration().then(duration => {
-                    if ('undefined' === typeof duration || null === duration || 0 >= duration)
-                        return;
-
-                    clearInterval(verifyResponseTimeout);
-
-                    waitingForResponse = false;
-
-                    callback(duration);
-                });
-            };
-
-        return new Promise((resolve, reject) => {
-            waitingForResponse = true;
-
-            // Seems like a bug. Some sort of racing condition. Promise is lost, no return and no error
-            executeAsyncAPI(resolve);
-
-            verifyResponseTimeout = setInterval(() => {
-                if (true === waitingForResponse)
-                    executeAsyncAPI(resolve);
-            }, 250);
+        return this.ensurePromise(this.getProvider().getDuration, duration => {
+            return 'undefined' === typeof duration || null === duration || 0 >= duration;
         });
     }
 
