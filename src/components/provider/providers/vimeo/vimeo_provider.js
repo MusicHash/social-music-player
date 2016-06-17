@@ -73,6 +73,65 @@ class VimeoProvider extends BaseProvider {
     }
 
 
+    /********************** GETTERS **********************/
+
+
+    /**
+     *
+     */
+    isPlaying() {
+        console.log('isPlaying');
+    }
+
+
+
+    /**
+     *
+     */
+    getCurrentSecond() {
+        console.log('getCurrentSecond');
+    }
+
+
+    /**
+     *
+     */
+    getDuration() {
+        return new Promise((resolve, reject) => {
+            this.player.api('getDuration', duration => {
+                resolve(duration);
+            });
+        });
+    }
+
+
+    /**
+     *
+     */
+    getURL() {
+        console.log('getURL');
+    }
+
+
+    /**
+     *
+     */
+    getVideoWidth() {
+        console.log('getVideoWidth');
+    }
+
+
+    /**
+     *
+     */
+    getVideoHeight() {
+        console.log('getVideoHeight');
+    }
+
+
+    /********************** MODIFIERS **********************/
+
+
     /**
      *
      */
@@ -138,18 +197,6 @@ class VimeoProvider extends BaseProvider {
         this.play();
 
         return this;
-    }
-
-
-    /**
-     *
-     */
-    getDuration() {
-        return new Promise((resolve, reject) => {
-            this.player.api('getDuration', duration => {
-                resolve(duration);
-            });
-        });
     }
 
 

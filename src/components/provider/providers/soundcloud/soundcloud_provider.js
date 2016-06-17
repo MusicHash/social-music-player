@@ -91,6 +91,65 @@ class SoundCloudProvider extends BaseProvider {
     }
 
 
+    /********************** GETTERS **********************/
+
+
+    /**
+     *
+     */
+    isPlaying() {
+        console.log('isPlaying');
+    }
+
+
+
+    /**
+     *
+     */
+    getCurrentSecond() {
+        console.log('getCurrentSecond');
+    }
+
+
+    /**
+     *
+     */
+    getDuration() {
+        return new Promise((resolve, reject) => {
+            this.widget.getDuration(duration => {
+                resolve(duration / 1000);
+            });
+        });
+    }
+
+
+    /**
+     *
+     */
+    getURL() {
+        console.log('getURL');
+    }
+
+
+    /**
+     *
+     */
+    getVideoWidth() {
+        console.log('getVideoWidth');
+    }
+
+
+    /**
+     *
+     */
+    getVideoHeight() {
+        console.log('getVideoHeight');
+    }
+
+
+    /********************** MODIFIERS **********************/
+
+
     /**
      *
      */
@@ -146,18 +205,6 @@ class SoundCloudProvider extends BaseProvider {
 
 
         return this;
-    }
-
-
-    /**
-     *
-     */
-    getDuration() {
-        return new Promise((resolve, reject) => {
-            this.widget.getDuration(duration => {
-                resolve(duration / 1000);
-            });
-        });
     }
 
 

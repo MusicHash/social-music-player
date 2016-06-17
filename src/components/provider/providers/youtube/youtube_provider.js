@@ -103,8 +103,40 @@ class YoutubeProvider extends BaseProvider {
     }
 
 
+    /********************** GETTERS **********************/
+
+
     /**
      *
+     */
+    isPlaying() {
+        console.log('isPlaying');
+    }
+
+
+
+    /**
+     *
+     */
+    getCurrentSecond() {
+        console.log('getCurrentSecond');
+    }
+
+
+    /**
+     *
+     */
+    getDuration() {
+        let duration = this.player.getDuration();
+
+        return new Promise((resolve, reject) => {
+            resolve(duration);
+        });
+    }
+
+
+    /**
+     * @has a bug.. not a promise?
      */
     getProgressPercentage() {
         let percent = (this.player.getCurrentTime() / this.player.getDuration()) * 100;
@@ -119,23 +151,38 @@ class YoutubeProvider extends BaseProvider {
     /**
      *
      */
-    seekTo(second) {
-        this.player.seekTo(second);
-        this.play();
-
-        return this;
+    getURL() {
+        console.log('getURL');
     }
 
 
     /**
      *
      */
-    getDuration() {
-        let duration = this.player.getDuration();
+    getVideoWidth() {
+        console.log('getVideoWidth');
+    }
 
-        return new Promise((resolve, reject) => {
-            resolve(duration);
-        });
+
+    /**
+     *
+     */
+    getVideoHeight() {
+        console.log('getVideoHeight');
+    }
+
+
+    /********************** MODIFIERS **********************/
+
+
+    /**
+     *
+     */
+    seekTo(second) {
+        this.player.seekTo(second);
+        this.play();
+
+        return this;
     }
 
 
