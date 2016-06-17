@@ -54,7 +54,7 @@ class ControlsController extends BaseController {
         });
 
         Event.on(SYSTEM_EVENTS.STATE_CHANGED, this.onStateChange.bind(this));
-        Event.on(SYSTEM_EVENTS.ON_PROGRESS, this.onProgressUpdate.bind(this));
+        Event.on(SYSTEM_EVENTS.PLAY_PROGRESS, this.onProgressUpdate.bind(this));
         Event.on(SYSTEM_EVENTS.NEW_SONG_PLAYING, this.onSongChange.bind(this));
         Event.on(SYSTEM_EVENTS.PLAYER_INITIALIZED, this.onInitialize.bind(this));
         Event.on(SYSTEM_EVENTS.VOLUME, this.onVolume.bind(this));

@@ -110,6 +110,10 @@ Player.prototype = {
           self.log('SEEK_TO_SECOND');
         });
 
+        player.on(this.player.EVENT.SEEK_TO_PERCENT, function() {
+          self.log('SEEK_TO_PERCENT');
+        });
+
         player.on(this.player.EVENT.STATE_CHANGED, function() {
           self.log('STATE_CHANGED');
         });
@@ -350,14 +354,16 @@ Player.prototype = {
                         Event Listeners
                       </dt>
 
-                      <dd><label><input class="load-progress" type="checkbox" checked="checked" /> loadProgress</label></dd>
+                      <dd><label><input class="new-song-playing" type="checkbox" checked="checked" /> newSongPlaying</label></dd>
                       <dd><label><input class="play-progress" type="checkbox" checked="checked" /> playProgress</label></dd>
                       <dd><label><input class="play" type="checkbox" checked="checked" /> play</label></dd>
                       <dd><label><input class="pause" type="checkbox" checked="checked" /> pause</label></dd>
                       <dd><label><input class="finish" type="checkbox" checked="checked" /> finish</label></dd>
-                      <dd><label><input class="seek" type="checkbox" checked="checked" /> seek</label></dd>
-
-
+                      <dd><label><input class="seek-second" type="checkbox" checked="checked" /> seekSecond</label></dd>
+                      <dd><label><input class="seek-percent" type="checkbox" checked="checked" /> seekPercent</label></dd>
+                      <dd><label><input class="mute" type="checkbox" checked="checked" /> mute</label></dd>
+                      <dd><label><input class="unmute" type="checkbox" checked="checked" /> unmute</label></dd>
+                      <dd><label><input class="volume" type="checkbox" checked="checked" /> volume</label></dd>
                     </dl>
 
                     <dl class="console">

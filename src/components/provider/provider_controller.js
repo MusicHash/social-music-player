@@ -214,7 +214,7 @@ class ProviderController extends BaseController {
             return;
         }
 
-        Event.fire(SYSTEM_EVENTS.ON_PROGRESS, {
+        Event.fire(SYSTEM_EVENTS.PLAY_PROGRESS, {
             percent: percent,
             seconds: seconds
         });
