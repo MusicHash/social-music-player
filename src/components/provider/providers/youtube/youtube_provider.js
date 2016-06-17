@@ -273,7 +273,7 @@ class YoutubeProvider extends BaseProvider {
 
 
     /**
-     *
+     * @change all methods to use getCurrentSecond
      */
     getCurrentTime() {
         return this.player.getCurrentTime();
