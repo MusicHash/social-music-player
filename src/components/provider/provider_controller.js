@@ -41,6 +41,73 @@ class ProviderController extends BaseController {
     }
 
 
+    /********************** GETTERS **********************/
+
+
+    /**
+     *
+     */
+    isPlaying() {
+        return this._ensurePromise(this.getProvider().isPlaying, playingState => {
+            return 'undefined' === typeof playingState || null === playingState;
+        });
+    }
+
+
+
+    /**
+     *
+     */
+    getCurrentSecond() {
+        return this._ensurePromise(this.getProvider().getCurrentSecond, second => {
+            return 'undefined' === typeof second || null === second || 0 >= second;
+        });
+    }
+
+
+    /**
+     *
+     */
+    getDuration() {
+        return this._ensurePromise(this.getProvider().getDuration, duration => {
+            return 'undefined' === typeof duration || null === duration || 0 >= duration;
+        });
+    }
+
+
+    /**
+     *
+     */
+    getURL() {
+        return this._ensurePromise(this.getProvider().getURL, url => {
+            return 'undefined' === typeof url || null === url;
+        });
+    }
+
+
+    /**
+     *
+     */
+    getVideoWidth() {
+        return this._ensurePromise(this.getProvider().getVideoWidth, width => {
+            return 'undefined' === typeof width || null === width || 0 >= width;
+        });
+    }
+
+
+    /**
+     *
+     */
+    getVideoHeight() {
+        return this._ensurePromise(this.getProvider().getVideoHeight, height => {
+            return 'undefined' === typeof height || null === height || 0 >= height;
+        });
+    }
+
+
+    /********************** MODIFIERS **********************/
+
+
     /**
      *
      *
@@ -60,16 +127,6 @@ class ProviderController extends BaseController {
      */
     seekToSecond(second) {
         return this.getProvider().seekTo(second);
-    }
-
-
-    /**
-     *
-     */
-    getDuration() {
-        return this._ensurePromise(this.getProvider().getDuration, duration => {
-            return 'undefined' === typeof duration || null === duration || 0 >= duration;
-        });
     }
 
 

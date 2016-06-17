@@ -47,14 +47,6 @@ class API extends BaseObject {
     /**
      *
      */
-    isPaused() {
-        return !this.isPlaying();
-    }
-
-
-    /**
-     *
-     */
     getCurrentSecond() {
         return this.INITIALIZE.PROVIDER.getCurrentSecond();
     }

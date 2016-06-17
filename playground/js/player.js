@@ -231,10 +231,6 @@ Player.prototype = {
           console.log('isPlaying');
         });
 
-        this.el.find('.getter-buttons .is-paused').on('click', function() {
-          console.log('isPaused');
-        });
-
         this.el.find('.getter-buttons .url').on('click', function() {
           console.log('URL');
         });
@@ -371,7 +367,6 @@ Player.prototype = {
                       <dd><button class="duration">Duration</button></dd>
                       <dd><button class="volume">Volume</button></dd>
                       <dd><button class="is-playing">isPlaying</button></dd>
-                      <dd><button class="is-paused">isPaused</button></dd>
                       <dd><button class="url">URL</button></dd>
                       <dd><button class="video-width">Video Width</button></dd>
                       <dd><button class="video-height">Video Height</button></dd>
