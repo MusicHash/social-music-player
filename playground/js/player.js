@@ -33,8 +33,6 @@ Player.prototype = {
     render: function() {
         let playerEl = _.template(this._getPlayerTemplate());
 
-        console.log(playerEl);
-
         this.el = $(playerEl({
             playerIndex: this.playerIndex,
             elID: this.getPlayerID().substr(1)
@@ -160,6 +158,14 @@ Player.prototype = {
         this.el.find('.modifier-buttons .volume').on('click', function() {
           var volume = this.querySelector('input').value;
           player.setVolume(volume);
+        });
+
+        this.el.find('.modifier-buttons .mute').on('click', function() {
+          player.mute();
+        });
+
+        this.el.find('.modifier-buttons .unmute').on('click', function() {
+          player.unmute();
         });
 
         this.el.find('.modifier-buttons .url').on('click', function() {
@@ -317,8 +323,10 @@ Player.prototype = {
 
                       <dd><button class="seek">Seek <input type="text" size="3" maxlength="3" value="60" /></button></dd>
                       <dd><button class="volume">Volume <input type="text" size="3" maxlength="3" value="0.8" /></button></dd>
-                      <dd><button class="url">Youtube <input type="text" size="50" maxlength="80" value="https://www.youtube.com/watch?v=w319Ew1quF0" /></button></dd>
+                      <dd><button class="mute">Mute</button></dd>
+                      <dd><button class="unmute">Unmute</button></dd>
                       <dd><button class="url">Vimeo <input type="text" size="30" maxlength="80" value="https://vimeo.com/126864213" /></button></dd>
+                      <dd><button class="url">Youtube <input type="text" size="50" maxlength="80" value="https://www.youtube.com/watch?v=w319Ew1quF0" /></button></dd>
                     </dl>
 
                     <dl class="getter-buttons">
@@ -364,6 +372,4 @@ Player.prototype = {
             </div>
         `;
     }
-
-
 };

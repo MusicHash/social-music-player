@@ -108,6 +108,26 @@ class API extends BaseObject {
     /**
      *
      */
+    mute() {
+        Event.fire(SYSTEM_EVENTS.MUTE);
+
+        return this;
+    }
+
+
+    /**
+     *
+     */
+    unmute() {
+        Event.fire(SYSTEM_EVENTS.UNMUTE);
+
+        return this;
+    }
+
+
+    /**
+     *
+     */
     on(event, callback) {
         Event.on(event, callback);
 
