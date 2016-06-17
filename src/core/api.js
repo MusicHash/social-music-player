@@ -11,6 +11,7 @@ import _ from '../utils/__';
 class API extends BaseObject {
     static CLASS = 'API';
 
+    EVENT = SYSTEM_EVENTS;
     INITIALIZE = null;
 
 
@@ -99,6 +100,16 @@ class API extends BaseObject {
      */
     setVolume(volume) {
         Event.fire(SYSTEM_EVENTS.VOLUME, volume);
+
+        return this;
+    }
+
+
+    /**
+     *
+     */
+    on(event, callback) {
+        Event.on(event, callback);
 
         return this;
     }

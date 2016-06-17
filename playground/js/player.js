@@ -38,21 +38,91 @@ Player.prototype = {
             elID: this.getPlayerID().substr(1)
           }));
 
+        this._subscribePlayerEvents();
         this._appendSongsList();
         this._simpleButtonsBind();
         this._modifierButtonsBind();
         this._getterButtonsBind();
+        this._consoleButtonsBind();
 
-        this.log('Loaded PlayerID: '+ this.playerIndex);
+        this.log('Rendered PlayerID: '+ this.playerIndex);
 
         return this.el;
     },
 
 
+    /**
+     *
+     */
     log: function(message) {
       let output = this.el.find('.console .output');
 
       output.html(message + '\n' + output.html());
+
+      return this;
+    },
+
+
+    /**
+     *
+     */
+    clearLog: function() {
+      let output = this.el.find('.console .output');
+
+      output.html('');
+
+      return this;
+    },
+
+
+    /**
+     *
+     */
+    _subscribePlayerEvents: function() {
+        var player = this.getPlayer(),
+            self = this;
+
+        player.on(this.player.EVENT.PLAYER_INITIALIZED, function() {
+          self.log('PLAYER_INITIALIZED');
+        });
+
+        player.on(this.player.EVENT.PLAY, function() {
+          self.log('PLAY');
+        });
+
+        player.on(this.player.EVENT.PAUSE, function() {
+          self.log('PAUSE');
+        });
+
+        player.on(this.player.EVENT.VOLUME, function() {
+          self.log('VOLUME');
+        });
+
+        player.on(this.player.EVENT.MUTE, function() {
+          self.log('MUTE');
+        });
+
+        player.on(this.player.EVENT.UNMUTE, function() {
+          self.log('UNMUTE');
+        });
+
+        player.on(this.player.EVENT.SEEK_TO_SECOND, function() {
+          self.log('SEEK_TO_SECOND');
+        });
+
+        player.on(this.player.EVENT.STATE_CHANGED, function() {
+          self.log('STATE_CHANGED');
+        });
+
+        player.on(this.player.EVENT.ON_PROGRESS, function() {
+          self.log('ON_PROGRESS');
+        });
+
+        player.on(this.player.EVENT.NEW_SONG_PLAYING, function() {
+          self.log('NEW_SONG_PLAYING');
+        });
+
+        return this;
     },
 
 
@@ -74,6 +144,9 @@ Player.prototype = {
     },
 
 
+    /**
+     *
+     */
     _modifierButtonsBind: function() {
         var player = this.getPlayer();
 
@@ -96,6 +169,9 @@ Player.prototype = {
     },
 
 
+    /**
+     *
+     */
     _getterButtonsBind: function() {
         var player = this.getPlayer();
 
@@ -135,6 +211,23 @@ Player.prototype = {
     },
 
 
+    /**
+     *
+     */
+    _consoleButtonsBind: function() {
+        var self = this;
+
+        this.el.find('.console .clear').on('click', function() {
+          self.clearLog();
+        });
+
+        return this;
+    },
+
+
+    /**
+     *
+     */
     _appendSongsList: function() {
       var songBitTpl = _.template('<li><a href="javascript:;"><%- title %></a></li>'),
           player = this.getPlayer();
@@ -157,9 +250,15 @@ Player.prototype = {
     },
 
 
-
+    /**
+     *
+     */
     getPlayer: function() {
-      this.player = this.player || window.SocialMusicPlayer.create({
+      if (null !== this.player) {
+        return this.player;
+      }
+
+      this.player = window.SocialMusicPlayer.create({
         elID: this.getPlayerID(),
         width: '100%',
         height: '100%'
@@ -174,6 +273,9 @@ Player.prototype = {
     },
 
 
+    /**
+     *
+     */
     _getPlayerTemplate: function () {
         return `
             <div>
