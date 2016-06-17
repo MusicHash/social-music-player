@@ -110,16 +110,23 @@ class YoutubeProvider extends BaseProvider {
      *
      */
     isPlaying() {
-        console.log('isPlaying');
-    }
+        let state = this.player.getPlayerState();
 
+        return new Promise((resolve, reject) => {
+            resolve(window.YT.PlayerState.PLAYING === state);
+        });
+    }
 
 
     /**
      *
      */
     getCurrentSecond() {
-        console.log('getCurrentSecond');
+        let second = this.player.getCurrentTime();
+
+        return new Promise((resolve, reject) => {
+            resolve(second);
+        });
     }
 
 
@@ -127,7 +134,11 @@ class YoutubeProvider extends BaseProvider {
      *
      */
     getVolume() {
-        console.log('getVolume');
+        let volume = this.player.getVolume();
+
+        return new Promise((resolve, reject) => {
+            resolve(volume);
+        });
     }
 
 

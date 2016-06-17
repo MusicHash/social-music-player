@@ -80,16 +80,23 @@ class VimeoProvider extends BaseProvider {
      *
      */
     isPlaying() {
-        console.log('isPlaying');
+        return new Promise((resolve, reject) => {
+            this.player.api('paused', isPaused => {
+                resolve(!isPaused);
+            });
+        });
     }
-
 
 
     /**
      *
      */
     getCurrentSecond() {
-        console.log('getCurrentSecond');
+        return new Promise((resolve, reject) => {
+            this.player.api('getCurrentTime', second => {
+                resolve(second);
+            });
+        });
     }
 
 
@@ -97,7 +104,11 @@ class VimeoProvider extends BaseProvider {
      *
      */
     getVolume() {
-        console.log('getVolume');
+        return new Promise((resolve, reject) => {
+            this.player.api('getVolume', volume => {
+                resolve(volume);
+            });
+        });
     }
 
 
