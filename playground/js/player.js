@@ -31,7 +31,9 @@ Player.prototype = {
      *
      */
     render: function() {
-        let playerEl = _.template($(this._getPlayerTemplate()).html());
+        let playerEl = _.template(this._getPlayerTemplate());
+
+        console.log(playerEl);
 
         this.el = $(playerEl({
             playerIndex: this.playerIndex,
@@ -45,7 +47,7 @@ Player.prototype = {
         this._getterButtonsBind();
         this._consoleButtonsBind();
 
-        this.log('Rendered PlayerID: '+ this.playerIndex);
+        this.log('Rendering PlayerID: '+ this.playerIndex);
 
         return this.el;
     },
