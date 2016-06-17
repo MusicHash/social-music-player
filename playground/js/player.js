@@ -75,6 +75,11 @@ Player.prototype = {
     },
 
 
+    isChecked: function(selector) {
+      return this.el.find(selector).is(':checked');
+    },
+
+
     /**
      *
      */
@@ -87,42 +92,62 @@ Player.prototype = {
         });
 
         player.on(this.player.EVENT.PLAY, function() {
+          if (!self.isChecked('.event-buttons input.play')) return;
+
           self.log('PLAY');
         });
 
         player.on(this.player.EVENT.PAUSE, function() {
+          if (!self.isChecked('.event-buttons input.pause')) return;
+
           self.log('PAUSE');
         });
 
         player.on(this.player.EVENT.VOLUME, function() {
+          if (!self.isChecked('.event-buttons input.volume')) return;
+
           self.log('VOLUME');
         });
 
         player.on(this.player.EVENT.MUTE, function() {
+          if (!self.isChecked('.event-buttons input.mute')) return;
+
           self.log('MUTE');
         });
 
         player.on(this.player.EVENT.UNMUTE, function() {
+          if (!self.isChecked('.event-buttons input.unmute')) return;
+
           self.log('UNMUTE');
         });
 
         player.on(this.player.EVENT.SEEK_TO_SECOND, function() {
+          if (!self.isChecked('.event-buttons input.seek-second')) return;
+
           self.log('SEEK_TO_SECOND');
         });
 
         player.on(this.player.EVENT.SEEK_TO_PERCENT, function() {
+          if (!self.isChecked('.event-buttons input.seek-percent')) return;
+
           self.log('SEEK_TO_PERCENT');
         });
 
         player.on(this.player.EVENT.STATE_CHANGED, function() {
+          if (!self.isChecked('.event-buttons input.state-changed')) return;
+
           self.log('STATE_CHANGED');
         });
 
-        player.on(this.player.EVENT.ON_PROGRESS, function() {
-          self.log('ON_PROGRESS');
+        player.on(this.player.EVENT.PLAY_PROGRESS, function() {
+          if (!self.isChecked('.event-buttons input.play-progress')) return;
+
+          self.log('PLAY_PROGRESS');
         });
 
         player.on(this.player.EVENT.NEW_SONG_PLAYING, function() {
+          if (!self.isChecked('.event-buttons input.new-song-playing')) return;
+
           self.log('NEW_SONG_PLAYING');
         });
 
@@ -359,6 +384,7 @@ Player.prototype = {
                       <dd><label><input class="play" type="checkbox" checked="checked" /> play</label></dd>
                       <dd><label><input class="pause" type="checkbox" checked="checked" /> pause</label></dd>
                       <dd><label><input class="finish" type="checkbox" checked="checked" /> finish</label></dd>
+                      <dd><label><input class="state-changed" type="checkbox" checked="checked" /> stateChanged</label></dd>
                       <dd><label><input class="seek-second" type="checkbox" checked="checked" /> seekSecond</label></dd>
                       <dd><label><input class="seek-percent" type="checkbox" checked="checked" /> seekPercent</label></dd>
                       <dd><label><input class="mute" type="checkbox" checked="checked" /> mute</label></dd>
