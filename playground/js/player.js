@@ -106,12 +106,6 @@ Player.prototype = {
           self.log('PAUSE');
         });
 
-        player.on(this.player.EVENT.VOLUME, function() {
-          if (!self.isChecked('.event-buttons input.volume')) return;
-
-          self.log('VOLUME');
-        });
-
         player.on(this.player.EVENT.MUTE, function() {
           if (!self.isChecked('.event-buttons input.mute')) return;
 
@@ -124,34 +118,40 @@ Player.prototype = {
           self.log('UNMUTE');
         });
 
+        player.on(this.player.EVENT.VOLUME, function() {
+          if (!self.isChecked('.event-buttons input.volume')) return;
+
+          self.log('VOLUME ' + JSON.stringify(arguments[0]));
+        });
+
         player.on(this.player.EVENT.SEEK_TO_SECOND, function() {
           if (!self.isChecked('.event-buttons input.seek-second')) return;
 
-          self.log('SEEK_TO_SECOND');
+          self.log('SEEK_TO_SECOND: ' + JSON.stringify(arguments[0]));
         });
 
         player.on(this.player.EVENT.SEEK_TO_PERCENT, function() {
           if (!self.isChecked('.event-buttons input.seek-percent')) return;
 
-          self.log('SEEK_TO_PERCENT');
+          self.log('SEEK_TO_PERCENT: ' + JSON.stringify(arguments[0]));
         });
 
         player.on(this.player.EVENT.STATE_CHANGED, function() {
           if (!self.isChecked('.event-buttons input.state-changed')) return;
 
-          self.log('STATE_CHANGED');
+          self.log('STATE_CHANGED: ' + JSON.stringify(arguments[0]));
         });
 
         player.on(this.player.EVENT.PLAY_PROGRESS, function() {
           if (!self.isChecked('.event-buttons input.play-progress')) return;
 
-          self.log('PLAY_PROGRESS');
+          self.log('PLAY_PROGRESS: ' + JSON.stringify(arguments[0]));
         });
 
         player.on(this.player.EVENT.NEW_SONG_PLAYING, function() {
           if (!self.isChecked('.event-buttons input.new-song-playing')) return;
 
-          self.log('NEW_SONG_PLAYING');
+          self.log('NEW_SONG_PLAYING: ' + JSON.stringify(arguments[0]));
         });
 
         return this;
