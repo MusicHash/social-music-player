@@ -126,6 +126,14 @@ class YoutubeProvider extends BaseProvider {
     /**
      *
      */
+    getVolume() {
+        console.log('getVolume');
+    }
+
+
+    /**
+     *
+     */
     getDuration() {
         let duration = this.player.getDuration();
 

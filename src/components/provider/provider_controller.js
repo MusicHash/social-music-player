@@ -68,6 +68,16 @@ class ProviderController extends BaseController {
     /**
      *
      */
+    getVolume() {
+        return this._ensurePromise(this.getProvider().getVolume, volume => {
+            return 'undefined' === typeof volume || null === volume || 0 >= volume;
+        });
+    }
+
+
+    /**
+     *
+     */
     getDuration() {
         return this._ensurePromise(this.getProvider().getDuration, duration => {
             return 'undefined' === typeof duration || null === duration || 0 >= duration;

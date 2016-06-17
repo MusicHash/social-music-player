@@ -111,7 +111,23 @@ class SoundCloudProvider extends BaseProvider {
      *
      */
     getCurrentSecond() {
-        console.log('getCurrentSecond');
+        return new Promise((resolve, reject) => {
+            this.widget.getPosition(second => {
+                resolve(second / 1000);
+            });
+        });
+    }
+
+
+    /**
+     *
+     */
+    getVolume() {
+        return new Promise((resolve, reject) => {
+            this.widget.getVolume(volume => {
+                resolve(volume);
+            });
+        });
     }
 
 

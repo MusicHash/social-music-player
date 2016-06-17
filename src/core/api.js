@@ -55,6 +55,14 @@ class API extends BaseObject {
     /**
      *
      */
+    getVolume() {
+        return this.INITIALIZE.PROVIDER.getVolume();
+    }
+
+
+    /**
+     *
+     */
     getDuration() {
         return this.INITIALIZE.PROVIDER.getDuration();
     }
