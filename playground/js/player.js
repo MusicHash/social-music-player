@@ -75,6 +75,9 @@ Player.prototype = {
     },
 
 
+    /**
+     *
+     */
     isChecked: function(selector) {
       return this.el.find(selector).is(':checked');
     },
