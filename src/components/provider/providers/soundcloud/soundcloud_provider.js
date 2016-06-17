@@ -100,7 +100,6 @@ class SoundCloudProvider extends BaseProvider {
     isPlaying() {
         return new Promise((resolve, reject) => {
             this.widget.isPaused(isPaused => {
-                console.log(!isPaused);
                 resolve(!isPaused);
             });
         });
