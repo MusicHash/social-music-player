@@ -76,8 +76,8 @@ class YoutubeProvider extends BaseProvider {
      */
     _initPlayer() {
         this.player = new window.YT.Player(this.getPlayerContainer(), {
-            width: this.config.width,
-            height: this.config.height,
+            width: this.config.widthPlayer,
+            height: this.config.heightPlayer,
 
             events: {
                 onReady: this.onPlayerReady.bind(this),

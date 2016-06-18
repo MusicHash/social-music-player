@@ -39,6 +39,9 @@ class Initialize extends BaseObject {
         DOM.append(this.CONTROLS.render(), DOM.$$(ControlsController.selectorClass));
         DOM.append(this.PROVIDER.render(), DOM.$$(ProviderController.selectorClass));
 
+        DOM.$$(config.elID).style.width = config.width;
+        DOM.$$(config.elID).style.height = config.height;
+
         Event.fire(SYSTEM_EVENTS.PLAYER_INITIALIZED);
 
         return this;

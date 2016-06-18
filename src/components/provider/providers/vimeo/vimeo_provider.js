@@ -57,8 +57,8 @@ class VimeoProvider extends BaseProvider {
 
         this.el = document.createElement('iframe');
         this.el.id = VimeoProvider.CLASS;
-        this.el.width = this.config.width;
-        this.el.height = this.config.height;
+        this.el.width = this.config.widthPlayer;
+        this.el.height = this.config.heightPlayer;
         this.hide();
 
         return this.el;

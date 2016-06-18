@@ -13,6 +13,9 @@ let CONFIG_DEFAULTS = {
     width: '640px',
     height: '480px',
 
+    widthPlayer: '100%',
+    heightPlayer: '100%',
+
     logLevel: 'DEBUG'
 };
 
