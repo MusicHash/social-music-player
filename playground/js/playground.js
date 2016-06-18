@@ -22,10 +22,13 @@ Playground.prototype = {
     /**
      *
      */
-    addPlayer: function() {
-      var player = new Player({
+    addPlayer: function(playerProperties) {
+      playerProperties = playerProperties || {};
+
+      var player = new window.Player({
         playerIndex: this.idx,
-        songsList: window.songsList
+        songsList: window.songsList,
+        playerProperties: playerProperties
       });
 
       $(this.appendTo).append(player.render());

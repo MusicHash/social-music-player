@@ -24,6 +24,7 @@ Player.prototype = {
     init: function(settings) {
       this.playerIndex = settings.playerIndex || 0;
       this.songsList = settings.songsList || [];
+      this.playerProperties = settings.playerProperties || {};
     },
 
 
@@ -309,11 +310,11 @@ Player.prototype = {
         return this.player;
       }
 
-      this.player = window.SocialMusicPlayer.create({
+      this.player = window.SocialMusicPlayer.create(Object.assign({
         elID: this.getPlayerID(),
         width: '100%',
         height: '100%'
-      });
+      }, this.playerProperties));
 
       return this.player;
     },
