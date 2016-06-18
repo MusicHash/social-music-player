@@ -1,4 +1,4 @@
-var getSongsList = function() {
+window.getSongsList = function() {
      return {
         'alan_walker_faded': {
             provider: window.SocialMusicPlayer.PROVIDERS.YOUTUBE,

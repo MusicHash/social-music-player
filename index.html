@@ -15,27 +15,30 @@
     <script src="js/playground.js"></script>
 
     <script type="text/javascript">
-      (function () {
-          window.SMPAsyncInit = function() {
-              window.songsList = getSongsList();
+      window.onerror = function() {
+        alert(JSON.stringify(arguments));
+      };
 
-              var playground = new Playground();
-              playground.addPlayer({
-                width: '100%',
-                controls: false
-              });
+      $(document).ready(function() {
+          window.SMPAsyncInit = function() {
+            window.songsList = window.getSongsList();
+
+            var playground = new window.Playground();
+            playground.addPlayer({
+              width: '100%',
+              controls: false
+            });
           };
 
           (function(d, s, id){
-              var js, sjs = d.getElementsByTagName(s)[0];
-              if (d.getElementById(id)) return;
-              js = d.createElement(s); js.id = id;
-              js.src = '../dist/js/smp.min.js';
-              sjs.parentNode.insertBefore(js, sjs);
+            var js, sjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = '../dist/js/smp.min.js';
+            sjs.parentNode.insertBefore(js, sjs);
           }(document, 'script', 'social-music-player-sdk'));
-      })();
+      });
     </script>
-
   </head>
 
   <body>
