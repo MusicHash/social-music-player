@@ -258,8 +258,6 @@ class ControlsController extends BaseController {
     showPlayButton() {
         DOM.$$('.play-pause .play').classList.remove('hide');
         DOM.$$('.play-pause .pause').classList.add('hide');
-
-        console.log('SHOW PLAY');
     }
 
 
@@ -270,8 +268,6 @@ class ControlsController extends BaseController {
     showPauseButton() {
         DOM.$$('.play-pause .play').classList.add('hide');
         DOM.$$('.play-pause .pause').classList.remove('hide');
-
-        console.log('SHOW PAUSE');
     }
 
 
