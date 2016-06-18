@@ -4,12 +4,12 @@
 /**
  *
  */
-var Playground = function() {
+window.Playground = function() {
     this.init();
 };
 
 
-Playground.prototype = {
+window.Playground.prototype = {
     idx: 0,
     appendTo: '.players_container',
 

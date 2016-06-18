@@ -4,12 +4,12 @@
 /**
  *
  */
-var Player = function(settings) {
+window.Player = function(settings) {
     this.init(settings);
 };
 
 
-Player.prototype = {
+window.Player.prototype = {
     player: null,
     playerIndex: null,
     playerSelector: '#social-music-player',
