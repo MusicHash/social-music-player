@@ -91,7 +91,7 @@ Player.prototype = {
             self = this;
 
         player.on(this.player.EVENT.PLAYER_INITIALIZED, function() {
-          self.log('PLAYER_INITIALIZED');
+          self.log('PLAYER_INITIALIZED: Player ready');
         });
 
         player.on(this.player.EVENT.PLAY, function() {
