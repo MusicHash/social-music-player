@@ -138,7 +138,7 @@ class ControlsController extends BaseController {
     mouseVolumeControl(e) {
         let mouseX = e.pageX,
 			volumeObj = DOM.$$('.volume-progress'),
-			volumeObjWidth = DOM.getWidth('.volume-progress'),
+			volumeObjWidth = DOM.getDimensions('.volume-progress').width,
 			volume = 0;
 
         switch(e.type) {
@@ -206,7 +206,7 @@ class ControlsController extends BaseController {
     mouseProgressScrubbar(e) {
         let mouseX = e.pageX,
             scrubber = DOM.$$('.progress-bar'),
-            scrubberWidth = DOM.getWidth('.progress-bar');
+            scrubberWidth = DOM.getDimensions('.progress-bar').width;
 
         switch(e.type) {
            	case 'click':
@@ -290,10 +290,10 @@ class ControlsController extends BaseController {
     setPlayerWidth() {
         let config = Config.create();
 
-        let playerEl = DOM.getWidth(config.elID),
-            playPauseEl = DOM.getWidth(config.elID+' .play-pause'),
-            currentTimeEl = DOM.getWidth(config.elID+' .current-time'),
-            durationEl = DOM.getWidth(config.elID+' .duration'),
+        let playerEl = DOM.getDimensions(config.elID).width,
+            playPauseEl = DOM.getDimensions(config.elID+' .play-pause').width,
+            currentTimeEl = DOM.getDimensions(config.elID+' .current-time').width,
+            durationEl = DOM.getDimensions(config.elID+' .duration').width,
             slack = 44;
 
         DOM.$$(config.elID+' .controls-list').style.width = playerEl - playPauseEl - 20 + 'px';

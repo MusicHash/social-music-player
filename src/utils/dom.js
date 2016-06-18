@@ -97,8 +97,13 @@ class DOM {
     }
 
 
-    getWidth(selector) {
-        return Number(this.getStyle(selector).width.replace('px', ''));
+    getDimensions(selector) {
+        let style = this.getStyle(selector);
+
+        return {
+            width: Number(style.width.replace('px', '')),
+            height: Number(style.height.replace('px', ''))
+        };
     }
 
 

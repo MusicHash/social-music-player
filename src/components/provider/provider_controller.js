@@ -1,6 +1,7 @@
 import BaseController from '../../base/base_controller';
 import _ from '../../utils/__';
 import DOM from '../../utils/dom';
+import Config from '../../core/config';
 import Event from 'event-emitter-js';
 import {PROVIDERS_LIST} from '../../constants/providers';
 import {SYSTEM_EVENTS} from '../../constants/events';
@@ -24,6 +25,9 @@ class ProviderController extends BaseController {
     volume = 1;
 
 
+    /**
+     *
+     */
     init() {
         this.subscribe();
     }
@@ -101,7 +105,8 @@ class ProviderController extends BaseController {
      *
      */
     getVideoWidth() {
-        let width = 123;
+        let config = Config.create(),
+            width = DOM.getDimensions(config.elID).width;
 
         return new Promise((resolve, reject) => {
             resolve(width);
@@ -113,7 +118,8 @@ class ProviderController extends BaseController {
      *
      */
     getVideoHeight() {
-        let height = 321;
+        let config = Config.create(),
+            height = DOM.getDimensions(config.elID).height;
 
         return new Promise((resolve, reject) => {
             resolve(height);
@@ -137,7 +143,6 @@ class ProviderController extends BaseController {
 
 
     /**
-     *
      *
      */
     seekToSecond(second) {
