@@ -32,23 +32,23 @@ window.Player.prototype = {
      *
      */
     render: function() {
-        let playerEl = _.template(this._getPlayerTemplate());
+      let playerEl = _.template(this._getPlayerTemplate());
 
-        this.el = $(playerEl({
-            playerIndex: this.playerIndex,
-            elID: this.getPlayerID().substr(1)
-          }));
+      this.el = $(playerEl({
+          playerIndex: this.playerIndex,
+          elID: this.getPlayerID().substr(1)
+        }));
 
-        this._subscribePlayerEvents()
-          ._appendSongsList()
-          ._simpleButtonsBind()
-          ._modifierButtonsBind()
-          ._getterButtonsBind()
-          ._consoleButtonsBind();
+      this._subscribePlayerEvents()
+        ._appendSongsList()
+        ._simpleButtonsBind()
+        ._modifierButtonsBind()
+        ._getterButtonsBind()
+        ._consoleButtonsBind();
 
-        this.log('Rendering PlayerID: '+ this.playerIndex);
+      this.log('Rendering PlayerID: '+ this.playerIndex);
 
-        return this.el;
+      return this.el;
     },
 
 
