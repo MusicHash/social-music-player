@@ -120,6 +120,25 @@ class API extends BaseObject {
     }
 
 
+    /**
+     *
+     */
+    fullscreenOpen() {
+        Event.fire(SYSTEM_EVENTS.FULLSCREEN_OPEN);
+
+        return this;
+    }
+
+
+    /**
+     *
+     */
+    fullscreenClose() {
+        Event.fire(SYSTEM_EVENTS.FULLSCREEN_CLOSE);
+
+        return this;
+    }
+
 
     /**
      *

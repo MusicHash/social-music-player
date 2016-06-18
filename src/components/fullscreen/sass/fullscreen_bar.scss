@@ -1,0 +1,34 @@
+.fullscreen_bar {
+    text-align: right;
+    padding: 4px 10px 0;
+    display: none;
+}
+
+.smp.social_music_player.fullscreen {
+    position: fixed;
+    left: 0;
+    top: 24px;
+    right: 0;
+    bottom: 0;
+
+    .fullscreen_bar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        height: 28px;
+        display: block;
+
+        background-color: black;
+
+
+        a {
+            color: white;
+            text-decoration: none;
+
+            &:hover {
+                color: gray;
+            }
+        }
+    }
+}

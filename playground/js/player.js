@@ -155,6 +155,18 @@ Player.prototype = {
           self.log('NEW_SONG_PLAYING: ' + JSON.stringify(arguments[0]));
         });
 
+        player.on(this.player.EVENT.FULLSCREEN_OPEN, function() {
+          if (!self.isChecked('.event-buttons input.fullscreen')) return;
+
+          self.log('FULLSCREEN_OPEN');
+        });
+
+        player.on(this.player.EVENT.FULLSCREEN_CLOSE, function() {
+          if (!self.isChecked('.event-buttons input.fullscreen-close')) return;
+
+          self.log('FULLSCREEN CLOSE');
+        });
+
         return this;
     },
 
@@ -199,6 +211,14 @@ Player.prototype = {
 
         this.el.find('.modifier-buttons .unmute').on('click', function() {
           player.unmute();
+        });
+
+        this.el.find('.modifier-buttons .fullscreen').on('click', function() {
+          player.fullscreenOpen();
+        });
+
+        this.el.find('.modifier-buttons .fullscreen-close').on('click', function() {
+          player.fullscreenClose();
         });
 
         this.el.find('.modifier-buttons .url').on('click', function() {
@@ -369,6 +389,8 @@ Player.prototype = {
                       <dd><button class="volume">Volume <input type="text" size="3" maxlength="3" value="0.8" /></button></dd>
                       <dd><button class="mute">Mute</button></dd>
                       <dd><button class="unmute">Unmute</button></dd>
+                      <dd><button class="fullscreen">Fullscreen</button></dd>
+                      <dd><button class="fullscreen-close">Fullscreen Close</button></dd>
                       <dd><button class="url">Vimeo <input type="text" size="30" maxlength="80" value="https://vimeo.com/126864213" /></button></dd>
                       <dd><button class="url">Youtube <input type="text" size="50" maxlength="80" value="https://www.youtube.com/watch?v=w319Ew1quF0" /></button></dd>
                     </dl>
@@ -404,6 +426,8 @@ Player.prototype = {
                       <dd><label><input class="mute" type="checkbox" checked="checked" /> mute</label></dd>
                       <dd><label><input class="unmute" type="checkbox" checked="checked" /> unmute</label></dd>
                       <dd><label><input class="volume" type="checkbox" checked="checked" /> volume</label></dd>
+                      <dd><label><input class="fullscreen" type="checkbox" checked="checked" /> fullscreen</label></dd>
+                      <dd><label><input class="fullscreen-close" type="checkbox" checked="checked" /> fullscreen close</label></dd>
                     </dl>
 
                     <dl class="console">
