@@ -45,6 +45,10 @@
         .info {
             .title {
                 float: left;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 50%;
             }
 
             .buttons-list {
