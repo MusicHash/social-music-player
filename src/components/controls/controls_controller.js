@@ -21,6 +21,8 @@ class ControlsController extends BaseController {
     static CLASS = 'ControlsController';
     static selectorClass = '.smp_controller';
 
+    song = null;
+
 
     /**
      *
@@ -69,32 +71,43 @@ class ControlsController extends BaseController {
      *
      */
     onSongChange(song) {
+        this.song = song;
         this.onResize();
-
-        this.onProgressUpdate({
-            percent: 0,
-            seconds: 0
-        });
-
-        DOM.$$('.controls-list .title').innerHTML = song.title;
-        DOM.$$('.controls-list .duration').innerHTML = _.formatTime(song.duration);
-
-        this.showActiveProvider(song.provider);
+        this._updateSong();
     }
 
 
     /**
      *
      */
-     showActiveProvider(provider) {
+    _updateSong() {
+        this.onProgressUpdate({
+            percent: 0,
+            seconds: 0
+        });
+
+        DOM.$$('.controls-list .title').innerHTML = this.song.title;
+        DOM.$$('.controls-list .duration').innerHTML = _.formatTime(this.song.duration);
+
+        this.showActiveProvider(this.song.provider, this.song.url);
+    }
+
+
+    /**
+     *
+     */
+     showActiveProvider(provider, url) {
          let activeProviderClass = this.getProviderClassName(provider),
              providersClassNames = ['youtube', 'vimeo', 'soundcloud'];
 
         providersClassNames.forEach(className => {
-            if (className === activeProviderClass)
-                return DOM.$$('.controls-list .providers .'+className).classList.remove('hide');
+            if (className === activeProviderClass) {
+                DOM.$$('.controls-list .providers .'+ className +' a').href = url;
 
-            DOM.$$('.controls-list .providers .'+className).classList.add('hide');
+                return DOM.$$('.controls-list .providers .'+className).classList.remove('hide');
+            }
+
+            DOM.$$('.controls-list .providers .'+ className).classList.add('hide');
         });
 
      }
