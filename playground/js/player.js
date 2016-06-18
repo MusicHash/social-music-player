@@ -216,51 +216,44 @@ Player.prototype = {
         var player = this.getPlayer();
 
         this.el.find('.getter-buttons .current-second').on('click', function() {
-          player.getCurrentSecond().then(function() {
-            console.log('Current Second');
-            console.log(arguments);
+          player.getCurrentSecond().then(function(currentSecond) {
+            console.log('Current Second: '+ currentSecond);
           });
         });
 
         this.el.find('.getter-buttons .duration').on('click', function() {
-          player.getDuration().then(function() {
-            console.log('Duration');
-            console.log(arguments);
+          player.getDuration().then(function(duration) {
+            console.log('Duration: '+ duration);
           });
         });
 
         this.el.find('.getter-buttons .volume').on('click', function() {
-          player.getVolume().then(function() {
-            console.log('Volume');
-            console.log(arguments);
+          player.getVolume().then(function(volume) {
+            console.log('Volume: '+ volume);
           });
         });
 
         this.el.find('.getter-buttons .is-playing').on('click', function() {
-          player.isPlaying().then(function() {
-            console.log('isPlaying');
-            console.log(arguments);
+          player.isPlaying().then(function(isPlaying) {
+            console.log('isPlaying: '+ isPlaying);
           });
         });
 
         this.el.find('.getter-buttons .url').on('click', function() {
-          player.getURL().then(function() {
-            console.log('URL');
-            console.log(arguments);
+          player.getURL().then(function(url) {
+            console.log('URL: '+ url);
           });
         });
 
         this.el.find('.getter-buttons .video-width').on('click', function() {
-          player.getVideoWidth().then(function() {
-            console.log('Video Width');
-            console.log(arguments);
+          player.getVideoWidth().then(function(videoWidth) {
+            console.log('Video Width: '+ videoWidth);
           });
         });
 
         this.el.find('.getter-buttons .video-height').on('click', function() {
-          player.getVideoHeight().then(function() {
-            console.log('Video Height');
-            console.log(arguments);
+          player.getVideoHeight().then(function(videoHeight) {
+            console.log('Video Height: '+ videoHeight);
           });
         });
 
