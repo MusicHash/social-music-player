@@ -39,12 +39,12 @@ window.Player.prototype = {
             elID: this.getPlayerID().substr(1)
           }));
 
-        this._subscribePlayerEvents();
-        this._appendSongsList();
-        this._simpleButtonsBind();
-        this._modifierButtonsBind();
-        this._getterButtonsBind();
-        this._consoleButtonsBind();
+        this._subscribePlayerEvents()
+          ._appendSongsList()
+          ._simpleButtonsBind()
+          ._modifierButtonsBind()
+          ._getterButtonsBind()
+          ._consoleButtonsBind();
 
         this.log('Rendering PlayerID: '+ this.playerIndex);
 
