@@ -34,3 +34,5 @@ node_modules
 
 #build dir
 dist
+
+.publish
