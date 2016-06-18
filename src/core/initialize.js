@@ -17,7 +17,6 @@ class Initialize extends BaseObject {
 
 
     LAYOUT = LayoutController.create();
-    CONTROLS = ControlsController.create();
     PROVIDER = ProviderController.create();
 
 
@@ -25,7 +24,7 @@ class Initialize extends BaseObject {
      *
      */
     init(params) {
-        Config.create(params);
+        this.config = Config.create(params);
     }
 
 
@@ -33,16 +32,46 @@ class Initialize extends BaseObject {
      *
      */
     layoutRender() {
-        let config = Config.create();
-
-        DOM.append(this.LAYOUT.render(), DOM.$$(config.elID));
-        DOM.append(this.CONTROLS.render(), DOM.$$(ControlsController.selectorClass));
-        DOM.append(this.PROVIDER.render(), DOM.$$(ProviderController.selectorClass));
-
-        DOM.$$(config.elID).style.width = config.width;
-        DOM.$$(config.elID).style.height = config.height;
+        this._renderLayout()
+            ._renderProvider()
+            ._renderControls();
 
         Event.fire(SYSTEM_EVENTS.PLAYER_INITIALIZED);
+
+        return this;
+    }
+
+
+    /**
+     *
+     */
+    _renderLayout() {
+        DOM.append(this.LAYOUT.render(), DOM.$$(this.config.elID));
+
+        return this;
+    }
+
+
+    /**
+     *
+     */
+    _renderProvider() {
+        DOM.append(this.PROVIDER.render(), DOM.$$(ProviderController.selectorClass));
+
+        DOM.$$(this.config.elID).style.width = this.config.width;
+        DOM.$$(this.config.elID).style.height = this.config.height;
+
+        return this;
+    }
+
+
+    /**
+     *
+     */
+    _renderControls() {
+        if (true !== this.config.controls) return this;
+
+        DOM.append(ControlsController.create().render(), DOM.$$(ControlsController.selectorClass));
 
         return this;
     }

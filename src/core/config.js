@@ -5,10 +5,11 @@ let CONFIG_DEFAULTS = {
     elID: '#social-music-player',
 
     loop: false,
-    volume: 100,
+    volume: 1,
     fadeoutTime: 2, // seconds
 
     fullscreen: true,
+    controls: false,
 
     width: '640px',
     height: '480px',
