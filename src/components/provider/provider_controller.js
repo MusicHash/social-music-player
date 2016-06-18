@@ -89,8 +89,10 @@ class ProviderController extends BaseController {
      *
      */
     getURL() {
-        return this._ensurePromise(this.getProvider().getURL, url => {
-            return 'undefined' === typeof url || null === url;
+        let url = this.getProvider().getModel().getURL();
+
+        return new Promise((resolve, reject) => {
+            resolve(url);
         });
     }
 
@@ -99,8 +101,10 @@ class ProviderController extends BaseController {
      *
      */
     getVideoWidth() {
-        return this._ensurePromise(this.getProvider().getVideoWidth, width => {
-            return 'undefined' === typeof width || null === width || 0 >= width;
+        let width = 123;
+
+        return new Promise((resolve, reject) => {
+            resolve(width);
         });
     }
 
@@ -109,8 +113,10 @@ class ProviderController extends BaseController {
      *
      */
     getVideoHeight() {
-        return this._ensurePromise(this.getProvider().getVideoHeight, height => {
-            return 'undefined' === typeof height || null === height || 0 >= height;
+        let height = 321;
+
+        return new Promise((resolve, reject) => {
+            resolve(height);
         });
     }
 
@@ -119,7 +125,6 @@ class ProviderController extends BaseController {
 
 
     /**
-     *
      *
      */
     seekToPercent(percent) {
@@ -224,9 +229,10 @@ class ProviderController extends BaseController {
 
         this.getDuration().then(duration => {
             Event.fire(SYSTEM_EVENTS.NEW_SONG_PLAYING, {
-                provider: songModel.provider,
-                title: songModel.title,
-                duration: duration
+                provider: songModel.getProvider(),
+                title: songModel.getTitle(),
+                duration: duration,
+                url: songModel.getURL()
             });
         });
     }

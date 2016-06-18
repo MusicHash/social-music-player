@@ -12,9 +12,44 @@ let _DEFAULTS = {
 class SongModel extends BaseModel {
     static CLASS = 'SongModel';
 
+    /**
+     *
+     */
     init(data) {
         // init defaults.
         _.merge(this, _DEFAULTS, data);
+    }
+
+
+    /**
+    *
+    */
+    getID() {
+        return this.id;
+    }
+
+
+    /**
+     *
+     */
+    getTitle() {
+        return this.title;
+    }
+
+
+    /**
+     *
+     */
+    getProvider() {
+        return this.provider;
+    }
+
+
+    /**
+     *
+     */
+    getURL() {
+        return this.PROVIDER_URL + this.getID();
     }
 }
 

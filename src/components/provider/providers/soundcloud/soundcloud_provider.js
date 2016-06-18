@@ -143,30 +143,6 @@ class SoundCloudProvider extends BaseProvider {
     }
 
 
-    /**
-     *
-     */
-    getURL() {
-        console.log('getURL');
-    }
-
-
-    /**
-     *
-     */
-    getVideoWidth() {
-        console.log('getVideoWidth');
-    }
-
-
-    /**
-     *
-     */
-    getVideoHeight() {
-        console.log('getVideoHeight');
-    }
-
-
     /********************** MODIFIERS **********************/
 
 

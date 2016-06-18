@@ -60,6 +60,7 @@ class ControlsController extends BaseController {
         Event.on(SYSTEM_EVENTS.VOLUME, this.onVolume.bind(this));
         Event.on(SYSTEM_EVENTS.MUTE, this.onMute.bind(this));
         Event.on(SYSTEM_EVENTS.UNMUTE, this.onUnmute.bind(this));
+
         window.addEventListener(DOM_EVENTS.ON_RESIZE, this.onResize.bind(this), true);
     }
 

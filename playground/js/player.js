@@ -213,47 +213,48 @@ Player.prototype = {
      *
      */
     _getterButtonsBind: function() {
-        var player = this.getPlayer();
+        var player = this.getPlayer(),
+            self = this;
 
         this.el.find('.getter-buttons .current-second').on('click', function() {
           player.getCurrentSecond().then(function(currentSecond) {
-            console.log('Current Second: '+ currentSecond);
+            self.log('Current Second: '+ currentSecond);
           });
         });
 
         this.el.find('.getter-buttons .duration').on('click', function() {
           player.getDuration().then(function(duration) {
-            console.log('Duration: '+ duration);
+            self.log('Duration: '+ duration);
           });
         });
 
         this.el.find('.getter-buttons .volume').on('click', function() {
           player.getVolume().then(function(volume) {
-            console.log('Volume: '+ volume);
+            self.log('Volume: '+ volume);
           });
         });
 
         this.el.find('.getter-buttons .is-playing').on('click', function() {
           player.isPlaying().then(function(isPlaying) {
-            console.log('isPlaying: '+ isPlaying);
+            self.log('isPlaying: '+ isPlaying);
           });
         });
 
         this.el.find('.getter-buttons .url').on('click', function() {
           player.getURL().then(function(url) {
-            console.log('URL: '+ url);
+            self.log('URL: '+ url);
           });
         });
 
         this.el.find('.getter-buttons .video-width').on('click', function() {
           player.getVideoWidth().then(function(videoWidth) {
-            console.log('Video Width: '+ videoWidth);
+            self.log('Video Width: '+ videoWidth);
           });
         });
 
         this.el.find('.getter-buttons .video-height').on('click', function() {
           player.getVideoHeight().then(function(videoHeight) {
-            console.log('Video Height: '+ videoHeight);
+            self.log('Video Height: '+ videoHeight);
           });
         });
 
