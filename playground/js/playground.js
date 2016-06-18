@@ -42,8 +42,6 @@ Playground.prototype = {
      */
     render: function() {
         this.bumpIndex();
-
-
     },
 
 

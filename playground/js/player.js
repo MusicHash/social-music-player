@@ -93,6 +93,11 @@ Player.prototype = {
 
         player.on(this.player.EVENT.PLAYER_INITIALIZED, function() {
           self.log('PLAYER_INITIALIZED: Player ready');
+
+          setTimeout(function() {
+            player.play(self.songsList.VINAI_Anjulie_in_fire);
+          }, 1500);
+
         });
 
         player.on(this.player.EVENT.PLAY, function() {
