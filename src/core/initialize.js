@@ -5,9 +5,9 @@ import BaseObject from '../base/base_object';
 import DOM from '../utils/dom';
 import Config from './config';
 import LayoutController from '../components/layout/layout_controller';
-import ControlsController from '../components/controls/controls_controller';
+import FullscreenController from '../components/fullscreen/fullscreen_controller';
 import ProviderController from '../components/provider/provider_controller';
-
+import ControlsController from '../components/controls/controls_controller';
 
 /**
  *
@@ -16,6 +16,7 @@ class Initialize extends BaseObject {
     static CLASS = 'Initialize';
 
 
+    FULLSCREEN = FullscreenController.create();
     LAYOUT = LayoutController.create();
     PROVIDER = ProviderController.create();
 
@@ -33,6 +34,7 @@ class Initialize extends BaseObject {
      */
     layoutRender() {
         this._renderLayout()
+            ._renderFullscreen()
             ._renderProvider()
             ._renderControls();
 
@@ -47,6 +49,16 @@ class Initialize extends BaseObject {
      */
     _renderLayout() {
         DOM.append(this.LAYOUT.render(), DOM.$$(this.config.elID));
+
+        return this;
+    }
+
+
+    /**
+     *
+     */
+    _renderFullscreen() {
+        DOM.append(this.FULLSCREEN.render(), DOM.$$(FullscreenController.selectorClass));
 
         return this;
     }
