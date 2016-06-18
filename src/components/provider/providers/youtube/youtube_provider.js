@@ -137,7 +137,7 @@ class YoutubeProvider extends BaseProvider {
         let volume = this.player.getVolume();
 
         return new Promise((resolve, reject) => {
-            resolve(volume);
+            resolve(volume / 100);
         });
     }
 
