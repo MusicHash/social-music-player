@@ -8,7 +8,8 @@ const PLAYER_STATE = {
     PAUSED: 'PAUSED',
     BUFFERING: 'BUFFERING',
     ENDED: 'ENDED',
-    ENDING: 'ENDING'
+    ENDING: 'ENDING',
+    ERROR: 'ERROR'
 };
 
 export {PLAYER_STATE};

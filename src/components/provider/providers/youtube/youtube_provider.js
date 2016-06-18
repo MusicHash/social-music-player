@@ -146,7 +146,13 @@ class YoutubeProvider extends BaseProvider {
      *
      */
     getDuration() {
-        let duration = this.player.getDuration();
+        let duration = 0;
+
+        try {
+            duration = this.player.getDuration();
+        } catch(e) {
+            this.logger.info('No video, duration is set to 0');
+        }
 
         return new Promise((resolve, reject) => {
             resolve(duration);
@@ -229,7 +235,8 @@ class YoutubeProvider extends BaseProvider {
                 break;
 
             default:
-                this.logger.error('Other state: '+ event.data);
+                this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.ERROR);
+                this.logger.debug('ERROR');
                 this.progressTimeStop();
                 break;
         }

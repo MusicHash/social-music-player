@@ -53,7 +53,7 @@ class ProviderController extends BaseController {
      */
     isPlaying() {
         return this._ensurePromise(this.getProvider().isPlaying, playingState => {
-            return 'undefined' === typeof playingState || null === playingState;
+            return 'undefined' !== typeof playingState && null !== playingState;
         });
     }
 
@@ -64,7 +64,7 @@ class ProviderController extends BaseController {
      */
     getCurrentSecond() {
         return this._ensurePromise(this.getProvider().getCurrentSecond, second => {
-            return 'undefined' === typeof second || null === second || 0 >= second;
+            return 'undefined' !== typeof second && null !== second && 0 <= second;
         });
     }
 
@@ -74,7 +74,7 @@ class ProviderController extends BaseController {
      */
     getVolume() {
         return this._ensurePromise(this.getProvider().getVolume, volume => {
-            return 'undefined' === typeof volume || null === volume || 0 >= volume;
+            return 'undefined' !== typeof volume && null !== volume && 0 <= volume;
         });
     }
 
@@ -84,7 +84,7 @@ class ProviderController extends BaseController {
      */
     getDuration() {
         return this._ensurePromise(this.getProvider().getDuration, duration => {
-            return 'undefined' === typeof duration || null === duration || 0 >= duration;
+            return 'undefined' !== typeof duration && null !== duration && 0 <= duration;
         });
     }
 
@@ -386,7 +386,7 @@ class ProviderController extends BaseController {
             verifyResponseTimeout,
             executeAsyncAPI = callback => {
                 promisedFunc.bind(this.getProvider())().then(response => {
-                    if (assert(response))
+                    if (!assert(response))
                         return;
 
                     clearInterval(verifyResponseTimeout);

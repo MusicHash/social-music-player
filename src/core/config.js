@@ -9,7 +9,7 @@ let CONFIG_DEFAULTS = {
     fadeoutTime: 2, // seconds
 
     fullscreen: true,
-    controls: false,
+    controls: true,
 
     width: '640px',
     height: '480px',
