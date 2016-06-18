@@ -6,12 +6,14 @@ import _ from '../utils/__';
  */
 class BaseObject {
 
-    static create(params) {
+    /**
+     *
+     */
+    static create() {
         let $instance = new this();
 
-        if (_.isFunction($instance.init)) {
-            $instance.init(params);
-        }
+        if (_.isFunction($instance.init))
+            $instance.init.apply($instance, arguments);
 
         return $instance;
     }
@@ -28,6 +30,7 @@ class BaseObject {
 
 
     /**
+     *
      */
     _setLogLevel(logLevel) {
         this.logger = new Logger(this.constructor.CLASS, logLevel);
