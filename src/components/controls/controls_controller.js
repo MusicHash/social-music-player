@@ -89,20 +89,20 @@ class ControlsController extends BaseController {
         DOM.$$('.controls-list .title').innerHTML = this.song.title;
         DOM.$$('.controls-list .duration').innerHTML = _.formatTime(this.song.duration);
 
-        this.showActiveProvider(this.song.provider, this.song.url);
+        this.showActiveProvider();
     }
 
 
     /**
      *
      */
-     showActiveProvider(provider, url) {
-         let activeProviderClass = this.getProviderClassName(provider),
+     showActiveProvider() {
+         let activeProviderClass = this.getProviderClassName(this.song.provider),
              providersClassNames = ['youtube', 'vimeo', 'soundcloud'];
 
         providersClassNames.forEach(className => {
             if (className === activeProviderClass) {
-                DOM.$$('.controls-list .providers .'+ className +' a').href = url;
+                DOM.$$('.controls-list .providers .'+ className +' a').href = this.song.url;
 
                 return DOM.$$('.controls-list .providers .'+className).classList.remove('hide');
             }
