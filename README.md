@@ -24,29 +24,26 @@ Getting started is pretty easy. Creating and playing a video takes only few line
 The first order of business in order to do anything with SMP SDK, is to natually initialize the library. This is best done with this asynchronous code:
 
 ```
-      <div id="social-music-player"></div>
+<div id="social-music-player"></div>
 
-      <script type="text/javascript">
-        (function () {
-            window.SMPAsyncInit = function() {
+<script type="text/javascript">
+    window.SMPAsyncInit = function() {
+        var player = window.SocialMusicPlayer.create({
+            elID: '#social-music-player'
+        });
 
-                var player = window.SocialMusicPlayer.create({
-                    elID: '#social-music-player'
-                });
+        player.render();
+    };
 
-                player.render();
-            };
-
-            // SMP SDK async load
-            (function(d, s, id){
-                var js, sjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
-                js.src = '//landrover.github.io/social-music-player/js/smp.min.js';
-                sjs.parentNode.insertBefore(js, sjs);
-            }(document, 'script', 'social-music-player-sdk'));
-        })();
-      </script>
+    // SMP SDK async load
+    (function(d, s, id){
+        var js, sjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = '//landrover.github.io/social-music-player/js/smp.min.js';
+        sjs.parentNode.insertBefore(js, sjs);
+    }(document, 'script', 'social-music-player-sdk'));
+</script>
 ```
 Once all `smp.min.js` file is loaded, it will try to call the `window.SMPAsyncInit` function.
 That is why inside that function you should call the `create()` method in order to initialize the library. It is extermly important that the code is inserted exactly as is (the SDK async load part).
@@ -58,16 +55,16 @@ Full demo is available in the `./playground` dir, with more use cases.
 
 To specify for the API a spesific setting, it should passed as the first property for the contructor.
 ```
-    // overrides the default configs found in the package source.
-    // @see ./src/core/config.js
-    var config = {
-        elID: '#social-music-player',
-        width: '100%',
-        height: '100%',
-        fullscreen: true
-    };
+// overrides the default configs found in the package source.
+// @see ./src/core/config.js
+var config = {
+    elID: '#social-music-player',
+    width: '100%',
+    height: '100%',
+    fullscreen: true
+};
 
-    var player = window.SocialMusicPlayer.create(config);
+var player = window.SocialMusicPlayer.create(config);
 ```
 
 
