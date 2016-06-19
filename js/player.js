@@ -92,7 +92,7 @@ window.Player.prototype = {
             self = this;
 
         player.on(this.player.EVENT.PLAYER_INITIALIZED, function() {
-          self.log('PLAYER_INITIALIZED: Player ready);
+          self.log('PLAYER_INITIALIZED: Player Ready');
           self.log('Player Version: '+ player.getVersion());
 
           setTimeout(function() {
