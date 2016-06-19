@@ -1,9 +1,13 @@
-let extend = require('util')._extend,
+let fs = require('fs'),
     path = require('path'),
     PATH_BASE = path.resolve(__dirname),
-    webpack = require('webpack');
+    webpack = require('webpack'),
+    packageJSON = JSON.parse(fs.readFileSync('./package.json'));
 
 
+/**
+ *
+ */
 const babel = {
     entry: path.resolve(PATH_BASE, 'src/social_music_player.js'),
 
@@ -50,7 +54,10 @@ const babel = {
 };
 
 
-export var distribution = extend(babel, {
+/**
+ *
+ */
+export var distribution = Object.assign({}, babel, {
     debug: false,
 
     plugins: babel.plugins.concat([
@@ -61,18 +68,23 @@ export var distribution = extend(babel, {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: 'production'
-            }
+            },
+
+            __VERSION__: JSON.stringify(packageJSON.version)
         }),
 
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin({sourceMap: true}),
+        new webpack.optimize.UglifyJsPlugin({sourceMap: false}),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.AggressiveMergingPlugin()
     ])
 });
 
 
-export var development = extend(babel, {
+/**
+ *
+ */
+export var development = Object.assign({}, babel, {
     debug: true,
     devtool: '#eval-source-map',
 

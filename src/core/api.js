@@ -96,7 +96,7 @@ class API extends BaseObject {
      *
      */
     getVersion() {
-        return '1.0'; // fix it?
+        return __VERSION__;
     }
 
 
