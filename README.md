@@ -97,16 +97,17 @@ API instance is a result of the `window.SocialMusicPlayer.create()`
 
 ### Modifiers
 
-#### `player.play(string):API`
-#### `player.play(object):API`
+#### `player.play(url:String):API`
+#### `player.play(songModel:Object):API`
 #### `player.pause():API`
-#### `player.seek(second):API`
+#### `player.seek(second:Number):API`
 #### `player.fullscreenOpen():API`
 #### `player.fullscreenClose():API`
-#### `player.setVolume(volume):API`
 #### `player.mute():API`
 #### `player.unmute():API`
-#### `player.on(event, callback):API`
+#### `player.setVolume(volume:Number):API`
+#### `player.render():API`
+#### `player.on(event:String, callback:Function):API`
 
 ### Events
 
@@ -118,9 +119,7 @@ API instance is a result of the `window.SocialMusicPlayer.create()`
   * `UNMUTE`
   * `SEEK_TO_PERCENT`
   * `SEEK_TO_SECOND`
-  * `STATE_CHANGED`
-    This event fires whenever the player's state changes. The value that the API passes to your event listener function will specify an constant to the new player state. Possible values are:
-
+  * `STATE_CHANGED` - This event fires whenever the player's state changes. The value that the API passes to your event listener function will specify an constant to the new player state. Possible values are:
     * `PLAYING`
     * `PAUSED`
     * `BUFFERING`
@@ -132,8 +131,6 @@ API instance is a result of the `window.SocialMusicPlayer.create()`
 #### `NEW_SONG_PLAYING`
 #### `FULLSCREEN_OPEN`
 #### `FULLSCREEN_CLOSE`
-
-#### `player.render():API`
 
 
 ## Building and Modifing
