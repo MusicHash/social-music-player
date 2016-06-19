@@ -79,6 +79,9 @@ var player = window.SocialMusicPlayer.create(options);
 Call `create` with an options object to create a new player instance with the specific options required.
 Create must be binded to a var as it contains the instance of the SMP and returns an API instance.
 
+## API Playground
+[![API Playground]()](https://landrover.github.io/social-music-player/)
+
 
 ## API
 
@@ -107,19 +110,22 @@ API instance is a result of the `window.SocialMusicPlayer.create()`
 #### `player.unmute():API`
 #### `player.setVolume(volume:Number):API`
 #### `player.render():API`
-#### `player.on(event:String, callback:Function):API`
+#### `player.on(eventName:String, callback:Function):API`
 
 ### Events
+
+The SDK allows subscribing via `player.on` to any of the following values are:
 
   * `PLAYER_INITIALIZED`
   * `PLAY`
   * `PAUSE`
-  * `VOLUME`
+  * `VOLUME`:Number
   * `MUTE`
   * `UNMUTE`
-  * `SEEK_TO_PERCENT`
-  * `SEEK_TO_SECOND`
-  * `STATE_CHANGED` - This event fires whenever the player's state changes. The value that the API passes to your event listener function will specify an constant to the new player state. Possible values are:
+  * `SEEK_TO_PERCENT`:Number
+  * `SEEK_TO_SECOND`:Number
+  * `STATE_CHANGED`:String - This event fires whenever the player's state changes. The value that the API passes to your event listener function will specify an constant to the new player state. Possible values are:
+
     * `PLAYING`
     * `PAUSED`
     * `BUFFERING`
@@ -127,8 +133,8 @@ API instance is a result of the `window.SocialMusicPlayer.create()`
     * `ENDING`
     * `ERROR`
 
-#### `PLAY_PROGRESS`
-#### `NEW_SONG_PLAYING`
+#### `PLAY_PROGRESS`:Object
+#### `NEW_SONG_PLAYING`:Object
 #### `FULLSCREEN_OPEN`
 #### `FULLSCREEN_CLOSE`
 
