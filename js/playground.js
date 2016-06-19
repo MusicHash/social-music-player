@@ -10,7 +10,7 @@ window.Playground = function() {
 
 
 window.Playground.prototype = {
-    idx: 0,
+    idx: 1,
     appendTo: '.players_container',
 
 
