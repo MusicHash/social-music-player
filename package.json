@@ -1,6 +1,6 @@
 {
   "name": "social-music-player",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "## What is it?",
   "main": "dist/js/smp.min.js",
   "scripts": {
