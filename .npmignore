@@ -1,2 +1,5 @@
 src
 .publish
+.babelrc
+gulpfile.babel.js
+webpack.config.js
