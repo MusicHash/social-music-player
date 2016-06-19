@@ -58,6 +58,10 @@ class VimeoProvider extends BaseProvider {
         this.el.id = VimeoProvider.CLASS;
         this.el.width = this.config.widthPlayer;
         this.el.height = this.config.heightPlayer;
+        this.el.onload = () => {
+            this._heartbeatPlayer();
+        };
+
         this.hide();
 
         return this.el;
@@ -69,6 +73,7 @@ class VimeoProvider extends BaseProvider {
      */
     _initPlayer() {
         this.player = window.$f(VimeoProvider.CLASS);
+        this.player.addEvent('ready', this.onReady.bind(this));
     }
 
 
@@ -267,9 +272,6 @@ class VimeoProvider extends BaseProvider {
     load(song) {
         if (!this.setModel(song))
             return this.seekTo(0);
-
-        this._heartbeatPlayer();
-        this.player.addEvent('ready', this.onReady.bind(this));
 
         this.el.src = this.vimeoPath.replace('{{VIDEO_ID}}', this.model.id);
     }
