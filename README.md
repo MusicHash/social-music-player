@@ -134,10 +134,10 @@ The SDK allows subscribing via `player.on` to any of the following event:
     * `ENDING`
     * `ERROR`
 
-#### `PLAY_PROGRESS`:Object
-#### `NEW_SONG_PLAYING`:Object
-#### `FULLSCREEN_OPEN`
-#### `FULLSCREEN_CLOSE`
+  * `PLAY_PROGRESS`:Object
+  * `NEW_SONG_PLAYING`:Object
+  * `FULLSCREEN_OPEN`
+  * `FULLSCREEN_CLOSE`
 
 
 ## Building and Modifing
