@@ -1,11 +1,10 @@
-'use strict';
-
 /**
  * jscpd, finds duplicate code
  */
-const gulp = require('gulp'),
-      jscpd = require('gulp-jscpd'),
-      config = require('./../config');
+import gulp from 'gulp';
+import jscpd from 'gulp-jscpd';
+import config from '../config';
+
 
 gulp.task('jscpd', () => {
     return gulp.src([config.path.js.files])

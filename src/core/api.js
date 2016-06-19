@@ -19,7 +19,8 @@ class API extends BaseObject {
      *
      */
     init() {
-        this.logger.debug('API constructor fired');
+        this.logger.debug('API INIT');
+        this.logger.info('SMP Version: '+ this.getVersion());
     }
 
 

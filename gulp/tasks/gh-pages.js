@@ -1,14 +1,12 @@
-'use strict';
-
 /**
  * gh-pages
  */
-const gulp = require('gulp'),
-      replace = require('gulp-replace'),
-      ghPages = require('gulp-gh-pages'),
-      config = require('./../config');
+import gulp from 'gulp';
+import replace from 'gulp-replace';
+import ghPages from 'gulp-gh-pages';
+import config from '../config';
 
-gulp.task('deploy', function() {
+gulp.task('gh-pages', function() {
   return gulp
     .src(['./playground/**/*', './dist/**/*'])
     .pipe(replace(/\.\.\/dist\//g, ''))
