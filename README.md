@@ -107,6 +107,33 @@ API instance is a result of the `window.SocialMusicPlayer.create()`
 #### `player.mute():API`
 #### `player.unmute():API`
 #### `player.on(event, callback):API`
+
+### Events
+
+#### `PLAYER_INITIALIZED`
+#### `PLAY`
+#### `PAUSE`
+#### `VOLUME`
+#### `MUTE`
+#### `UNMUTE`
+#### `SEEK_TO_PERCENT`
+#### `SEEK_TO_SECOND`
+#### `STATE_CHANGED`
+
+##### This event fires whenever the player's state changes. The value that the API passes to your event listener function will specify an constant to the new player state. Possible values are:
+
+###### `PLAYING`
+###### `PAUSED`
+###### `BUFFERING`
+###### `ENDED`
+###### `ENDING`
+###### `ERROR`
+
+#### `PLAY_PROGRESS`
+#### `NEW_SONG_PLAYING`
+#### `FULLSCREEN_OPEN`
+#### `FULLSCREEN_CLOSE`
+
 #### `player.render():API`
 
 
