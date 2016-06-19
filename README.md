@@ -80,6 +80,7 @@ Call `create` with an options object to create a new player instance with the sp
 Create must be binded to a var as it contains the instance of the SMP and returns an API instance.
 
 ## API Playground
+
 [![API Playground](https://raw.githubusercontent.com/LandRover/social-music-player/master/playground/images/smp-19-6-16-preview.png)](https://landrover.github.io/social-music-player/)
 
 
@@ -114,7 +115,7 @@ API instance is a result of the `window.SocialMusicPlayer.create()`
 
 ### Events
 
-The SDK allows subscribing via `player.on` to any of the following values are:
+The SDK allows subscribing via `player.on` to any of the following event:
 
   * `PLAYER_INITIALIZED`
   * `PLAY`
