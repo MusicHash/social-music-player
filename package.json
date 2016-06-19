@@ -1,7 +1,7 @@
 {
   "name": "social-music-player",
   "version": "0.0.2",
-  "description": "",
+  "description": "## What is it?",
   "main": "dist/js/smp.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -39,5 +39,16 @@
     "svg-inline-loader": "^0.4.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
-  }
+  },
+  "dependencies": {
+    "run-sequence": "^1.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LandRover/social-music-player.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LandRover/social-music-player/issues"
+  },
+  "homepage": "https://github.com/LandRover/social-music-player#readme"
 }
