@@ -71,8 +71,8 @@ var config = {
 var player = window.SocialMusicPlayer.create(config);
 ```
 
+### Building and Modifing
 
-## Building
 Clone this repo (or fork it)
 ```
 git clone git@github.com:landrover/social-music-player.git
@@ -80,6 +80,11 @@ git clone git@github.com:landrover/social-music-player.git
 Install deps
 ```
 npm install
+```
+
+Compiling
+```
+gulp webpack:dev
 ```
 
 ### Todo
