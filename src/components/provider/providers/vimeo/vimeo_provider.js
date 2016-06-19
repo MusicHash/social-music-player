@@ -19,7 +19,6 @@ class VimeoProvider extends BaseProvider {
     player = null;
     vimeoPath = '//player.vimeo.com/video/{{VIDEO_ID}}?api=1&player_id=VimeoProvider';
 
-
     providerController = null;
 
 
@@ -117,14 +116,28 @@ class VimeoProvider extends BaseProvider {
      */
     getDuration() {
         return new Promise((resolve, reject) => {
-            this.player.api('getDuration', duration => {
-                resolve(duration);
-            });
+            try {
+                this.player.api('getDuration', duration => {
+                    resolve(duration);
+                });
+            } catch(e) {
+                this.logger.info('No video, duration is set to 0');
+                resolve(0);
+            }
         });
     }
 
 
     /********************** MODIFIERS **********************/
+
+
+    /**
+     *
+     */
+     onError() {
+         this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.ERROR);
+         this.logger.debug('Error');
+     }
 
 
     /**
@@ -234,10 +247,28 @@ class VimeoProvider extends BaseProvider {
     /**
      *
      */
+     _heartbeatPlayer(delayTime = 2000) {
+        let responseSent = false;
+
+        this.getDuration().then(duration => {
+            responseSent = true;
+        });
+
+        setTimeout(() => {
+            if (false === responseSent)
+                this.onError();
+        }, delayTime);
+     }
+
+
+    /**
+     *
+     */
     load(song) {
         if (!this.setModel(song))
             return this.seekTo(0);
 
+        this._heartbeatPlayer();
         this.player.addEvent('ready', this.onReady.bind(this));
 
         this.el.src = this.vimeoPath.replace('{{VIDEO_ID}}', this.model.id);

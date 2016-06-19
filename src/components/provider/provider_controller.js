@@ -247,7 +247,7 @@ class ProviderController extends BaseController {
      *
      */
     onPlayerStateChange(provider, playerState) {
-        if (this.getProvider().PROVIDER !== provider) {
+        if (null === this.getProvider() || this.getProvider().PROVIDER !== provider) {
             this.logger.info('Called from an inactive provider, ignoring: ' + provider);
 
             return;
@@ -263,7 +263,7 @@ class ProviderController extends BaseController {
      *
      */
     onPlayerProgressUpdate(provider, percent, seconds) {
-        if (this.getProvider().PROVIDER !== provider) {
+        if (null === this.getProvider() || this.getProvider().PROVIDER !== provider) {
             this.logger.info('Called from an inactive provider, ignoring: ' + provider);
 
             return;

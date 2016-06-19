@@ -238,11 +238,12 @@ class YoutubeProvider extends BaseProvider {
                 // prevents the initial load reporting on an error.
                 try {
                     this.providerController.onPlayerStateChange(this.PROVIDER, PLAYER_STATE.ERROR);
+
+                    this.logger.debug('ERROR');
                 } catch(e) {
                     this.logger.debug('YT Player initalized, and set state to '+ event.data);
                 }
 
-                this.logger.debug('ERROR');
                 this.progressTimeStop();
                 break;
         }
