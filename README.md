@@ -56,7 +56,7 @@ It is important to have the callback `window.SMPAsyncInit` function set prior to
 
 Full demo is available in the `./playground` dir, with more use cases or the same [LIVE DEMO](https://landrover.github.io/social-music-player/)
 
-### Config overrides
+### Options overrides
 
 To specify for the API a spesific setting, it should passed as the first property for the contructor.
 ```javascript
@@ -72,12 +72,42 @@ var options = {
 var player = window.SocialMusicPlayer.create(options);
 ```
 
+## new aka. create() - Instance
+
+#### `var player = window.SocialMusicPlayer.create(options)`
+
+Call `create` with an options object to create a new player instance with the specific options required.
+Create must be binded to a var as it contains the instance of the SMP and returns an API instance.
+
+
 ## API
 
-#### `window.SocialMusicPlayer.create(options)`
+API instance is a result of the `window.SocialMusicPlayer.create()`
 
-Call `SocialMusicPlayer.create` with an options object to create a new player instance with the specific options required.
+### Getters
 
+#### `player.isPlaying():Promise`
+#### `player.getCurrentSecond():Promise`
+#### `player.getVolume():Promise`
+#### `player.getDuration():Promise`
+#### `player.getURL():String`
+#### `player.getVideoWidth():String`
+#### `player.getVideoHeight():String`
+#### `player.getVersion():String`
+
+### Modifiers
+
+#### `player.play(string):API`
+#### `player.play(object):API`
+#### `player.pause():API`
+#### `player.seek(second):API`
+#### `player.fullscreenOpen():API`
+#### `player.fullscreenClose():API`
+#### `player.setVolume(volume):API`
+#### `player.mute():API`
+#### `player.unmute():API`
+#### `player.on(event, callback):API`
+#### `player.render():API`
 
 
 ## Building and Modifing
@@ -100,7 +130,6 @@ gulp webpack:dev
  * fix tests
  * document API
  * comments
- *
 
 
 ### Credits
