@@ -95,7 +95,7 @@ window.Player.prototype = {
           self.log('PLAYER_INITIALIZED: Player ready');
 
           setTimeout(function() {
-            player.play(self.songsList.VINAI_Anjulie_in_fire);
+            player.play(self.songsList[3]);
           }, 1500);
 
         });
@@ -309,16 +309,16 @@ window.Player.prototype = {
       var songBitTpl = _.template('<li><a href="javascript:;"><%- title %></a></li>'),
           player = this.getPlayer();
 
-      for (var songIdx in this.songsList) {
+      for (var i = 0, len = this.songsList.length; i < len; i++) {
         var songHTML = $(songBitTpl({
-          title: this.songsList[songIdx].title
+          title: this.songsList[i].title
         }));
 
         songHTML.find('a').on('click', function(songModel) {
           return function() {
             player.play(songModel);
           }
-        }(this.songsList[songIdx]));
+        }(this.songsList[i]));
 
         this.el.find('ul.songs-list').append(songHTML);
       }
