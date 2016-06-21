@@ -79,7 +79,7 @@ class __ {
             }
 
             for (let p in src) {
-                if (!src.hasOwnProperty(p) || this.isUndefined(src[p])) continue;
+                if (!src.hasOwnProperty(p) || this.isUnefined(src[p])) continue;
 
                 if (!this.isObject(src[p]) || this.isNull(src[p])) {
                     dst[p] = src[p];
@@ -169,7 +169,7 @@ class __ {
             this['is'+ type] = function(typeName) {
                 return input => {
                     return '[object '+ typeName +']' === toString.call(input);
-                }
+                };
             }(type);
         });
     }
