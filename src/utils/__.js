@@ -110,7 +110,6 @@ class __ {
      * Check to see if a string is a valid url
      *
      * @param {String} url
-     *
      * @example http://www.smp.com // true
      * @see http://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-an-url
      * @return {Boolean}
