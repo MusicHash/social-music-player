@@ -12,6 +12,8 @@ class BaseObject {
     static create() {
         let $instance = new this();
 
+console.log(_.isFunction($instance.init));
+
         if (_.isFunction($instance.init))
             $instance.init.apply($instance, arguments);
 

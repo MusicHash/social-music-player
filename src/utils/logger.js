@@ -8,29 +8,29 @@ class Logger {
     _loggerInstance;
 
     /**
-     * 
+     *
      */
     static LOG_LEVEL(level = 'DEBUG') {
         switch (level.toString().toUpperCase()) {
             case 'OFF':
                 return logger.OFF;
-            
+
             case 'DEBUG':
                 return logger.DEBUG;
-            
+
             case 'INFO':
                 return logger.INFO;
-            
+
             case 'WARN':
                 return logger.WARN;
-            
+
             case 'ERROR':
             default:
                 return logger.ERROR;
         }
     }
 
-    
+
 
 
     /**

@@ -48,6 +48,7 @@ class Initialize extends BaseObject {
      *
      */
     _renderLayout() {
+        console.log(this.config);
         DOM.append(this.LAYOUT.render(), DOM.$$(this.config.elID));
 
         return this;

@@ -97,7 +97,13 @@ class API extends BaseObject {
      *
      */
     getVersion() {
-        return __VERSION__;
+        let version = 'dev';
+
+        try {
+            version = __VERSION__;
+        } catch(e) {}
+
+        return version;
     }
 
 

@@ -1,60 +1,23 @@
+/**
+ * This providers helper methods for global utilities, named after Underscore.
+ *
+ * Cherry picked related things that matters here.
+ */
 class __ {
+
     /**
-     * Determines if a reference is a `Number`.
-     *
-     * @returns {Boolean}
+     * Injects isTypes on creation.
      */
-    isNumber(input) {
-        return 'number' === typeof input;
+    constructor() {
+        this._initTypes();
     }
 
 
     /**
-     * Determines if a reference is a `Function`.
+     * Is a given input equal to null?
      *
-     * @returns {Boolean}
-     */
-    isFunction(input) {
-        return 'function' === typeof input;
-    }
-
-
-    /**
-     * Determines if a reference is an `Object`. Unlike `typeof` in JavaScript, `null`s are not
-     * considered to be objects. Note: that JavaScript arrays are objects.
-     *
-     * @see http://jsperf.com/isobject4
-     * @returns {Boolean}
-     */
-    isObject(input) {
-        return input && 'object' === typeof input && !Array.isArray(input) && null !== input;
-    }
-
-
-    /**
-     * Determines if a reference is defined.
-     *
-     * @returns {Boolean}
-     */
-    isDefined(input) {
-        return 'undefined' !== typeof input;
-    }
-
-
-    /**
-     * Determines if a reference is undefined.
-     *
-     * @returns {Boolean}
-     */
-    isDefined(input) {
-        return 'undefined' !== typeof input;
-    }
-
-
-    /**
-     * Determines if a value is a null object.
-     *
-     * @returns {Boolean}
+     * @param {*} input
+     * @return {Boolean}
      */
     isNull(input) {
         return input === null;
@@ -62,9 +25,10 @@ class __ {
 
 
     /**
-     * Determines if a value is a array.
+     * Is a given input an Array?
      *
-     * @returns {Boolean}
+     * @param {*} input
+     * @return {Boolean}
      */
     isArray(expectedArray) {
         return Array.isArray(expectedArray);
@@ -72,29 +36,21 @@ class __ {
 
 
     /**
-     * Determines if a value is a boolean.
+     * Is a given input a boolean?
      *
-     * @returns {Boolean}
+     * @param {*} input
+     * @return {Boolean}
      */
     isBoolean(input) {
-        return 'boolean' === typeof input;
+        return true === input || false === input || '[object Boolean]' === toString.call(input);
     }
 
 
     /**
-     * Determines if a value is a string.
+     * Is a given input an HTMLEelement?
      *
-     * @returns {Boolean}
-     */
-    isString(input) {
-        return 'string' === typeof input;
-    }
-
-
-    /**
-     * Determines if a value is a element.
-     *
-     * @returns {Boolean}
+     * @param {*} el of an HTMLElement
+     * @return {Boolean}
      */
     isElement(el) {
         try {
@@ -109,11 +65,11 @@ class __ {
 
 
     /**
-     * Deep merges unlimited numbers of Objects
+     * Deep merges items from source into target, recursively, overrides if exists.
      *
-     * @param {Object} target
-     * @param {Object} source
-     * @returns {Object}
+     * @param {Object} target object.
+     * @param {Object} source object.
+     * @return {Object} Merged object.
      */
     merge(target, source) {
         // _mergeRecursive does the actual job with two arguments.
@@ -123,7 +79,7 @@ class __ {
             }
 
             for (let p in src) {
-                if (!src.hasOwnProperty(p) || !this.isDefined(src[p])) continue;
+                if (!src.hasOwnProperty(p) || this.isUndefined(src[p])) continue;
 
                 if (!this.isObject(src[p]) || this.isNull(src[p])) {
                     dst[p] = src[p];
@@ -151,22 +107,15 @@ class __ {
 
 
     /**
-     * Determines if the user enter the browser in full screen mode.
+     * Check to see if a string is a valid url
      *
-     * @returns {Boolean}
-     */
-    isFullScreen() {
-        return document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
-    }
-
-
-    /**
+     * @param {String} url
      *
-     *
+     * @example http://www.smp.com // true
      * @see http://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-an-url
-     * @returns {Boolean}
+     * @return {Boolean}
      */
-    isURL(str) {
+    isURL(url) {
       let pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
           '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
           '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
@@ -174,12 +123,16 @@ class __ {
           '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
           '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
 
-      return pattern.test(str);
+      return pattern.test(url);
     }
 
 
     /**
+     * Given a seconds value, this function formats the seconds
+     * to minutes:seconds format.
      *
+     * @param {Number} sec - Seconds to convert to minutes.
+     * @return {String} MINUTES:SECONDS format.
      */
     formatTime(sec) {
         sec = Math.round(sec);
@@ -194,10 +147,31 @@ class __ {
 
 
     /**
+     * RegExp match, returns the first bit found.
      *
+     * @param {Object} pattern
+     * @param {String} string to match
+     * @return {String} of the matched part
      */
     matchPattern(pattern, string) {
         return string.match(pattern) ? RegExp.$1 : false;
+    }
+
+
+    /**
+     * Adds some isTypes methods to the class, called during instantiation.
+     * Methods: isArguments, isFunction, isString, isNumber, isObject, isDate, isError, isSymbol, isUndefined.
+     */
+    _initTypes() {
+        let types = ['Arguments', 'Function', 'String', 'Number', 'Object', 'Date', 'Error', 'Symbol', 'Undefined'];
+
+        types.forEach((type) => {
+            this['is'+ type] = function(typeName) {
+                return input => {
+                    return '[object '+ typeName +']' === toString.call(input);
+                }
+            }(type);
+        });
     }
 }
 

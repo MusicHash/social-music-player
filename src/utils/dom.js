@@ -37,7 +37,7 @@ class DOM {
     /**
      * Getter for the body
      *
-     * @returns {HTMLElement}
+     * @return {HTMLElement}
      */
     getBody() {
         return this.$$('body');
@@ -47,7 +47,7 @@ class DOM {
     /**
      *
      * @param {String} input
-     * @returns {Boolean}
+     * @return {Boolean}
      */
     isHTML(input) {
         let matchHTML = new RegExp('<([A-Za-z][A-Za-z0-9]*)\\b[^>]*>(.*?)</\\1>');
@@ -59,7 +59,7 @@ class DOM {
     /**
      *
      * @param {String} input
-     * @returns {Boolean}
+     * @return {Boolean}
      */
     isID(input) {
         return 0 === input.search(/^#\w+$/);
@@ -71,7 +71,7 @@ class DOM {
      *
      * @param {HTMLElement} el
      * @param {HTMLElement} dst
-     * @returns {DOM} Instance for chaning
+     * @return {DOM} Instance for chaning
      */
     append(el, dst) {
         if (!dst || !_.isElement(dst)) {
