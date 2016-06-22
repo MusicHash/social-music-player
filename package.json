@@ -2,7 +2,7 @@
   "name": "social-music-player",
   "version": "0.1.0",
   "description": "## What is it?",
-  "main": "dist/js/smp.min.js",
+  "main": "src/social_music_player.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
