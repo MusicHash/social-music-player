@@ -5,6 +5,15 @@ import _ from './__';
  * DOM
  */
 class DOM {
+
+
+    /**
+     * jQuery like selector type, $$ for double the fun.
+     *
+     * @param {String} selector ID, className or a html structure string.
+     * @param {Object} Selector's context, able to .find inside HTMLElements to narrow results.
+     * @return {HTMLElement|[]}
+     */
     $$(selector, context) {
         context = context || document;
 
@@ -22,6 +31,33 @@ class DOM {
 
 
     /**
+     * Creates a new DOMElement with properties.
+     *
+     * @param {String} tag - HTML tag name to create.
+     * @param {Object} properties - HTML propreties to apply.
+     * @param {Object} attributes - HTML attributes to apply.
+     */
+    createEl(tag = 'div', properties = {}, attributes = {}) {
+        let el  = document.createElement(tag);
+
+        // assign properties.
+        Object.getOwnPropertyNames(properties).forEach(propertyName => {
+            let property = properties[propertyName];
+            el[propertyName] = property;
+        });
+
+        // assign attributes.
+        Object.getOwnPropertyNames(properties).forEach(attributeName => {
+            let attribute = properties[attributeName];
+            el.setAttribute(attributeName, attribute);
+        });
+
+        return el;
+    }
+
+
+    /**
+     * Converts HTMLString to HTMLElement.
      *
      * @param {String} HTML representing a single element
      * @return {HTMLElement}
@@ -45,6 +81,7 @@ class DOM {
 
 
     /**
+     * Check whether the string input is in an valid XML/HTML format.
      *
      * @param {String} input
      * @return {Boolean}
@@ -57,17 +94,7 @@ class DOM {
 
 
     /**
-     *
-     * @param {String} input
-     * @return {Boolean}
-     */
-    isID(input) {
-        return 0 === input.search(/^#\w+$/);
-    }
-
-
-    /**
-     * Appends an html element to another html element
+     * Appends an html element to another html element.
      *
      * @param {HTMLElement} el
      * @param {HTMLElement} dst
@@ -97,6 +124,12 @@ class DOM {
     }
 
 
+    /**
+     * Getter for a selectors physical dimensions.
+     *
+     * @param {String} selector to locate
+     * @return {Object}
+     */
     getDimensions(selector) {
         let style = this.getStyle(selector);
 
@@ -107,6 +140,12 @@ class DOM {
     }
 
 
+    /**
+     * Getter for a selector's computed style.
+     *
+     * @param {String} selector to locate
+     * @return {Object|null} ComputedStyle properties of the selector
+     */
     getStyle(selector) {
         if (0 === this.$$(selector).length) {
             console.log(['ERROR: selector was not found.', selector]);
