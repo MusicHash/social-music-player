@@ -140,6 +140,14 @@ The SDK allows subscribing via `player.on` to any of the following event:
   * `FULLSCREEN_CLOSE`
 
 
+<details>
+ <summary>Stack Trace</summary>
+ ```shell
+ #
+ ```
+</details>
+
+
 ## Building and Modifing
 
 Clone this repo (or fork it)
