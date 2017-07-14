@@ -43,10 +43,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LandRover/social-music-player.git"
+    "url": "git+https://github.com/MusicHash/social-music-player.git"
   },
   "bugs": {
-    "url": "https://github.com/LandRover/social-music-player/issues"
+    "url": "https://github.com/MusicHash/social-music-player/issues"
   },
-  "homepage": "https://github.com/LandRover/social-music-player#readme"
+  "homepage": "https://github.com/MusicHash/social-music-player#readme"
 }
