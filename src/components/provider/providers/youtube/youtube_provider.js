@@ -93,7 +93,7 @@ class YoutubeProvider extends BaseProvider {
                 iv_load_policy: 3,
                 modestbranding: 1,
                 loop: 0,
-                playinline: 1,
+                playsinline: 1,
                 theme: 'light',
                 rel: 0
             }
