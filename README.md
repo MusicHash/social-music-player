@@ -7,7 +7,7 @@
 `social-music-player` is a browser module, distributed via NPM and allows you to play video clips/music from one of the major
 social video providers such as Youtube, Vimeo and SoundCloud. Enabled via a unified and clear API regardless the provider you use.
 
-Here's a quick, hideous [demo](https://landrover.github.io/social-music-player/)
+Here's a quick, hideous [demo](https://MusicHash.github.io/social-music-player/)
 
 ## Usage
 
@@ -44,7 +44,7 @@ The first order of business in order to do anything with SMP SDK, is to natually
         var js, sjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = '//landrover.github.io/social-music-player/js/smp.min.js';
+        js.src = '//MusicHash.github.io/social-music-player/js/smp.min.js';
         sjs.parentNode.insertBefore(js, sjs);
     }(document, 'script', 'social-music-player-sdk'));
 </script>
@@ -54,7 +54,7 @@ Once `smp.min.js` file is loaded, it will try to call the `window.SMPAsyncInit` 
 That is why inside that function you should call the `create()` method in order to initialize the library. It is extermly important that the code is inserted exactly as is (the SDK async load part).
 It is important to have the callback `window.SMPAsyncInit` function set prior to the actualy SDK as in the example before to avoid racing coniditions.
 
-Full demo is available in the `./playground` dir, with more use cases or the same [LIVE DEMO](https://landrover.github.io/social-music-player/)
+Full demo is available in the `./playground` dir, with more use cases or the same [LIVE DEMO](https://MusicHash.github.io/social-music-player/)
 
 ### Options overrides
 
@@ -81,7 +81,7 @@ Create must be binded to a var as it contains the instance of the SMP and return
 
 ## API Playground
 
-[![API Playground](https://raw.githubusercontent.com/LandRover/social-music-player/master/playground/images/smp-19-6-16-preview.png)](https://landrover.github.io/social-music-player/)
+[![API Playground](https://raw.githubusercontent.com/LandRover/social-music-player/master/playground/images/smp-19-6-16-preview.png)](https://MusicHash.github.io/social-music-player/)
 
 
 ## API
@@ -152,7 +152,7 @@ The SDK allows subscribing via `player.on` to any of the following event:
 
 Clone this repo (or fork it)
 ```
-git clone git@github.com:landrover/social-music-player.git
+git clone git@github.com:musichash/social-music-player.git
 ```
 Install deps
 ```
